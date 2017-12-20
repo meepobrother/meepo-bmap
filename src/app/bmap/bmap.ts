@@ -1,6 +1,7 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
-    ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy
+    ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy,
+    Output, EventEmitter
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { headerTitles } from './bmap.config';
@@ -23,6 +24,8 @@ export class BmapComponent implements OnInit {
     @ViewChild('bmap') bmap: ElementRef;
     @ViewChild('footer') footer: ElementRef;
     @ViewChild('search') search: ElementRef;
+
+    @Output() onHome: EventEmitter<any> = new EventEmitter();
 
     showOrderDetail: boolean = false;
 
@@ -287,8 +290,7 @@ export class BmapComponent implements OnInit {
     }
 
     locationToHome() {
-        const url = this.api.murl('entry//coach_home', { m: 'imeepos_runnerpro' });
-        location.href = url;
+        this.onHome.emit();
     }
 
     ngOnInit() {
