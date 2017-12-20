@@ -56,9 +56,11 @@
         "@nestjs/microservices": "^4.5.1",
         "@nestjs/testing": "^4.5.1",
         "@nestjs/websockets": "^4.5.1",
+        "meepo-core": "^1.0.5",
         "mysql": "^2.15.0",
         "reflect-metadata": "^0.1.10",
-        "rxjs": "^5.5.5",
+        "rxjs": "^5.5.0",
+        "store": "^2.0.12",
         "typeorm": "^0.1.9",
         "zone.js": "0.8.4"
     }
