@@ -9,7 +9,12 @@
     "scripts": {
         "build": "bash ./build.sh",
         "git": "git add . && git commit -m 'save to back' && git push origin master",
-        "test": "node index.js"
+        "test": "node index.js",
+        "demo": "ng serve",
+        "server": "pm2 start index.js --name meepo",
+        "reload": "pm2 restart all && pm2 logs meepo",
+        "delete": "pm2 delete all",
+        "logs": "pm2 logs meepo"
     },
     "repository": {
         "type": "git",
