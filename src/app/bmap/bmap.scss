@@ -1,0 +1,389 @@
+$tipHeight: 30px;
+$tipWidth: 150px;
+$iconWidth: 30px;
+$iconHeight: 58.5px;
+.meepo__bmap_header {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 44px;
+    line-height: 44px;
+    flex-direction: row;
+    background-color: #fff;
+    z-index: 8;
+    padding: 0 10px;
+    align-items: center;
+    .title {
+        flex: 1;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        position: relative;
+        overflow-x: auto;
+        &:before {
+            content: " ";
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            height: 1px;
+            color: #ccc;
+            background-color: #ccc;
+            transform: scaleY(0.5);
+        }
+        .title_item {
+            width: auto;
+            padding: 0 10px;
+            position: relative;
+            border-radius: 6px;
+            font-size: .8em;
+            margin-bottom: 5px;
+            &.active {
+                background-color: orangered;
+                color: #fff;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+    .home_ab_user_profile_red_dot,
+    .home_ab_messages_with_red_dot,
+    .icon_broadcast_message {
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+    }
+    .home_ab_user_profile_red_dot {
+        background-image: url('./home_ab_user_profile_red_dot.png');
+    }
+    .home_ab_messages_with_red_dot {
+        background-image: url('./home_ab_messages_with_red_dot.png');
+    }
+    .icon_broadcast_message{
+        background-image: url('./icon_broadcast_message.png');
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.meepo__bmap {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+}
+
+.meep__bmap_center_icon {
+    display: block;
+    width: $iconWidth;
+    height: $iconHeight;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -$iconHeight;
+    margin-left: -$iconWidth/2;
+    z-index: 2;
+    background-image: url("./search_center_ic.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.meepo__bmap_tip {
+    display: block;
+    width: $tipWidth;
+    height: $tipHeight;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -$tipWidth/2;
+    margin-top: -$tipWidth/2 - $iconHeight/2;
+    z-index: 2;
+    background-color: #fff;
+    box-shadow: 4px 5px 6px 0px #797676;
+    border-radius: $tipHeight/3;
+    .tip_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: .8em;
+        height: $tipHeight;
+        line-height: $tipHeight;
+        position: relative;
+        .tip_title {
+            margin-right: 3px;
+        }
+        .tip_info {
+            color: orangered;
+        }
+        .tip_divider {
+            color: #909090;
+            transform: scaleY(0.5);
+            height: 100%;
+            width: 1px;
+            margin: 0 2px;
+        }
+        .tip_content {
+            padding-right: 10px;
+            &:after {
+                content: " ";
+                display: inline-block;
+                height: 6px;
+                width: 6px;
+                border-width: 2px 2px 0 0;
+                border-color: #C8C8CD;
+                border-style: solid;
+                -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+                transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+                position: absolute;
+                top: 50%;
+                margin-top: -4px;
+                right: 10px;
+            }
+        }
+    }
+}
+
+.BMap_Marker img {
+    width: 90%;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.meepo__map_footer {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: auto;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    .footer_info {
+        color: orangered;
+        text-align: center;
+    }
+    .weui-cell {
+        padding: 5px 5px;
+    }
+    p {
+        margin: 0px;
+        padding: 0px;
+        font-size: .9em;
+    }
+    .weui-cell__ft {
+        font-size: .7em;
+    }
+    .footer_container {
+        position: relative;
+        width: 100%;
+        border-radius: 5px;
+        background: #fff;
+        flex: 1;
+    }
+    .footer-btn {
+        position: relative;
+        margin-top: 6px;
+        height: auto;
+        width: 100%;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+    .balance_pay_icon,
+    .icon_broadcast_message {
+        background-image: url("./icon_broadcast_message.png");
+        display: block;
+        width: 1em;
+        height: 1em;
+        background-size: cover;
+        margin-right: 5px;
+    }
+    .address_item_divider {
+        display: block;
+        height: 1px;
+        width: 100%;
+        color: #ccc;
+        background: #ccc;
+        transform: scaleY(0.5);
+    }
+    .address_item {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 15px;
+        position: relative;
+        .weui-input {
+            flex: 1;
+            font-size: .8em;
+        }
+    }
+    .bg_redpacket_marker,
+    .home_unlock_to_success_17,
+    .icon_unlock_nofee,
+    .activity_sticker_arrow_down,
+    .activity_sticker_arrow_right {
+        display: block;
+        width: .6em;
+        height: .6em;
+        background-size: cover;
+        margin-right: 5px;
+        background-repeat: no-repeat;
+    }
+    .icon_unlock_nofee {
+        background-image: url("./icon_unlock_nofee.png");
+    }
+    .bg_redpacket_marker {
+        background-image: url("./bg_redpacket_marker.png");
+    }
+    .home_unlock_to_success_17 {
+        background-image: url("./home_unlock_to_success_17.png");
+    }
+    .activity_sticker_arrow_down {
+        background-image: url('./activity_sticker_arrow_down.png');
+        background-size: 100% 60%;
+    }
+    .activity_sticker_arrow_right {
+        background-image: url('./activity_sticker_arrow_right.png');
+        background-size: 60% 100%;
+    }
+}
+
+.line-right {
+    position: relative;
+    height: 20px;
+    width: 10px;
+    padding: 10 0px;
+    &:before {
+        content: " ";
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 1px;
+        color: #ccc;
+        background-color: #ccc;
+    }
+}
+
+.meepo__bmap_topnav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    position: absolute;
+    top: 44px;
+    left: 0px;
+    right: 0px;
+    z-index: 8;
+    overflow-x: auto;
+    .item {
+        padding: 0 5px;
+        margin: 0 5px;
+        text-align: center;
+        font-size: .8em;
+        min-width: 3em;
+        &.active {
+            color: red;
+        }
+    }
+}
+
+.meepo__bmap_search {
+    display: block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, .9);
+    z-index: 9;
+}
+
+.meepo__map_surroundingPois {
+    ul {
+        padding: 0 10px;
+        li {
+            height: 44px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0px;
+            .surrounding_content {
+                flex: 1;
+            }
+            p {
+                font-size: .7em;
+                color: gray;
+            }
+            h4 {
+                font-size: .8em;
+            }
+            .bt_ic_postal_code {
+                display: block;
+                width: 20px;
+                height: 20px;
+                background-image: url("./bt_ic_postal_code.png");
+                background-size: cover;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.meepo__bmap_order_info_tip {
+    position: absolute;
+    right: 0px;
+    width: 1em;
+    z-index: 8;
+    background: rgb(8, 8, 8);
+    top: 120px;
+    padding: 15px 8px;
+    color: #fff;
+    font-size: .7em;
+    p{
+        color: #fff;
+        padding: 10px 15px;
+    }
+}
+
+.meepo__bmap_order_info {
+    position: absolute;
+    right: 0px;
+    top: 120px;
+    width: 300px;
+    background: rgba(0, 0, 0, .8);
+    z-index: 8;
+    min-height: 120px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 10px 5px;
+    p{
+        color: #fff;
+        padding: 10px 15px;
+    }
+    .title {
+        color: #fff;
+        font-size: 1em;
+        text-align: center;
+    }
+    .footer_distance_price_info,
+    .empty {
+        padding: 0 20px;
+        color: rgb(212, 212, 212);
+        font-size: .7em;
+        list-style: none;
+    }
+}

@@ -1,0 +1,94 @@
+<div class="meepo__bmap_header">
+    <div class="home" (click)="locationToHome()">
+        <i class="home_ab_user_profile_red_dot"></i>
+    </div>
+    <div class="title">
+        <div class="title_item" (click)="_onHeaderItem(item)" [class.active]="item.active" *ngFor="let item of headerTitles;index as i;">
+            <span>{{item.title}}</span>
+        </div>
+    </div>
+    <div class="help" (click)="switchNotice()">
+        <i class="icon_broadcast_message"></i>
+    </div>
+</div>
+<div class="meepo__bmap_topnav" *ngIf="activeTitle.items.length>0">
+    <div class="item" (click)="_onNavItem(item)" [class.active]="item.active" *ngFor="let item of activeTitle.items; index as i;">{{item.title}}</div>
+</div>
+
+<div #bmap class="meepo__bmap"></div>
+
+<div class="meepo__bmap_search" *ngIf="showSearch">
+    <div class="weui-search-bar weui-search-bar_focusing" id="searchBar">
+        <form class="weui-search-bar__form" novalidate [formGroup]="form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" #search formControlName="key" class="weui-search-bar__input" placeholder="请输入关键字搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                <i class="weui-icon-search"></i>
+                <span>请输入关键字</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
+    </div>
+
+    <div class="meepo__map_surroundingPois">
+        <ul>
+            <li *ngFor="let item of surroundingPois" (click)="_onCitySelect(item)">
+                <i class="bt_ic_postal_code"></i>
+                <div class="surrounding_content">
+                    <h4>{{item.title}}</h4>
+                    <p>{{item.address}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="meepo__bmap_tip">
+    <div class="tip_container">
+        <div class="tip_info">
+            <i class="weui-loading" *ngIf="loading"></i>
+        </div>
+        <div class="tip_divider"></div>
+        <div class="tip_content">
+            {{btnTitle}}
+        </div>
+    </div>
+</div>
+<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()">
+    价格信息
+</div>
+<div class="meepo__bmap_order_info" style="bottom: 0px;top:0px;" *ngIf="showNotice" (click)="switchNotice()">
+    <h2 class="title">免责声明</h2>
+    <p [innerHTML]="ruleContent"></p>
+</div>
+<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()">
+    <h2 class="title">价格信息</h2>
+    <p class="footer_distance_price_info" *ngIf="timePrice.price>0">{{timePrice.start}}-{{timePrice.end}}加价{{timePrice.price}}元</p>
+    <ul class="footer_distance_price_info" *ngIf="juliItems.length>0">
+        <li *ngFor="let item of juliItems">{{item.start}}-{{item.end}}公里，加价{{item.money}}元({{item.price}}元/公里)</li>
+    </ul>
+    <p class="empty" *ngIf="juliItems.length==0">起步距离内</p>
+</div>
+<div class="meep__bmap_center_icon"></div>
+<div class="meepo__map_footer" #footer>
+    <div class="footer_container">
+        <div class="address_item" (click)="_onStartAddressSelect()">
+            <span class="home_unlock_to_success_17"></span>
+            <input class="weui-input" *ngIf="loading" type="text" readonly disabled placeholder="正在获取位置...">
+            <input class="weui-input" *ngIf="!loading" type="text" readonly disabled [attr.value]="start.address">
+            <span class="activity_sticker_arrow_down"></span>
+        </div>
+        <div class="address_item_divider"></div>
+        <div class="address_item" (click)="_onEndAddressSelect()">
+            <span class="bg_redpacket_marker"></span>
+            <input class="weui-input" type="text" readonly disabled [attr.value]="end.address" placeholder="请选择任务终点">
+            <span class="activity_sticker_arrow_right"></span>
+        </div>
+    </div>
+    <div class="footer-btn">
+        <a href="javascript:;" class="weui-btn weui-btn_primary">立即下单</a>
+    </div>
+</div>
+<ng-content></ng-content>
