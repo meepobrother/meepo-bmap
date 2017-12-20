@@ -11,8 +11,11 @@ let lessFilePool = [];
 let handledLessFileCount = 0;
 
 let tsFileTester = /\.ts$/;
+
 let stylesRegex = /styleUrls *:(\s*\[[^\]]*?\])/g;
 let htmlRegex = /templateUrl\s*:\s*\'(\S*?)\'/g;
+let imageRegex = /url\((\S*?)\)/g;
+
 
 let stringRegex = /(['"])((?:[^\\]\\\1|.)*?)\1/g;
 let lessNumRegex = /style_(\d+)_less/g;
@@ -98,6 +101,21 @@ function processLess() {
                             if (e) {
                                 console.log(e);
                             } else {
+                                // 检查图片并转换base64
+                                let file = lessFilePool[index];
+                                if (imageRegex.test(output.css)) {
+                                    let contentTemp = output.css.toString().replace(imageRegex, function (match, fileName) {
+                                        fileName = fileName.replace("'", '');
+                                        fileName = fileName.replace("'", '');
+                                        fileName = fileName.replace('"', '');
+                                        fileName = fileName.replace('"', '');
+                                        let filePath = pathUtil.resolve(pathUtil.dirname(file), fileName);
+                                        let content = fs.readFileSync(filePath);
+                                        let base64 = 'url(data:image/png;base64,' + content.toString("base64") + ')';
+                                        return base64;
+                                    });
+                                    output.css = contentTemp;
+                                }
                                 lessFilePool[index] = output.css.replace(/\\e/g, function (match, e) {
                                     // 对content中的类似'\e630'中的\e进行处理
                                     return '\\\\e';
@@ -125,9 +143,26 @@ function processLess() {
                     if (e) {
                         console.log(e);
                     } else {
-                        lessFilePool[index] = output.css;
+                        // 检查图片并转换base64
+                        let file = lessFilePool[index];
+                        if (imageRegex.test(output.css)) {
+                            let contentTemp = output.css.toString().replace(imageRegex, function (match, fileName) {
+                                fileName = fileName.replace("'", '');
+                                fileName = fileName.replace("'", '');
+                                fileName = fileName.replace('"', '');
+                                fileName = fileName.replace('"', '');
+                                let filePath = pathUtil.resolve(pathUtil.dirname(file), fileName);
+                                let content = fs.readFileSync(filePath);
+                                let base64 = 'url(data:image/png;base64,' + content.toString("base64") + ')';
+                                return base64;
+                            });
+                            lessFilePool[index] = contentTemp;
+                            doneOne();
+                        } else {
+                            lessFilePool[index] = output.css;
+                            doneOne();
+                        }
                     }
-                    doneOne();
                 });
             }
 
