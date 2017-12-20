@@ -26,6 +26,7 @@ export class BmapComponent implements OnInit {
     @ViewChild('search') search: ElementRef;
 
     @Output() onHome: EventEmitter<any> = new EventEmitter();
+    @Output() onFinish: EventEmitter<any> = new EventEmitter();
 
     showOrderDetail: boolean = false;
 
@@ -291,6 +292,17 @@ export class BmapComponent implements OnInit {
 
     locationToHome() {
         this.onHome.emit();
+    }
+
+    finish() {
+        this.onFinish.emit({
+            start: this.start,
+            end: this.end,
+            distance: this.distance,
+            duration: this.duration,
+            timePrice: this.timePrice,
+            juliItems: this.juliItems
+        });
     }
 
     ngOnInit() {
