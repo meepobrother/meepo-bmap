@@ -3534,15 +3534,9 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meepo-bmap@^1.0.9:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/meepo-bmap/-/meepo-bmap-1.6.3.tgz#f48904bb9517c03d3f046d0beb36a04c8cd65614"
-  dependencies:
-    tslib "^1.7.1"
-
-meepo-core@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-1.0.5.tgz#6ec1e538a45dcda88dbc17e1316adf9bfe617cf6"
+meepo-core@^1.1.23:
+  version "1.1.23"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-1.1.23.tgz#ae10ab27f853befc279d5110046d243d1ab5fe41"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
@@ -3553,7 +3547,6 @@ meepo-core@^1.0.5:
     "@nestjs/microservices" "^4.5.1"
     "@nestjs/testing" "^4.5.1"
     "@nestjs/websockets" "^4.5.1"
-    meepo-bmap "^1.0.9"
     mysql "^2.15.0"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
@@ -5226,7 +5219,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^5.5.2, rxjs@^5.5.5:
+rxjs@^5.5.0, rxjs@^5.5.2, rxjs@^5.5.5:
   version "5.5.5"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.5.tgz#e164f11d38eaf29f56f08c3447f74ff02dd84e97"
   dependencies:
