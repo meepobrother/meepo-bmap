@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
 import { ApiService } from '../api.service';
 import { RunnerService } from '../runner.service';
 
-
+import { CoreService } from 'meepo-core';
 @Component({
     selector: 'bmap',
     templateUrl: './bmap.html',
@@ -83,7 +83,8 @@ export class BmapComponent implements OnInit {
         public cd: ChangeDetectorRef,
         public fb: FormBuilder,
         public api: ApiService,
-        public runner: RunnerService
+        public runner: RunnerService,
+        public core: CoreService
     ) {
         this.cd.detach();
         // 关键字搜索
@@ -190,6 +191,7 @@ export class BmapComponent implements OnInit {
                     ];
                 });
                 this.bmapService.addLine(arrPois);
+                this.core.closeLoading();
                 this.cd.detectChanges();
             });
         });
@@ -321,11 +323,15 @@ export class BmapComponent implements OnInit {
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
+            if(!this.end.address){
+                this.core.closeLoading();
+            }
             this.loading = false;
             this.cd.detectChanges();
         });
         // 开始移动
         this.bmapService.movestart$.subscribe(res => {
+            this.core.showLoading({type: 'skCircle'});
             setTimeout(() => {
                 this.loading = true;
                 this.btnTitle = '在这里下单';

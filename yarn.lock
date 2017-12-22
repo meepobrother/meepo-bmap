@@ -3534,9 +3534,9 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meepo-core@^1.1.23:
-  version "1.1.23"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-1.1.23.tgz#ae10ab27f853befc279d5110046d243d1ab5fe41"
+meepo-core@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.1.7.tgz#a7da4a78e04e494f125c454adbb8541947a709fb"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
