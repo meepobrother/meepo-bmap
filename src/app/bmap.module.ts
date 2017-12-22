@@ -14,6 +14,8 @@ import { RunnerService } from './runner.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 
+import { MeepoCoreModule } from 'meepo-core';
+
 const BmapComponents: any[] = [
     BmapComponent
 ];
@@ -21,7 +23,8 @@ const BmapComponents: any[] = [
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MeepoCoreModule.forRoot()
     ],
     exports: [
         BmapComponents
