@@ -10,7 +10,7 @@ import { MeepoBmapModule } from '../../src/app/app';
   ],
   imports: [
     BrowserModule,
-    MeepoCoreModule,
+    MeepoCoreModule.forRoot(),
     MeepoBmapModule
   ],
   providers: [],

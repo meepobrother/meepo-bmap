@@ -45,7 +45,7 @@
         </ul>
     </div>
 </div>
-<div class="meepo__bmap_tip">
+<div class="meepo__bmap_tip" [style.bottom.px]="this.bmapService.locationHeight">
     <div class="tip_container">
         <div class="tip_info">
             <i class="weui-loading" *ngIf="loading"></i>
@@ -56,14 +56,14 @@
         </div>
     </div>
 </div>
-<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()">
+<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()" >
     价格信息
 </div>
 <div class="meepo__bmap_order_info" style="bottom: 0px;top:0px;" *ngIf="showNotice" (click)="switchNotice()">
     <h2 class="title">免责声明</h2>
     <p [innerHTML]="ruleContent"></p>
 </div>
-<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()">
+<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()"  >
     <h2 class="title">价格信息</h2>
     <p class="footer_distance_price_info" *ngIf="timePrice.price>0">{{timePrice.start}}-{{timePrice.end}}加价{{timePrice.price}}元</p>
     <ul class="footer_distance_price_info" *ngIf="juliItems.length>0">
