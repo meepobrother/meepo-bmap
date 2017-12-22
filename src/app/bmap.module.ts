@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,7 +10,6 @@ import { ApiService } from './api.service';
 import { SysinfoService } from './sysinfo.service';
 import { RunnerService } from './runner.service';
 
-
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 
@@ -19,24 +18,31 @@ import { MeepoCoreModule } from 'meepo-core';
 const BmapComponents: any[] = [
     BmapComponent
 ];
+
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        MeepoCoreModule.forRoot()
     ],
     exports: [
-        BmapComponents
+        BmapComponents,
+        MeepoCoreModule
     ],
     declarations: [
         BmapComponents
-    ],
-    providers: [
-        BmapService,
-        ApiService,
-        SysinfoService,
-        RunnerService
-    ],
+    ]
 })
-export class MeepoBmapModule { }
+export class MeepoBmapModule {
+    public static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: MeepoBmapModule,
+            providers: [
+                BmapService,
+                ApiService,
+                SysinfoService,
+                RunnerService
+            ]
+        }
+    }
+}

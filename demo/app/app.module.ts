@@ -11,7 +11,7 @@ import { MeepoBmapModule } from '../../src/app/app';
   imports: [
     BrowserModule,
     MeepoCoreModule.forRoot(),
-    MeepoBmapModule
+    MeepoBmapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
