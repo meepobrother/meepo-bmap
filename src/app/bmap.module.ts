@@ -26,8 +26,7 @@ const BmapComponents: any[] = [
         HttpClientModule,
     ],
     exports: [
-        BmapComponents,
-        MeepoCoreModule
+        BmapComponents
     ],
     declarations: [
         BmapComponents
