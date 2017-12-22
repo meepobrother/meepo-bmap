@@ -13,17 +13,16 @@ import { RunnerService } from './runner.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 
-import { MeepoCoreModule } from 'meepo-core';
-
 const BmapComponents: any[] = [
     BmapComponent
 ];
-
+import { MeepoCoreModule } from 'meepo-core';
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
+        MeepoCoreModule.forRoot()
     ],
     exports: [
         BmapComponents
