@@ -88,11 +88,13 @@ export class BmapComponent implements OnInit {
     ) {
         this.cd.detach();
         this.address.show$.subscribe((res: any) => {
-            if (res.data) {
+            let item = res.data;
+            if (item) {
                 if (this.isStart) {
-                    this.start$.next(res.data);
+                    this.start$.next({ address: item.title, point: item.point, city: item.city });
+                    this.bmapService.panTo(item.point);
                 } else {
-                    this.end$.next(res.data);
+                    this.end$.next({ address: item.title, point: item.point, city: item.city });
                 }
             }
         });
