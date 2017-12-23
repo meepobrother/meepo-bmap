@@ -86,6 +86,7 @@ export class BmapComponent implements OnInit {
         public runner: RunnerService,
         public core: CoreService
     ) {
+        console.log(this.core.time);
         this.cd.detach();
         // 关键字搜索
         this.form = this.fb.group({

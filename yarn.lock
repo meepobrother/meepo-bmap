@@ -3534,9 +3534,9 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meepo-bmap@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/meepo-bmap/-/meepo-bmap-2.2.0.tgz#68bf317f1095a8e803e184bb57eadd929daadcfe"
+meepo-bmap@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/meepo-bmap/-/meepo-bmap-2.2.7.tgz#5d59a6554e56205cc31822388eda3d09d969900d"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
@@ -3554,9 +3554,9 @@ meepo-bmap@^2.2.0:
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
-meepo-core@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.2.3.tgz#675d241138d5734f7a69624a40e9676284a7b6de"
+meepo-core@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.3.4.tgz#e1ae1fe9e23c113b6b180aa58995d87bd1c389f2"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"

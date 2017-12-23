@@ -17,6 +17,7 @@ const BmapComponents: any[] = [
     BmapComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
+
 @NgModule({
     imports: [
         CommonModule,
