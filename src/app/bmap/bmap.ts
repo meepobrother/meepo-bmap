@@ -90,11 +90,10 @@ export class BmapComponent implements OnInit {
         this.address.show$.subscribe((res: any) => {
             if (res.data) {
                 if (this.isStart) {
-                    this.start = res.data;
+                    this.start$.next(res.data);
                 } else {
-                    this.end = res.data;
+                    this.end$.next(res.data);
                 }
-                this.cd.detectChanges();
             }
         });
         // 地图初始化
