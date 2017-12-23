@@ -1,0 +1,11 @@
+<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()">
+    价格信息
+</div>
+<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()">
+    <h2 class="title">价格信息</h2>
+    <p class="footer_distance_price_info" *ngIf="timePrice.price>0">{{timePrice.start}}-{{timePrice.end}}加价{{timePrice.price}}元</p>
+    <ul class="footer_distance_price_info" *ngIf="juliItems.length>0">
+        <li *ngFor="let item of juliItems">{{item.start}}-{{item.end}}公里，加价{{item.money}}元({{item.price}}元/公里)</li>
+    </ul>
+    <p class="empty" *ngIf="juliItems.length==0">起步距离内</p>
+</div>

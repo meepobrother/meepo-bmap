@@ -14,9 +14,12 @@ import { BmapAddressSelectService } from './bmap-address-select.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
+import { BmapOrderInfoComponent } from './bmap/bmap-order-info/bmap-order-info';
+
 const BmapComponents: any[] = [
     BmapComponent,
-    BmapAddressSelectComponent
+    BmapAddressSelectComponent,
+    BmapOrderInfoComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
 import { XscrollModule } from 'meepo-xscroll';

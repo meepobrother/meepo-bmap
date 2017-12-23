@@ -77,6 +77,8 @@ export class BmapComponent implements OnInit {
     endObserver: any;
     loadObserver: any;
 
+    loaded: boolean = true;
+
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
@@ -87,6 +89,9 @@ export class BmapComponent implements OnInit {
         public address: BmapAddressSelectService
     ) {
         this.cd.detach();
+        this.core.loading$.subscribe(res=>{
+            this.loaded = res.show;
+        });
         this.address.show$.subscribe((res: any) => {
             let item = res.data;
             if (item) {
@@ -248,12 +253,11 @@ export class BmapComponent implements OnInit {
         this.activeNav = item;
         this.getDistancePrice();
         this.getTimePrice();
-        this.showRuleContent();
         this.cd.detectChanges();
     }
 
     showRuleContent() {
-        if (this.activeNav && this.activeNav.setting && this.activeNav.setting.rule) {
+        if (this.activeNav && this.activeNav.setting && this.activeNav.setting.rule && !this.loaded) {
             this.ruleContent = this.activeNav.setting.rule.content;
             this.showNotice = true;
             this.cd.detectChanges();

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { CoreService } from 'meepo-core';
 import { Subject } from 'rxjs/Subject';
 
 export const loadMaps: any = {};
@@ -49,7 +49,8 @@ export class BmapService {
 
     constructor(
         @Inject(DOCUMENT) public document: any,
-        public http: HttpClient
+        public http: HttpClient,
+        public core: CoreService
     ) {
         this.initMap$.subscribe(res => {
             // 初始化地图后， 调整地图中心， 初始化数据
@@ -120,6 +121,7 @@ export class BmapService {
         this.getLocation(point);
     }
     initMapSetting() {
+        this.core.showLoading({type: 'skCircle'});
         this.geolocationControl = new this.BMap.GeolocationControl({
             anchor: window['BMAP_ANCHOR_TOP_LEFT'],
             enableAutoLocation: true,

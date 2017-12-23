@@ -1,0 +1,44 @@
+
+.meepo__bmap_order_info {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    left:0px;
+    background: rgba(0, 0, 0, .8);
+    z-index: 8;
+    min-height: 120px;
+    padding: 10px 5px;
+    p{
+        color: #fff;
+        padding: 10px 15px;
+    }
+    .title {
+        color: #fff;
+        font-size: 1em;
+        text-align: center;
+    }
+    .footer_distance_price_info,
+    .empty {
+        padding: 0 20px;
+        color: rgb(212, 212, 212);
+        font-size: .7em;
+        list-style: none;
+    }
+}
+
+
+.meepo__bmap_order_info_tip {
+    position: absolute;
+    right: 0px;
+    width: 1em;
+    z-index: 8;
+    background: rgb(8, 8, 8);
+    top: 100px;
+    padding: 15px 8px;
+    color: #fff;
+    font-size: .7em;
+    p{
+        color: #fff;
+        padding: 10px 15px;
+    }
+}

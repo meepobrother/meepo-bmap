@@ -30,6 +30,7 @@ export class BmapAddressSelectComponent implements OnInit {
         show: false,
         data: null
     };
+    timer: any;
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
@@ -41,7 +42,14 @@ export class BmapAddressSelectComponent implements OnInit {
             key: ''
         });
         this.form.get('key').valueChanges.subscribe(key => {
-            console.log(key);
+            this.core.showLoading({ type: 'skCircle' });
+            if (this.timer) {
+                clearTimeout(this.timer);
+            }
+            this.timer = setTimeout(() => {
+                this.core.closeLoading();
+                this.core.showToast({ title: '没有结果', message: '没有找到相关地址', type: 'warning' });
+            }, 3000);
             this.searchByKey(key);
         });
         // 搜索结果
@@ -56,6 +64,10 @@ export class BmapAddressSelectComponent implements OnInit {
                 list: this.items
             };
             this.core.showPopover(cfg);
+            this.core.closeLoading();
+            if (this.timer) {
+                clearTimeout(this.timer);
+            }
             this.cd.markForCheck();
         });
 
