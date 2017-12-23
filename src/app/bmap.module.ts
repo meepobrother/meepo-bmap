@@ -16,13 +16,13 @@ import 'rxjs/add/operator/combineLatest';
 const BmapComponents: any[] = [
     BmapComponent
 ];
-import { MeepoCoreModule } from 'meepo-core';
+import { MeepoCoreServiceModule } from 'meepo-core';
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        MeepoCoreModule.forRoot()
+        MeepoCoreServiceModule.forRoot()
     ],
     exports: [
         BmapComponents
