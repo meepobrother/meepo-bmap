@@ -6,11 +6,15 @@
     flex: 1;
 }
 
-
-.shown {
-    visibility: visible;
-    display: flex;
+.meepo__bmap_search{
+    display: none;
+    visibility: hidden;
+    &.shown {
+        visibility: visible;
+        display: flex;
+    }
 }
+
 
 .bmap-address-select-item{
     padding: 0 10px;
