@@ -28,8 +28,7 @@ import { XscrollModule } from 'meepo-xscroll';
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        MeepoCoreServiceModule.forRoot(),
-        XscrollModule.forRoot()
+        MeepoCoreServiceModule.forRoot()
     ],
     exports: [
         BmapComponents
