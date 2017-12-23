@@ -3,7 +3,8 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { CoreService } from 'meepo-core';
 import { Subject } from 'rxjs/Subject';
-
+declare const require: any;
+const store = require('store');
 export const loadMaps: any = {};
 
 export interface BMapComponent {
@@ -33,14 +34,12 @@ export class BmapService {
 
     getRoutePlanSuccess$: Subject<any> = new Subject();
     BMap: any;
-
     // 默认参数
-    zoom: number = 18;
+    zoom: number = 22;
     myLocation: any = {
-        lat: 116.404,
-        lng: 39.915
+        lng: 116.404,
+        lat: 39.915
     };
-
     geolocationControl: any;
     geoc: any;
     geolocation: any;
@@ -52,6 +51,10 @@ export class BmapService {
         public http: HttpClient,
         public core: CoreService
     ) {
+        this.myLocation = store.get('__my_location', {
+            lng: 116.404,
+            lat: 39.915
+        });
         this.initMap$.subscribe(res => {
             // 初始化地图后， 调整地图中心， 初始化数据
             // 调整地图参数
@@ -121,7 +124,7 @@ export class BmapService {
         this.getLocation(point);
     }
     initMapSetting() {
-        this.core.showLoading({type: 'skCircle'});
+        this.core.showLoading({ type: 'skCircle' });
         this.geolocationControl = new this.BMap.GeolocationControl({
             anchor: window['BMAP_ANCHOR_TOP_LEFT'],
             enableAutoLocation: true,
@@ -147,9 +150,10 @@ export class BmapService {
         });
 
         this.geolocation.getCurrentPosition((r) => {
+            store.set('__my_location', r.point);
             this.bmap.panTo(r.point);
         });
-        this.bmap.centerAndZoom(new this.BMap.Point(this.myLocation.lat, this.myLocation.lng), this.zoom);
+        this.bmap.centerAndZoom(new this.BMap.Point(this.myLocation.lng, this.myLocation.lat), this.zoom);
         // 定位空间
         this.bmap.addControl(this.geolocationControl);
         this.bmap.enableDragging();
