@@ -46,6 +46,7 @@ export class BmapService {
     locationHeight: number = 100;
     LocalSearch: any;
 
+    time: any = new Date().getTime();
     constructor(
         @Inject(DOCUMENT) public document: any,
         public http: HttpClient,
@@ -69,6 +70,7 @@ export class BmapService {
         this.moveend$.asObservable().debounceTime(300).subscribe(res => {
             this.centerChange();
         });
+        console.log('BmapService is', this.time);
     }
 
     getRoutePlan(start: any, end: any) {

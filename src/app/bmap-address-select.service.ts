@@ -3,7 +3,11 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class BmapAddressSelectService {
     show$: Subject<any> = new Subject();
-    constructor() { }
+
+    time: any = new Date().getTime();
+    constructor() { 
+        console.log('BmapAddressSelectService is', this.time);
+    }
 
     show() {
         this.show$.next({ show: true });
