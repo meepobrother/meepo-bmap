@@ -57,7 +57,7 @@
         "@nestjs/microservices": "^4.5.1",
         "@nestjs/testing": "^4.5.1",
         "@nestjs/websockets": "^4.5.1",
-        "meepo-core": "^2.3.8",
+        "meepo-core": "^2.3.9",
         "meepo-xscroll": "^1.0.9",
         "mysql": "^2.15.0",
         "reflect-metadata": "^0.1.10",

@@ -12,9 +12,10 @@ import { RunnerService } from './runner.service';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
-
+import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
 const BmapComponents: any[] = [
-    BmapComponent
+    BmapComponent,
+    BmapAddressSelectComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
 

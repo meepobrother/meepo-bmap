@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
     ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy,
-    Output, EventEmitter
+    Output, EventEmitter, TemplateRef
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { headerTitles } from './bmap.config';
@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
 import { ApiService } from '../api.service';
 import { RunnerService } from '../runner.service';
 
-import { CoreService } from 'meepo-core';
+import { CoreService, CorePopoverWidget } from 'meepo-core';
 @Component({
     selector: 'bmap',
     templateUrl: './bmap.html',
@@ -25,6 +25,7 @@ export class BmapComponent implements OnInit {
     @ViewChild('footer') footer: ElementRef;
     @ViewChild('search') search: ElementRef;
 
+    @ViewChild('addressSelect') addressSelect: TemplateRef<any>;
     @Output() onHome: EventEmitter<any> = new EventEmitter();
     @Output() onFinish: EventEmitter<any> = new EventEmitter();
 
@@ -86,16 +87,7 @@ export class BmapComponent implements OnInit {
         public runner: RunnerService,
         public core: CoreService
     ) {
-        console.log(this.core.time);
         this.cd.detach();
-        // 关键字搜索
-        this.form = this.fb.group({
-            key: ['']
-        });
-        const key$ = this.form.get('key').valueChanges;
-        key$.debounceTime(300).subscribe(key => {
-            this.searchByKey(key);
-        });
         // 地图初始化
         this.loadObserver = this.bmapService.load$.subscribe((res: any) => {
             const BMap = res.libs;
@@ -110,13 +102,6 @@ export class BmapComponent implements OnInit {
             if (res.active) {
                 this.activeTitle = res;
             }
-        });
-        // 搜索结果
-        this.bmapService.localSearch$.subscribe((res: any) => {
-            for (let i = 0; i < res.getCurrentNumPois(); i++) {
-                this.surroundingPois.push(res.getPoi(i));
-            }
-            this.cd.detectChanges();
         });
 
         this.carMovingObserver = this.bmapService.carMoving$.subscribe(res => {
@@ -223,19 +208,23 @@ export class BmapComponent implements OnInit {
         }
     }
 
-    searchByKey(key) {
-        this.bmapService.LocalSearch.search(key);
-    }
-
     _onEndAddressSelect() {
         this.showSearch = true;
         this.isStart = false;
+        let cfg: CorePopoverWidget = {
+            tpl: this.addressSelect
+        };
+        this.core.showPopover(cfg);
         this.cd.detectChanges();
     }
 
     _onStartAddressSelect() {
         this.showSearch = true;
         this.isStart = true;
+        let cfg: CorePopoverWidget = {
+            tpl: this.addressSelect
+        };
+        this.core.showPopover(cfg);
         this.cd.detectChanges();
     }
 

@@ -3554,9 +3554,9 @@ meepo-bmap@^2.2.7:
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
-meepo-core@^2.3.8:
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.3.8.tgz#6e5fb4c13dfc36d2bfadb3bd052171e55c8d10d6"
+meepo-core@^2.3.9:
+  version "2.3.9"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.3.9.tgz#fe5d8fe3b39fc79885abcfd8bce171ca78a8f051"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"

@@ -17,34 +17,6 @@
 
 <div #bmap class="meepo__bmap"></div>
 
-<div class="meepo__bmap_search" *ngIf="showSearch">
-    <div class="weui-search-bar weui-search-bar_focusing" id="searchBar">
-        <form class="weui-search-bar__form" novalidate [formGroup]="form">
-            <div class="weui-search-bar__box">
-                <i class="weui-icon-search"></i>
-                <input type="search" #search formControlName="key" class="weui-search-bar__input" placeholder="请输入关键字搜索" required="">
-                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-            </div>
-            <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
-                <i class="weui-icon-search"></i>
-                <span>请输入关键字</span>
-            </label>
-        </form>
-        <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
-    </div>
-
-    <div class="meepo__map_surroundingPois">
-        <ul>
-            <li *ngFor="let item of surroundingPois" (click)="_onCitySelect(item)">
-                <i class="bt_ic_postal_code"></i>
-                <div class="surrounding_content">
-                    <h4>{{item.title}}</h4>
-                    <p>{{item.address}}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
 <div class="meepo__bmap_tip" [style.bottom.px]="this.bmapService.locationHeight">
     <div class="tip_container">
         <div class="tip_info">
@@ -56,14 +28,14 @@
         </div>
     </div>
 </div>
-<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()" >
+<div class="meepo__bmap_order_info_tip" *ngIf="!showOrderDetail" (click)="switchShowOrderDetail()">
     价格信息
 </div>
 <div class="meepo__bmap_order_info" style="bottom: 0px;top:0px;" *ngIf="showNotice" (click)="switchNotice()">
     <h2 class="title">免责声明</h2>
     <p [innerHTML]="ruleContent"></p>
 </div>
-<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()"  >
+<div class="meepo__bmap_order_info" *ngIf="showOrderDetail" (click)="switchShowOrderDetail()">
     <h2 class="title">价格信息</h2>
     <p class="footer_distance_price_info" *ngIf="timePrice.price>0">{{timePrice.start}}-{{timePrice.end}}加价{{timePrice.price}}元</p>
     <ul class="footer_distance_price_info" *ngIf="juliItems.length>0">
@@ -92,3 +64,7 @@
     </div>
 </div>
 <ng-content></ng-content>
+<!-- 地址选择插件 -->
+<ng-template #addressSelect>
+    <bmap-address-select></bmap-address-select>
+</ng-template>

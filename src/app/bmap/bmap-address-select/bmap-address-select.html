@@ -1,0 +1,28 @@
+<div class="meepo__bmap_search">
+    <div class="weui-search-bar weui-search-bar_focusing">
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" #search (change)="_change($event)" class="weui-search-bar__input" placeholder="请输入关键字搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" (click)="_clear()"></a>
+            </div>
+            <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                <i class="weui-icon-search"></i>
+                <span>请输入关键字</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
+    </div>
+
+    <div class="meepo__map_surroundingPois">
+        <ul>
+            <li *ngFor="let item of items" (click)="_onCitySelect(item)">
+                <i class="bt_ic_postal_code"></i>
+                <div class="surrounding_content">
+                    <h4>{{item.title}}</h4>
+                    <p>{{item.address}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
