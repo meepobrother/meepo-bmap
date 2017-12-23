@@ -1,0 +1,41 @@
+:host {
+    display: block;
+}
+
+.weui-search-bar {
+    flex: 1;
+}
+
+
+.shown {
+    visibility: visible;
+    display: flex;
+}
+
+.bmap-address-select-item{
+    padding: 0 10px;
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+    .surrounding_content {
+        flex: 1;
+    }
+    p {
+        font-size: .7em;
+        color: gray;
+    }
+    h4 {
+        font-size: .8em;
+    }
+    .bt_ic_postal_code {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-image: url("./bt_ic_postal_code.png");
+        background-size: cover;
+        margin-right: 10px;
+    }
+}

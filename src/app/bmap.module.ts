@@ -9,6 +9,7 @@ import { BmapService } from './bmap.service';
 import { ApiService } from './api.service';
 import { SysinfoService } from './sysinfo.service';
 import { RunnerService } from './runner.service';
+import { BmapAddressSelectService } from './bmap-address-select.service';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
@@ -18,13 +19,14 @@ const BmapComponents: any[] = [
     BmapAddressSelectComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
-
+import { XscrollModule } from 'meepo-xscroll';
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        MeepoCoreServiceModule.forRoot()
+        MeepoCoreServiceModule.forRoot(),
+        XscrollModule.forRoot()
     ],
     exports: [
         BmapComponents
@@ -41,7 +43,8 @@ export class MeepoBmapModule {
                 BmapService,
                 ApiService,
                 SysinfoService,
-                RunnerService
+                RunnerService,
+                BmapAddressSelectService
             ]
         }
     }

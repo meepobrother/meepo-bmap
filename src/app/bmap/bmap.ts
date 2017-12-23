@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ApiService } from '../api.service';
+import { BmapAddressSelectService } from '../bmap-address-select.service';
 import { RunnerService } from '../runner.service';
-
 import { CoreService, CorePopoverWidget } from 'meepo-core';
 @Component({
     selector: 'bmap',
@@ -19,13 +19,11 @@ import { CoreService, CorePopoverWidget } from 'meepo-core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class BmapComponent implements OnInit {
     @ViewChild('bmap') bmap: ElementRef;
     @ViewChild('footer') footer: ElementRef;
     @ViewChild('search') search: ElementRef;
 
-    @ViewChild('addressSelect') addressSelect: TemplateRef<any>;
     @Output() onHome: EventEmitter<any> = new EventEmitter();
     @Output() onFinish: EventEmitter<any> = new EventEmitter();
 
@@ -85,9 +83,20 @@ export class BmapComponent implements OnInit {
         public fb: FormBuilder,
         public api: ApiService,
         public runner: RunnerService,
-        public core: CoreService
+        public core: CoreService,
+        public address: BmapAddressSelectService
     ) {
         this.cd.detach();
+        this.address.show$.subscribe((res: any) => {
+            if (res.data) {
+                if (this.isStart) {
+                    this.start = res.data;
+                } else {
+                    this.end = res.data;
+                }
+                this.cd.detectChanges();
+            }
+        });
         // 地图初始化
         this.loadObserver = this.bmapService.load$.subscribe((res: any) => {
             const BMap = res.libs;
@@ -198,7 +207,6 @@ export class BmapComponent implements OnInit {
         }
     }
 
-
     getTimePrice() {
         if (this.activeNav && this.activeNav.setting && this.activeNav.setting.setting && this.activeNav.setting.setting.juliItems) {
             this.runner.timePrice({
@@ -207,32 +215,21 @@ export class BmapComponent implements OnInit {
             });
         }
     }
-
+    // 选择目的地
     _onEndAddressSelect() {
-        this.showSearch = true;
         this.isStart = false;
-        let cfg: CorePopoverWidget = {
-            tpl: this.addressSelect
-        };
-        this.core.showPopover(cfg);
-        this.cd.detectChanges();
+        this.showAddressSelect();
     }
-
+    // 选择开始地
     _onStartAddressSelect() {
-        this.showSearch = true;
         this.isStart = true;
-        let cfg: CorePopoverWidget = {
-            tpl: this.addressSelect
-        };
-        this.core.showPopover(cfg);
-        this.cd.detectChanges();
+        this.showAddressSelect();
     }
-
-    _cancelSelect() {
-        this.showSearch = false;
-        this.cd.detectChanges();
+    // 选择地址
+    showAddressSelect() {
+        this.address.show();
     }
-
+    // 头部点击
     _onHeaderItem(item: any) {
         this.headerTitles.map(res => {
             res.active = false;
@@ -241,7 +238,7 @@ export class BmapComponent implements OnInit {
         this.activeTitle = item;
         this.cd.detectChanges();
     }
-
+    // 头部导航
     _onNavItem(item: any) {
         this.activeTitle.items.map(res => {
             res.active = false;
@@ -261,19 +258,9 @@ export class BmapComponent implements OnInit {
             this.cd.detectChanges();
         }
     }
+
     switchShowOrderDetail() {
         this.showOrderDetail = !this.showOrderDetail;
-        this.cd.detectChanges();
-    }
-
-    _onCitySelect(item: any) {
-        if (this.isStart) {
-            this.start$.next({ address: item.title, point: item.point, city: item.city });
-            this.bmapService.panTo(item.point);
-        } else {
-            this.end$.next({ address: item.title, point: item.point, city: item.city });
-        }
-        this.showSearch = false;
         this.cd.detectChanges();
     }
 
@@ -313,7 +300,7 @@ export class BmapComponent implements OnInit {
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
-            if(!this.end.address){
+            if (!this.end.address) {
                 this.core.closeLoading();
             }
             this.loading = false;
@@ -321,7 +308,7 @@ export class BmapComponent implements OnInit {
         });
         // 开始移动
         this.bmapService.movestart$.subscribe(res => {
-            this.core.showLoading({type: 'skCircle'});
+            this.core.showLoading({ type: 'skCircle' });
             setTimeout(() => {
                 this.loading = true;
                 this.btnTitle = '在这里下单';
@@ -331,7 +318,5 @@ export class BmapComponent implements OnInit {
         });
         // 设置导航按钮高度
         this.bmapService.locationHeight = this.footer.nativeElement.clientHeight + 20;
-
     }
-
 }
