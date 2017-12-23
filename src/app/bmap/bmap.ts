@@ -28,21 +28,17 @@ export class BmapComponent implements OnInit {
     @Output() onFinish: EventEmitter<any> = new EventEmitter();
 
     showOrderDetail: boolean = false;
-
+    loading2: boolean = false;
     BMap: any;
     map: any;
-
     loading: boolean = true;
     btnTip: string = '2分钟';
     btnTitle: string = '在这里下单';
     component: any;
-
     address$: any;
-
     headerTitles: any[] = headerTitles;
     activeTitle: any;
     activeNav: any;
-
     showSearch: boolean = false;
     showNotice: boolean = false;
     surroundingPois: any[] = [];
@@ -277,7 +273,6 @@ export class BmapComponent implements OnInit {
     locationToHome() {
         this.onHome.emit();
     }
-    loading2: boolean = false;
     finish() {
         if (!this.loading2) {
             this.loading2 = true;
