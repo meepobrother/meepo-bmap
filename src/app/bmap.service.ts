@@ -102,7 +102,6 @@ export class BmapService {
         points = points || [];
         if (points.length > 0) {
             this.bmap.clearOverlays();
-            this.bmap.setZoom(14);
             this.bmap.addOverlay(new this.BMap.Polyline(points, { strokeColor: '#111' }));
         }
     }
