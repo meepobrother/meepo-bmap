@@ -10,8 +10,12 @@ export class AppComponent implements OnInit {
   title = 'app';
   constructor(
     public core: CoreService
-  ) {}
-  ngOnInit(){
+  ) { }
+  ngOnInit() {
     console.log(this.core.time);
+  }
+
+  onFinish(e: any) {
+    console.log(e);
   }
 }

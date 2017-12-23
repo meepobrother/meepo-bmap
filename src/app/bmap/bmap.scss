@@ -11,7 +11,7 @@ $iconHeight: 58.5px;
     height: 44px;
     line-height: 44px;
     flex-direction: row;
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255, 255, 255, .9);
     z-index: 8;
     padding: 0 10px;
     align-items: center;
@@ -65,7 +65,7 @@ $iconHeight: 58.5px;
     .home_ab_messages_with_red_dot {
         background-image: url('./home_ab_messages_with_red_dot.png');
     }
-    .icon_broadcast_message{
+    .icon_broadcast_message {
         background-image: url('./icon_broadcast_message.png');
         width: 20px;
         height: 20px;
@@ -227,35 +227,6 @@ $iconHeight: 58.5px;
             font-size: .8em;
         }
     }
-    .bg_redpacket_marker,
-    .home_unlock_to_success_17,
-    .icon_unlock_nofee,
-    .activity_sticker_arrow_down,
-    .activity_sticker_arrow_right {
-        display: block;
-        width: .6em;
-        height: .6em;
-        background-size: cover;
-        margin-right: 5px;
-        background-repeat: no-repeat;
-    }
-    .icon_unlock_nofee {
-        background-image: url("./icon_unlock_nofee.png");
-    }
-    .bg_redpacket_marker {
-        background-image: url("./bg_redpacket_marker.png");
-    }
-    .home_unlock_to_success_17 {
-        background-image: url("./home_unlock_to_success_17.png");
-    }
-    .activity_sticker_arrow_down {
-        background-image: url('./activity_sticker_arrow_down.png');
-        background-size: 100% 60%;
-    }
-    .activity_sticker_arrow_right {
-        background-image: url('./activity_sticker_arrow_right.png');
-        background-size: 60% 100%;
-    }
 }
 
 .line-right {
@@ -281,7 +252,7 @@ $iconHeight: 58.5px;
     align-items: center;
     height: 40px;
     line-height: 40px;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255, 255, 255, .5);
     position: absolute;
     top: 44px;
     left: 0px;
@@ -300,4 +271,37 @@ $iconHeight: 58.5px;
     }
 }
 
+.bg_redpacket_marker,
+.home_unlock_to_success_17,
+.icon_unlock_nofee,
+.activity_sticker_arrow_down,
+.activity_sticker_arrow_right {
+    display: block;
+    width: .6em;
+    height: .6em;
+    background-size: cover;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+}
 
+.icon_unlock_nofee {
+    background-image: url("./icon_unlock_nofee.png");
+}
+
+.bg_redpacket_marker {
+    background-image: url("./bg_redpacket_marker.png");
+}
+
+.home_unlock_to_success_17 {
+    background-image: url("./home_unlock_to_success_17.png");
+}
+
+.activity_sticker_arrow_down {
+    background-image: url('./activity_sticker_arrow_down.png');
+    background-size: 100% 60%;
+}
+
+.activity_sticker_arrow_right {
+    background-image: url('./activity_sticker_arrow_right.png');
+    background-size: 60% 100%;
+}
