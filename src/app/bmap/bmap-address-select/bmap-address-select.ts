@@ -41,8 +41,9 @@ export class BmapAddressSelectComponent implements OnInit {
             key: ''
         });
         this.form.get('key').valueChanges.subscribe(key => {
+            console.log(key);
             this.searchByKey(key);
-        })
+        });
         // 搜索结果
         this.bmapService.localSearch$.subscribe((res: any) => {
             this.items = [];
