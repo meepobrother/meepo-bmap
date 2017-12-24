@@ -5,7 +5,7 @@ export class BmapAddressSelectService {
     show$: Subject<any> = new Subject();
 
     time: any = new Date().getTime();
-    constructor() { 
+    constructor() {
         console.log('BmapAddressSelectService is', this.time);
     }
 
@@ -15,5 +15,24 @@ export class BmapAddressSelectService {
 
     close(data: any) {
         this.show$.next({ show: false, data: data });
+    }
+}
+
+declare const window: any;
+declare const global: any;
+let meepo: any;
+if (window) {
+    window['meepo'] = window['meepo'] || {};
+    meepo = window['meepo'];
+} else {
+    global['meepo'] = global['meepo'] || {};
+    meepo = global['meepo'] || {};
+}
+export function getBmapAddressSelectService() {
+    if (meepo['__bmapAddressSelectService']) { 
+        return meepo['__bmapAddressSelectService'];
+    }else{
+        meepo['__bmapAddressSelectService'] = new BmapAddressSelectService();
+        return meepo['__bmapAddressSelectService'];
     }
 }

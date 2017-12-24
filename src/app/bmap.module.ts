@@ -9,7 +9,7 @@ import { BmapService } from './bmap.service';
 import { ApiService } from './api.service';
 import { SysinfoService } from './sysinfo.service';
 import { RunnerService } from './runner.service';
-import { BmapAddressSelectService } from './bmap-address-select.service';
+import { BmapAddressSelectService, getBmapAddressSelectService } from './bmap-address-select.service';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
@@ -46,7 +46,10 @@ export class MeepoBmapModule {
                 ApiService,
                 SysinfoService,
                 RunnerService,
-                BmapAddressSelectService
+                {
+                    provide: BmapAddressSelectService,
+                    useFactory: getBmapAddressSelectService
+                }
             ]
         }
     }
