@@ -274,19 +274,16 @@ export class BmapComponent implements OnInit {
         this.onHome.emit();
     }
     finish() {
-        if (!this.loading2) {
-            this.loading2 = true;
-            this.onFinish.emit({
-                start: this.start,
-                end: this.end,
-                distance: this.distance,
-                duration: this.duration,
-                timePrice: this.timePrice,
-                juliItems: this.juliItems,
-                type: this.activeNav,
-                title: this.activeTitle
-            });
-        }
+        this.onFinish.emit({
+            start: this.start,
+            end: this.end,
+            distance: this.distance,
+            duration: this.duration,
+            timePrice: this.timePrice,
+            juliItems: this.juliItems,
+            type: this.activeNav,
+            title: this.activeTitle
+        });
     }
 
     ngOnInit() {
