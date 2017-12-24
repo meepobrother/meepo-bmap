@@ -3464,9 +3464,9 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meepo-core@^2.7.3:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.7.3.tgz#209a351be7a4f8cdfa3d187b080f5567b1d2359f"
+meepo-core@^2.7.7:
+  version "2.7.7"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.7.7.tgz#35d23fe774e68287daebb6ec618b174f7dc3dd0a"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
@@ -3477,16 +3477,16 @@ meepo-core@^2.7.3:
     "@nestjs/microservices" "^4.5.1"
     "@nestjs/testing" "^4.5.1"
     "@nestjs/websockets" "^4.5.1"
-    meepo-xscroll "^1.2.1"
+    meepo-xscroll "^1.2.5"
     mysql "^2.15.0"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
-meepo-xscroll@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.2.1.tgz#50cedbca879d13e965aea8053e38d374060c9368"
+meepo-xscroll@^1.2.5, meepo-xscroll@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.2.6.tgz#075ec549290c497f10f89f68fa1d2d46d42864ab"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"

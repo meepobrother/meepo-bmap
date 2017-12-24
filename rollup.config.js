@@ -231,17 +231,8 @@ let globals = {
     'rxjs/operators/throttleTime': 'Rx.Observable.prototype',
     'rxjs/operators/tap': 'Rx.Observable.prototype',
 
-    'meepo-core': 'meepo.core',
-    'meepo-bmap': 'meepo.bmap',
-    'meepo-forms': 'meepo.forms',
-    'meepo-xscroll': 'meepo.xscroll',
-    'meepo-autosize': 'meepo.autosize',
-    'meepo-swipe': 'meepo.swipe',
-    'meepo-uploader': 'meepo.uploader',
-    'meepo-md5': 'meepo.md5',
-    'meepo-uuid': 'meepo.uuid',
-    'meepo-axios': 'meepo.axios',
-    'meepo-base64': 'meepo.base64'
+    'meepo-core': 'meepo-core',
+    'meepo-xscroll': 'meepo-xscroll'
 };
 
 let plugins = [
@@ -263,7 +254,7 @@ switch (target) {
 
 export default {
     exports: 'named',
-    name: 'meepo.bmap',
+    name: 'meepo-bmap',
     plugins,
     external: Object.keys(globals),
     globals,
