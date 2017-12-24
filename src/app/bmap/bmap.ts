@@ -282,7 +282,9 @@ export class BmapComponent implements OnInit {
                 distance: this.distance,
                 duration: this.duration,
                 timePrice: this.timePrice,
-                juliItems: this.juliItems
+                juliItems: this.juliItems,
+                type: this.activeNav,
+                title: this.activeTitle
             });
         }
     }

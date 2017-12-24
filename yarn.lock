@@ -3576,9 +3576,9 @@ meepo-core@^2.5.6:
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
-meepo-core@^2.5.7:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.5.7.tgz#8fdb79677f88b76dd5844d20eabb6111aeadc14d"
+meepo-core@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.6.3.tgz#456b44fc6f73175b948dba52b1af81fa8aa0f595"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
