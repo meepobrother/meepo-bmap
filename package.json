@@ -1,6 +1,6 @@
 {
     "name": "meepo-bmap",
-    "version": "2.5.0",
+    "version": "2.5.5",
     "description": "百度地图组件",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",
@@ -57,8 +57,8 @@
         "@nestjs/microservices": "^4.5.1",
         "@nestjs/testing": "^4.5.1",
         "@nestjs/websockets": "^4.5.1",
-        "meepo-core": "^2.6.5",
-        "meepo-xscroll": "^1.1.7",
+        "meepo-core": "^2.6.9",
+        "meepo-xscroll": "^1.1.8",
         "mysql": "^2.15.0",
         "reflect-metadata": "^0.1.10",
         "rxjs": "^5.5.0",
