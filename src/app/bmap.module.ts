@@ -21,14 +21,14 @@ const BmapComponents: any[] = [
     BmapAddressSelectComponent,
     BmapOrderInfoComponent
 ];
-import { MeepoCoreServiceModule } from 'meepo-core';
+// import { MeepoCoreServiceModule } from 'meepo-core';
 import { XscrollModule } from 'meepo-xscroll';
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        MeepoCoreServiceModule
+        // MeepoCoreServiceModule
     ],
     exports: [
         BmapComponents

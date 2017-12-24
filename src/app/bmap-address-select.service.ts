@@ -20,21 +20,11 @@ export class BmapAddressSelectService {
     }
 }
 
-declare const window: any;
-declare const global: any;
-let meepo: any;
-if (window) {
-    window['meepo'] = window['meepo'] || {};
-    meepo = window['meepo'];
-} else {
-    global['meepo'] = global['meepo'] || {};
-    meepo = global['meepo'] || {};
-}
 export function getBmapAddressSelectService() {
-    if (meepo['__bmapAddressSelectService']) {
-        return meepo['__bmapAddressSelectService'];
+    if (window['__bmapAddressSelectService']) {
+        return window['__bmapAddressSelectService'];
     } else {
-        meepo['__bmapAddressSelectService'] = new BmapAddressSelectService();
-        return meepo['__bmapAddressSelectService'];
+        window['__bmapAddressSelectService'] = new BmapAddressSelectService();
+        return window['__bmapAddressSelectService'];
     }
 }
