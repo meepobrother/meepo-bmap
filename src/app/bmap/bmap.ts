@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { headerTitles } from './bmap.config';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ApiService } from '../api.service';
@@ -57,7 +56,6 @@ export class BmapComponent implements OnInit {
     distance: any = 0;
     duration: any = 0;
     isStart: boolean = true;
-    form: FormGroup;
 
     // 开始位置流
     start$: Subject<any> = new Subject();
@@ -78,7 +76,6 @@ export class BmapComponent implements OnInit {
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
-        public fb: FormBuilder,
         public api: ApiService,
         public runner: RunnerService,
         public core: CoreService,
