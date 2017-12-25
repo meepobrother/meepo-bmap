@@ -83,7 +83,8 @@ export class BmapService {
             `&output=json` +
             `&ak=${this.serviceKey}`;
         const meepoUrl = `https://meepo.com.cn/app/index.php?c=entry&i=2&do=open&__do=cloud.getCloudUrl2&m=imeepos_runner`;
-        this.axios.post(meepoUrl, { url: url }).then((res: any) => {
+        this.axios.post(meepoUrl, { url: url }).then((result: any) => {
+            let res = result.data;
             if (res && res.info) {
                 const info = res.info;
                 if (info && info.message === 'ok') {
@@ -137,7 +138,6 @@ export class BmapService {
             // 定位失败
             this.locationError$.next(e);
         });
-
         this.geoc = new this.BMap.Geocoder();
         this.geolocation = new this.BMap.Geolocation();
         this.LocalSearch = new this.BMap.LocalSearch(this.bmap, {
