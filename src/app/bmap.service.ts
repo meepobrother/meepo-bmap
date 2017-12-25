@@ -72,6 +72,7 @@ export class BmapService {
     }
 
     getRoutePlan(start: any, end: any) {
+        this.core.showLoading({ type: 'skCircle', full: false })
         const plan$: Subject<any> = new Subject();
         const url = `http://api.map.baidu.com/direction/v1` +
             `?mode=driving` +
@@ -90,8 +91,16 @@ export class BmapService {
                 if (info && info.message === 'ok') {
                     const result = info.result;
                     const routes = result.routes;
+                    this.core.closeLoading();
                     if (routes[0]) {
                         plan$.next(routes[0]);
+                    }else{
+                        this.core.showToast({
+                            title:'路线规划失败',
+                            message: '请输入有效地址!',
+                            type: 'warning',
+                            location: 'top-right'
+                        });
                     }
                 }
             }
@@ -113,6 +122,7 @@ export class BmapService {
 
     getLocation(pt: any) {
         this.geoc.getLocation(pt, (rs) => {
+            this.core.closeLoading();
             this.getAddress$.next(rs);
         });
     }
@@ -133,10 +143,17 @@ export class BmapService {
         });
         this.geolocationControl.addEventListener("locationSuccess", (e) => {
             // 定位成功
+            this.core.closeLoading();
             this.locationSuccess$.next(e);
         });
         this.geolocationControl.addEventListener("locationError", (e) => {
             // 定位失败
+            this.core.showToast({
+                title:'定位失败',
+                message: '请检查您的GPS是否开启!',
+                type: 'info',
+                position: 'top-right'
+            });
             this.locationError$.next(e);
         });
         this.geoc = new this.BMap.Geocoder();

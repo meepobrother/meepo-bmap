@@ -187,7 +187,6 @@ export class BmapComponent implements OnInit {
                     ];
                 });
                 this.bmapService.addLine(arrPois);
-                this.core.closeLoading();
                 this.cd.detectChanges();
             });
         });
@@ -310,9 +309,6 @@ export class BmapComponent implements OnInit {
             this.start$.next({ address: res.address, point: res.point, city: res.addressComponents.city });
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
-            }
-            if (!this.end.address) {
-                this.core.closeLoading();
             }
             this.loading = false;
             this.cd.detectChanges();
