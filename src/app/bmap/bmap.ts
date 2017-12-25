@@ -268,7 +268,7 @@ export class BmapComponent implements OnInit {
     }
 
     locationToHome() {
-        this.onHome.emit();
+        this.core.showMenu({ show: true });
     }
     finish() {
         if (!this.loaded && !this.loading) {
