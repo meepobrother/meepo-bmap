@@ -1,10 +1,10 @@
 <div class="meepo__bmap_search" [class.shown]="widget.show">
     <ng-template #headerTpl>
         <div class="weui-search-bar weui-search-bar_focusing">
-            <div class="weui-search-bar__form" [formGroup]="form">
+            <div class="weui-search-bar__form" >
                 <div class="weui-search-bar__box">
                     <i class="weui-icon-search"></i>
-                    <input type="search" #search formControlName="key" class="weui-search-bar__input" placeholder="请输入关键字搜索">
+                    <input type="search" (keyup)="onKey($event)" class="weui-search-bar__input" placeholder="请输入关键字搜索">
                     <a href="javascript:" class="weui-icon-clear" (click)="_clear()"></a>
                 </div>
                 <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">

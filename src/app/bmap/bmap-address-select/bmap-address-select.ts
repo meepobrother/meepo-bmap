@@ -2,14 +2,13 @@ import {
     Component, OnInit, Input, ElementRef,
     ViewChild, ChangeDetectorRef, ChangeDetectionStrategy,
     Output, EventEmitter, TemplateRef, ContentChild,
-    ViewEncapsulation
+    ViewEncapsulation, AfterViewInit, OnChanges, SimpleChanges
 } from '@angular/core';
 import { BmapService } from '../../bmap.service';
 import { BmapAddressSelectService } from '../../bmap-address-select.service';
-
 import { CoreService, CorePopoverWidget } from 'meepo-core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-
+import 'rxjs/add/observable/fromEvent';
+import { Subject } from 'rxjs/Subject';
 @Component({
     selector: 'bmap-address-select',
     templateUrl: './bmap-address-select.html',
@@ -24,24 +23,22 @@ export class BmapAddressSelectComponent implements OnInit {
     @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
     @ViewChild('bodyTpl') bodyTpl: TemplateRef<any>;
     @Output() onSelect: EventEmitter<any> = new EventEmitter();
-    form: FormGroup;
     @Output() showChange: EventEmitter<any> = new EventEmitter();
     widget: any = {
         show: false,
         data: null
     };
     timer: any;
+
+    key$: Subject<any> = new Subject();
+
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
         public core: CoreService,
-        public fb: FormBuilder,
         public address: BmapAddressSelectService
     ) {
-        this.form = this.fb.group({
-            key: ''
-        });
-        this.form.get('key').valueChanges.subscribe(key => {
+        this.key$.asObservable().debounceTime(300).subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
             if (this.timer) {
                 clearTimeout(this.timer);
@@ -87,10 +84,15 @@ export class BmapAddressSelectComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+
+    }
+    onKey(e: any) {
+        this.key$.next(e.target.value);
+    }
 
     _clear() {
-        this.form.get('key').setValue('');
+        
     }
 
     _onCitySelect(item: any) {

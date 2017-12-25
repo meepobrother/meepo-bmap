@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   constructor(
     public core: CoreService
   ) { }
+
   ngOnInit() {
     console.log(this.core.time);
   }
