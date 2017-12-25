@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { BmapComponent } from './bmap/bmap';
 import { BmapService } from './bmap.service';
 import { ApiService } from './api.service';
@@ -19,11 +18,11 @@ const BmapComponents: any[] = [
     BmapOrderInfoComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
-import { XscrollModule } from 'meepo-xscroll';
+import { AxiosModule } from 'meepo-axios';
 @NgModule({
     imports: [
         CommonModule,
-        HttpClientModule,
+        AxiosModule,
         MeepoCoreServiceModule
     ],
     exports: [
