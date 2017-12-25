@@ -1,6 +1,6 @@
 import {
     Component, OnInit, ChangeDetectionStrategy,
-    ChangeDetectorRef, Input
+    ChangeDetectorRef, Input, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -9,7 +9,8 @@ import {
     styleUrls: [
         './bmap-order-info.scss'
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 
 export class BmapOrderInfoComponent implements OnInit {

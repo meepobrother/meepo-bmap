@@ -265,6 +265,7 @@ export class BmapComponent implements OnInit {
 
     switchNotice() {
         this.showNotice = !this.showNotice;
+        console.log(this.showNotice);
         this.cd.detectChanges();
     }
 
