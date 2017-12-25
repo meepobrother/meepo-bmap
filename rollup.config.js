@@ -233,8 +233,9 @@ let globals = {
 
     'meepo-core': 'meepo-core',
     'meepo-xscroll': 'meepo-xscroll',
-    'axios':'axios',
-    'meepo-axios':'meepo-axios'
+    'axios': 'axios',
+    'meepo-axios': 'meepo-axios',
+    'store': 'storeF'
 };
 
 let plugins = [

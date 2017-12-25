@@ -68,6 +68,7 @@ export class BmapService {
         this.moveend$.asObservable().debounceTime(100).subscribe(res => {
             this.centerChange();
         });
+        console.log('bmap service is ', this.time);
     }
 
     getRoutePlan(start: any, end: any) {

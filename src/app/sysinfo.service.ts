@@ -11,9 +11,10 @@ export class SysinfoService {
     acid: string;
     siteroot: string = store.get('__meepo_siteroot', 'meepo.com.cn');
     sitehttp: string = store.get('__meepo_sitehttp', 'https');
-
+    time:any = new Date().getTime();
     constructor() {
         this.acid = this.uniacid;
+        console.log('sysinfof service',this.time);
     }
 
     getSysinfo() {

@@ -30,22 +30,16 @@ import { AxiosModule } from 'meepo-axios';
     ],
     declarations: [
         BmapComponents
+    ],
+    providers: [
+        BmapService,
+        ApiService,
+        SysinfoService,
+        RunnerService,
+        {
+            provide: BmapAddressSelectService,
+            useFactory: getBmapAddressSelectService
+        }
     ]
 })
-export class MeepoBmapModule {
-    public static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: MeepoBmapModule,
-            providers: [
-                BmapService,
-                ApiService,
-                SysinfoService,
-                RunnerService,
-                {
-                    provide: BmapAddressSelectService,
-                    useFactory: getBmapAddressSelectService
-                }
-            ]
-        }
-    }
-}
+export class MeepoBmapModule {}

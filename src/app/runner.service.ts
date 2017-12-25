@@ -10,12 +10,15 @@ export class RunnerService {
 
     juliJietiItems: any[] = [];
     weightItems: any[] = [];
+
+    time: any = new Date().getTime()
     constructor(
         public api: ApiService
     ) {
         this.distance$.asObservable().debounceTime(300).subscribe(res => {
             this.distancePrice(res);
         });
+        console.log('runner service', this.time);
     }
 
     runnerClass() {
@@ -78,6 +81,7 @@ export class RunnerService {
         myData = myData || new Date();
         const Hour = myData.getHours();
         const minute = myData.getMinutes();
+
 
         timeItems.map(res => {
             const start = res.start.split(':');
