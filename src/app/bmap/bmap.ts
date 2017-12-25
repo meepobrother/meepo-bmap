@@ -319,7 +319,6 @@ export class BmapComponent implements OnInit {
         });
         // 开始移动
         this.bmapService.movestart$.subscribe(res => {
-            this.core.showLoading({ type: 'skCircle', full: false });
             setTimeout(() => {
                 this.loading = true;
                 this.btnTitle = '在这里下单';

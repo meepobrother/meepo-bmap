@@ -65,7 +65,7 @@ export class BmapService {
             // this.bmap.clearOverlays();
         });
         // 地图移动获取移动后的地图中心位置
-        this.moveend$.asObservable().subscribe(res => {
+        this.moveend$.subscribe(res => {
             this.centerChange();
         });
         console.log('BmapService is', this.time);
@@ -121,6 +121,7 @@ export class BmapService {
         const point = this.bmap.getCenter();
         const bound = this.getBounds();
         this.centerChange$.next({ point: point, bound: bound });
+        this.core.showLoading({ type: 'skCircle', full: false });
         this.getLocation(point);
     }
     initMapSetting() {
@@ -162,6 +163,7 @@ export class BmapService {
         });
 
         this.bmap.addEventListener('movestart', (e) => {
+            this.core.showLoading({ type: 'skCircle', full: false });
             this.movestart$.next(e);
         });
     }
