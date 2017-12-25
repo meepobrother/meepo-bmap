@@ -3228,9 +3228,9 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-meepo-axios@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/meepo-axios/-/meepo-axios-1.1.3.tgz#95e0c745e7f71963c1c0503e573fda22c98bd9db"
+meepo-axios@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/meepo-axios/-/meepo-axios-1.1.6.tgz#b03b0e54488ca35239a68234b65e6d823072a60c"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"

@@ -22,7 +22,7 @@ import { AxiosModule } from 'meepo-axios';
 @NgModule({
     imports: [
         CommonModule,
-        AxiosModule.forRoot(),
+        AxiosModule,
         MeepoCoreServiceModule
     ],
     exports: [
