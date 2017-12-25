@@ -3254,6 +3254,18 @@ meepo-base64@^1.0.6:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
+meepo-base64@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/meepo-base64/-/meepo-base64-1.0.9.tgz#4150cf63808818cdfa5c7f98dd57d82e9f2f7717"
+  dependencies:
+    "@angular/common" "^5.1.0"
+    "@angular/core" "^5.1.0"
+    "@angular/platform-browser" "^5.1.0"
+    js-base64 "^2.4.0"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    zone.js "0.8.4"
+
 meepo-core@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.8.0.tgz#79f05943af8eb86215ea4a60a75bcdfb3c2f294e"
@@ -3268,9 +3280,9 @@ meepo-core@^2.8.0:
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
-meepo-core@^2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.9.1.tgz#78e6b00a60c74f0749253ca204fe5f9eda13e53c"
+meepo-core@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.9.2.tgz#3cbd6112b7b136fe811f9f96467e2bc5f686a204"
   dependencies:
     "@angular/common" "^5.1.0"
     "@angular/core" "^5.1.0"
