@@ -299,6 +299,7 @@ export class BmapComponent implements OnInit {
         this.bmapService.loadBmapSrc();
         this.runner.runnerClass();
         setTimeout(() => {
+            this.core.showLoading({ type: 'skCircle', full: false });
             this.loading = true;
             this.cd.detectChanges();
         }, 0);
