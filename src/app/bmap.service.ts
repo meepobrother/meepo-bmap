@@ -6,11 +6,9 @@ declare const require: any;
 const store = require('store');
 import { AxiosService } from 'meepo-axios';
 export const loadMaps: any = {};
-
 export interface BMapComponent {
     street?: string;
 }
-
 @Injectable()
 export class BmapService {
     key: string = 'Xo6mSiXtItekVGBfNLsedOR1ncASB4pV';
