@@ -1,10 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { CoreService } from 'meepo-core';
 import { Subject } from 'rxjs/Subject';
 declare const require: any;
 const store = require('store');
+import { AxiosService } from 'meepo-axios';
 export const loadMaps: any = {};
 
 export interface BMapComponent {
@@ -49,8 +49,8 @@ export class BmapService {
     time: any = new Date().getTime();
     constructor(
         @Inject(DOCUMENT) public document: any,
-        public http: HttpClient,
-        public core: CoreService
+        public core: CoreService,
+        public axios: AxiosService
     ) {
         this.myLocation = store.get('__my_location', {
             lng: 116.404,
@@ -85,7 +85,7 @@ export class BmapService {
             `&output=json` +
             `&ak=${this.serviceKey}`;
         const meepoUrl = `https://meepo.com.cn/app/index.php?c=entry&i=2&do=open&__do=cloud.getCloudUrl2&m=imeepos_runner`;
-        this.http.post(meepoUrl, { url: url }).subscribe((res: any) => {
+        this.axios.post(meepoUrl, { url: url }).then((res: any) => {
             if (res && res.info) {
                 const info = res.info;
                 if (info && info.message === 'ok') {

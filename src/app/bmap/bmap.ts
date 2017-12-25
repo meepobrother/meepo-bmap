@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 import { BmapAddressSelectService } from '../bmap-address-select.service';
 import { RunnerService } from '../runner.service';
 import { CoreService, CorePopoverWidget } from 'meepo-core';
+
 @Component({
     selector: 'bmap',
     templateUrl: './bmap.html',
