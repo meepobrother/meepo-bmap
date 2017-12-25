@@ -65,14 +65,12 @@ export class BmapService {
             // this.bmap.clearOverlays();
         });
         // 地图移动获取移动后的地图中心位置
-        this.moveend$.subscribe(res => {
+        this.moveend$.asObservable().debounceTime(100).subscribe(res => {
             this.centerChange();
         });
-        console.log('BmapService is', this.time);
     }
 
     getRoutePlan(start: any, end: any) {
-        this.core.showLoading({ type: 'skCircle', full: false })
         const plan$: Subject<any> = new Subject();
         const url = `http://api.map.baidu.com/direction/v1` +
             `?mode=driving` +
@@ -91,7 +89,6 @@ export class BmapService {
                 if (info && info.message === 'ok') {
                     const result = info.result;
                     const routes = result.routes;
-                    this.core.closeLoading();
                     if (routes[0]) {
                         plan$.next(routes[0]);
                     }else{
@@ -122,20 +119,18 @@ export class BmapService {
 
     getLocation(pt: any) {
         this.geoc.getLocation(pt, (rs) => {
-            this.core.closeLoading();
             this.getAddress$.next(rs);
         });
     }
 
     centerChange() {
+        console.log('centerChange');
         const point = this.bmap.getCenter();
         const bound = this.getBounds();
         this.centerChange$.next({ point: point, bound: bound });
-        this.core.showLoading({ type: 'skCircle', full: false });
         this.getLocation(point);
     }
     initMapSetting() {
-        this.core.showLoading({ type: 'skCircle' });
         this.geolocationControl = new this.BMap.GeolocationControl({
             anchor: window['BMAP_ANCHOR_TOP_LEFT'],
             enableAutoLocation: true,
@@ -143,7 +138,6 @@ export class BmapService {
         });
         this.geolocationControl.addEventListener("locationSuccess", (e) => {
             // 定位成功
-            this.core.closeLoading();
             this.locationSuccess$.next(e);
         });
         this.geolocationControl.addEventListener("locationError", (e) => {
@@ -180,8 +174,28 @@ export class BmapService {
         });
 
         this.bmap.addEventListener('movestart', (e) => {
-            this.core.showLoading({ type: 'skCircle', full: false });
             this.movestart$.next(e);
+        });
+
+        this.bmap.addEventListener('dragstart', (e) => {
+            this.movestart$.next(e);
+        });
+
+        this.bmap.addEventListener('dragend', (e) => {
+            this.moveend$.next(e);
+        });
+
+        this.bmap.addEventListener('resize', (e) => {
+            this.moveend$.next(e);
+        });
+
+        this.bmap.addEventListener('zoomend', (e) => {
+            this.moveend$.next(e);
+        });
+
+        this.bmap.addEventListener('click', (e) => {
+            this.bmap.panTo(e.point);
+            this.moveend$.next(e);
         });
     }
 

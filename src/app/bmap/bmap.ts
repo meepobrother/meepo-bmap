@@ -114,7 +114,6 @@ export class BmapComponent implements OnInit {
         });
 
         this.carMovingObserver = this.bmapService.carMoving$.subscribe(res => {
-            console.log(res);
             if (res) {
                 this.destoryInstance();
             } else {
@@ -310,6 +309,9 @@ export class BmapComponent implements OnInit {
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
+            if (!this.end.address) {
+                this.core.closeLoading();
+            }
             this.loading = false;
             this.cd.detectChanges();
         });
@@ -319,6 +321,7 @@ export class BmapComponent implements OnInit {
                 this.loading = true;
                 this.btnTitle = '在这里下单';
                 this.showOrderDetail = false;
+                this.core.showLoading({ show: true });
                 this.cd.detectChanges();
             }, 0);
         });
