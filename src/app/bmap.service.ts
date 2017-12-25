@@ -65,7 +65,7 @@ export class BmapService {
             // this.bmap.clearOverlays();
         });
         // 地图移动获取移动后的地图中心位置
-        this.moveend$.asObservable().debounceTime(300).subscribe(res => {
+        this.moveend$.asObservable().subscribe(res => {
             this.centerChange();
         });
         console.log('BmapService is', this.time);

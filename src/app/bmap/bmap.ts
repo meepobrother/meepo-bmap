@@ -114,6 +114,7 @@ export class BmapComponent implements OnInit {
         });
 
         this.carMovingObserver = this.bmapService.carMoving$.subscribe(res => {
+            console.log(res);
             if (res) {
                 this.destoryInstance();
             } else {
@@ -265,7 +266,6 @@ export class BmapComponent implements OnInit {
 
     switchNotice() {
         this.showNotice = !this.showNotice;
-        console.log(this.showNotice);
         this.cd.detectChanges();
     }
 
@@ -273,16 +273,25 @@ export class BmapComponent implements OnInit {
         this.onHome.emit();
     }
     finish() {
-        this.onFinish.emit({
-            start: this.start,
-            end: this.end,
-            distance: this.distance,
-            duration: this.duration,
-            timePrice: this.timePrice,
-            juliItems: this.juliItems,
-            type: this.activeNav,
-            title: this.activeTitle
-        });
+        if (!this.loaded && !this.loading) {
+            this.onFinish.emit({
+                start: this.start,
+                end: this.end,
+                distance: this.distance,
+                duration: this.duration,
+                timePrice: this.timePrice,
+                juliItems: this.juliItems,
+                type: this.activeNav,
+                title: this.activeTitle
+            });
+        } else {
+            this.core.showToast({
+                title: '加载中..',
+                message: '请稍后重试',
+                position: 'top-right',
+                type: 'warning'
+            });
+        }
     }
 
     ngOnInit() {
@@ -309,7 +318,7 @@ export class BmapComponent implements OnInit {
         });
         // 开始移动
         this.bmapService.movestart$.subscribe(res => {
-            this.core.showLoading({ type: 'skCircle' });
+            this.core.showLoading({ type: 'skCircle', full: false });
             setTimeout(() => {
                 this.loading = true;
                 this.btnTitle = '在这里下单';

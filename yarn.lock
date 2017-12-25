@@ -3268,6 +3268,20 @@ meepo-core@^2.8.0:
     typeorm "^0.1.9"
     zone.js "0.8.4"
 
+meepo-core@^2.8.9:
+  version "2.8.9"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-2.8.9.tgz#0563fdc4b3d30367d5b311067e5c25209cc9a8c9"
+  dependencies:
+    "@angular/common" "^5.1.0"
+    "@angular/core" "^5.1.0"
+    "@angular/platform-browser" "^5.1.0"
+    meepo-xscroll "^1.2.8"
+    mysql "^2.15.0"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    typeorm "^0.1.9"
+    zone.js "0.8.4"
+
 meepo-xscroll@^1.2.8:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.2.8.tgz#9d604248f89c5f58e5a14295a962d0fbc9162c74"
