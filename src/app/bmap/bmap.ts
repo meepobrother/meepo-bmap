@@ -287,7 +287,9 @@ export class BmapComponent implements OnInit {
         this.getDistancePrice();
         this.getTimePrice();
         if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.start.show) {
-            this.cacheStart = this.start;
+            if (this.start.address) {
+                this.cacheStart = this.start;
+            }
             this.start$.next({
                 point: {},
                 address: ''
@@ -296,7 +298,9 @@ export class BmapComponent implements OnInit {
             this.start$.next(this.cacheStart);
         }
         if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.end.show) {
-            this.cacheEnd = this.end;
+            if (this.end.address) {
+                this.cacheEnd = this.end;
+            }
             this.end$.next({
                 point: {},
                 address: ''
@@ -386,7 +390,7 @@ export class BmapComponent implements OnInit {
         });
         // 设置导航按钮高度
         let height = this.footer.nativeElement.clientHeight + 20;
-        if (height < 200) { 
+        if (height < 200) {
             height = 200;
         }
         this.bmapService.locationHeight = height;
