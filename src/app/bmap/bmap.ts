@@ -385,6 +385,10 @@ export class BmapComponent implements OnInit {
             }, 0);
         });
         // 设置导航按钮高度
-        this.bmapService.locationHeight = this.footer.nativeElement.clientHeight + 20;
+        let height = this.footer.nativeElement.clientHeight + 20;
+        if (height < 200) { 
+            height = 200;
+        }
+        this.bmapService.locationHeight = height;
     }
 }
