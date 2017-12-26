@@ -2,9 +2,6 @@ $tipHeight: 30px;
 $tipWidth: 150px;
 $iconWidth: 30px;
 $iconHeight: 58.5px;
-
-
-
 .meepo__bmap_header {
     display: flex;
     position: absolute;
@@ -192,6 +189,53 @@ $iconHeight: 58.5px;
         border-radius: 5px;
         background: #fff;
         flex: 1;
+        .time_select {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding-top: 5px;
+            height: 44px;
+            .time_select_item {
+                padding: 3px 7px;
+                font-size: .9em;
+                &.active {
+                    position: relative;
+                    &:after {
+                        content: " ";
+                        position: absolute;
+                        height: 1px;
+                        background-color: orangered;
+                        color: orangered;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 0px;
+                        transform: scaleY(.5);
+                    }
+                }
+            }
+            .time_select_item_divider {
+                width: 10px;
+            }
+        }
+        .time_select_detail {
+            text-align: center;
+            font-size: .8em;
+            line-height: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: gray;
+            padding-bottom: 10px;
+            .time_icon {
+                display: block;
+                width: 15px;
+                height: 15px;
+                background-size: cover;
+                background-image: url("./time_full.png");
+            }
+        }
     }
     .footer-btn {
         position: relative;

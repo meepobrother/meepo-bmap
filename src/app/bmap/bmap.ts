@@ -56,6 +56,12 @@ export class BmapComponent implements OnInit {
     timePrice: any;
     distance: any = 0;
     duration: any = 0;
+    isCoach: boolean = false;
+    coach: any = {
+        title: '请选择预约时间',
+        value: 0
+    };
+
     isStart: boolean = true;
 
     // 开始位置流
@@ -152,6 +158,20 @@ export class BmapComponent implements OnInit {
             this.timePrice = timePrice;
             this.cd.detectChanges();
         });
+    }
+
+    selectTime() {
+        
+    }
+
+    doNow() {
+        this.isCoach = false;
+        this.cd.detectChanges();
+    }
+
+    doCoach() {
+        this.isCoach = true;
+        this.cd.detectChanges();
     }
     // 注销
     destoryInstance() {
