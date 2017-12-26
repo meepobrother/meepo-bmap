@@ -42,24 +42,24 @@
             <div class="time_select_item_divider"></div>
             <div [class.active]="isCoach" (click)="doCoach()" class="time_select_item">预约</div>
         </div>
-        <div class="time_select_detail" dateTime *ngIf="isCoach">
-            {{coach.title}}
+        <div class="time_select_detail" dateTime="请选择预约时间" (onPicker)="timePicker($event)" *ngIf="isCoach">
+            请选择预约时间
         </div>
-        <div class="address_item" (click)="_onStartAddressSelect()">
+        <div class="address_item" *ngIf="activeNav?.setting.start.show" (click)="_onStartAddressSelect()">
             <span class="home_unlock_to_success_17"></span>
             <input class="weui-input" *ngIf="loading" type="text" readonly disabled placeholder="正在获取位置...">
             <input class="weui-input" *ngIf="!loading" type="text" readonly disabled [attr.value]="start.address">
             <span class="activity_sticker_arrow_right"></span>
         </div>
         <div class="address_item_divider"></div>
-        <div class="address_item" (click)="_onEndAddressSelect()">
+        <div class="address_item" *ngIf="activeNav?.setting.end.show" (click)="_onEndAddressSelect()">
             <span class="bg_redpacket_marker"></span>
             <input class="weui-input" type="text" readonly disabled [attr.value]="end.address" placeholder="请选择任务终点">
             <span class="activity_sticker_arrow_right"></span>
         </div>
     </div>
     <div class="footer-btn">
-        <a href="javascript:;" (click)="finish()" class="weui-btn weui-btn_primary">立即下单</a>
+        <a href="javascript:;" (click)="finish()" class="weui-btn weui-btn_primary">{{activeNav?.setting.btnTitle || '立即下单'}}</a>
     </div>
 </div>
 <ng-content></ng-content>

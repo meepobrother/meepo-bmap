@@ -57,10 +57,7 @@ export class BmapComponent implements OnInit {
     distance: any = 0;
     duration: any = 0;
     isCoach: boolean = false;
-    coach: any = {
-        title: '请选择预约时间',
-        value: 0
-    };
+    coach: any = {};
 
     isStart: boolean = true;
 
@@ -89,6 +86,14 @@ export class BmapComponent implements OnInit {
         public address: BmapAddressSelectService
     ) {
         this.cd.detach();
+        let now = new Date();
+        this.coach = {
+            year: now.getFullYear(),
+            month: now.getMonth() + 1,
+            day: now.getDate(),
+            hour: now.getHours(),
+            minute: now.getMinutes()
+        };
         this.core.loading$.subscribe(res => {
             this.loaded = res.show;
         });
@@ -137,6 +142,7 @@ export class BmapComponent implements OnInit {
                         let hasActive = false;
                         title.items.map(item => {
                             if (item.active) {
+                                this._onNavItem(item);
                                 hasActive = true;
                             }
                         });
@@ -160,17 +166,18 @@ export class BmapComponent implements OnInit {
         });
     }
 
-    selectTime() {
-        
-    }
-
     doNow() {
         this.isCoach = false;
         this.cd.detectChanges();
     }
 
-    doCoach() {
+    doCoach(){
         this.isCoach = true;
+        this.cd.detectChanges();
+    }
+
+    timePicker(e: any) {
+        this.coach = e;
         this.cd.detectChanges();
     }
     // 注销
@@ -300,7 +307,8 @@ export class BmapComponent implements OnInit {
                 timePrice: this.timePrice,
                 juliItems: this.juliItems,
                 type: this.activeNav,
-                title: this.activeTitle
+                title: this.activeTitle,
+                coach: this.coach
             });
         } else {
             this.core.showToast({

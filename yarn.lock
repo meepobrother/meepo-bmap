@@ -3241,8 +3241,8 @@ meepo-core@^2.9.4:
     zone.js "0.8.4"
 
 meepo-picker@>=1.0.8:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.0.9.tgz#1277524870074f8706e7c9ce1dc912bc16789b31"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.1.0.tgz#c1ee0c385e14a9127feb557548f75e23d3091677"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
