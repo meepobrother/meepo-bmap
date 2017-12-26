@@ -263,8 +263,7 @@ export class BmapComponent implements OnInit {
     }
 
     getTimePrice(date: Date = new Date()) {
-        console.log(this.activeNav);
-        if (this.activeNav && this.activeNav.setting && this.activeNav.setting.setting && this.activeNav.setting.setting.juliItems) {
+        if (this.activeNav && this.activeNav.setting && this.activeNav.setting.setting && this.activeNav.setting.setting.timeItems) {
             this.runner.timePrice({
                 date: date,
                 timeItems: this.activeNav.setting.setting.timeItems
@@ -349,15 +348,6 @@ export class BmapComponent implements OnInit {
             }
         });
     }
-
-    showRuleContent() {
-        if (this.activeNav && this.activeNav.setting && this.activeNav.setting.rule && !this.loaded) {
-            this.ruleContent = this.activeNav.setting.rule.content;
-            this.showNotice = true;
-            this.cd.detectChanges();
-        }
-    }
-
     switchShowOrderDetail() {
         this.showOrderDetail = !this.showOrderDetail;
         this.cd.detectChanges();
@@ -365,6 +355,7 @@ export class BmapComponent implements OnInit {
 
     switchNotice() {
         this.showNotice = !this.showNotice;
+        this.ruleContent = this.activeNav.setting.rule.content;
         this.cd.detectChanges();
     }
 
