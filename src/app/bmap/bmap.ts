@@ -51,6 +51,14 @@ export class BmapComponent implements OnInit {
         point: {},
         address: ''
     };
+    cacheEnd: any = {
+        point: {},
+        address: ''
+    };
+    cacheStart: any = {
+        point: {},
+        address: ''
+    };
     ruleContent: string;
     juliItems: any[] = [];
     timePrice: any;
@@ -171,7 +179,7 @@ export class BmapComponent implements OnInit {
         this.cd.detectChanges();
     }
 
-    doCoach(){
+    doCoach() {
         this.isCoach = true;
         this.cd.detectChanges();
     }
@@ -197,24 +205,29 @@ export class BmapComponent implements OnInit {
         // 合并开始 和结束位置流
         this.startEndCombineObserver = this.start$.asObservable().combineLatest(this.end$.asObservable()).subscribe(res => {
             // 计算距离 路径规划
-            this.bmapService.getRoutePlan(res[0], res[1]).subscribe(routes => {
-                this.distance = Math.floor(routes.distance / 10) / 100;
-                this.duration = Math.floor(routes.duration / 60);
-                this.btnTitle = `总路程:${this.distance}公里`;
-                this.getDistancePrice();
-                let arrPois = [];
-                routes.steps.map(step => {
-                    const stepOriginLocation = step.stepOriginLocation;
-                    const stepDestinationLocation = step.stepDestinationLocation;
-                    arrPois = [
-                        ...arrPois,
-                        new this.BMap.Point(stepOriginLocation.lng, stepOriginLocation.lat),
-                        new this.BMap.Point(stepDestinationLocation.lng, stepDestinationLocation.lat)
-                    ];
+            if (res[0].address && res[1].address) {
+                this.bmapService.getRoutePlan(res[0], res[1]).subscribe(routes => {
+                    this.distance = Math.floor(routes.distance / 10) / 100;
+                    this.duration = Math.floor(routes.duration / 60);
+                    this.btnTitle = `总路程:${this.distance}公里`;
+                    this.getDistancePrice();
+                    let arrPois = [];
+                    if (routes && routes.steps) {
+                        routes.steps.map(step => {
+                            const stepOriginLocation = step.stepOriginLocation;
+                            const stepDestinationLocation = step.stepDestinationLocation;
+                            arrPois = [
+                                ...arrPois,
+                                new this.BMap.Point(stepOriginLocation.lng, stepOriginLocation.lat),
+                                new this.BMap.Point(stepDestinationLocation.lng, stepDestinationLocation.lat)
+                            ];
+                        });
+                    }
+
+                    this.bmapService.addLine(arrPois);
+                    this.cd.detectChanges();
                 });
-                this.bmapService.addLine(arrPois);
-                this.cd.detectChanges();
-            });
+            }
         });
     }
 
@@ -273,6 +286,24 @@ export class BmapComponent implements OnInit {
         this.activeNav = item;
         this.getDistancePrice();
         this.getTimePrice();
+        if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.start.show) {
+            this.cacheStart = this.start;
+            this.start$.next({
+                point: {},
+                address: ''
+            });
+        } else {
+            this.start$.next(this.cacheStart);
+        }
+        if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.end.show) {
+            this.cacheEnd = this.end;
+            this.end$.next({
+                point: {},
+                address: ''
+            });
+        } else {
+            this.end$.next(this.cacheEnd);
+        }
         this.cd.detectChanges();
     }
 

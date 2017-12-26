@@ -90,7 +90,7 @@ export class BmapService {
                 if (info && info.message === 'ok') {
                     const result = info.result;
                     const routes = result.routes;
-                    if (routes[0]) {
+                    if (routes && routes.length>0 && routes[0]) {
                         plan$.next(routes[0]);
                     }else{
                         this.core.showToast({
@@ -99,6 +99,7 @@ export class BmapService {
                             type: 'warning',
                             location: 'top-right'
                         });
+                        plan$.next({steps: []});
                     }
                 }
             }
@@ -107,9 +108,9 @@ export class BmapService {
     }
 
     addLine(points: any[]) {
+        this.bmap.clearOverlays();
         points = points || [];
         if (points.length > 0) {
-            this.bmap.clearOverlays();
             this.bmap.addOverlay(new this.BMap.Polyline(points, { strokeColor: '#111' }));
         }
     }
