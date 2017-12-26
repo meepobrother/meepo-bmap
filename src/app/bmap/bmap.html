@@ -3,7 +3,7 @@
         <i class="home_ab_user_profile_red_dot"></i>
     </div>
     <div class="title">
-        <div class="title_item" (click)="_onHeaderItem(item)" [class.active]="item.active" *ngFor="let item of headerTitles;index as i;">
+        <div class="title_item" (click)="_onHeaderItem(item)" [class.active]="item.active && headerTitles.length>1" *ngFor="let item of headerTitles;index as i;">
             <span>{{item.title}}</span>
         </div>
     </div>
