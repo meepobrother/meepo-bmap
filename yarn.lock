@@ -3240,7 +3240,7 @@ meepo-core@^2.9.4:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-picker@^1.0.8:
+meepo-picker@>=1.0.8:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.0.9.tgz#1277524870074f8706e7c9ce1dc912bc16789b31"
   dependencies:
