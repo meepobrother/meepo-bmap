@@ -97,6 +97,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/common@^5.1.0":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-5.1.2.tgz#b2659161575d463bb8b3e30e37434b26d70366b4"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/compiler-cli@5.2.0-beta.1":
   version "5.2.0-beta.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-5.2.0-beta.1.tgz#171b0dbe8f62111e708f48ef84b9996501431935"
@@ -118,6 +124,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/core@^5.1.0":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.1.2.tgz#751070c0f4e5a8c4e2170204e08eca06391b84b1"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@5.2.0-beta.1":
   version "5.2.0-beta.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.0-beta.1.tgz#c0228aeaac78901a2d5c1770a3737113f89fb53c"
@@ -127,6 +139,12 @@
 "@angular/platform-browser@5.2.0-beta.1":
   version "5.2.0-beta.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-5.2.0-beta.1.tgz#44a971d9cfd3675c10f9924ffe0784b23a2e6bd3"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/platform-browser@^5.1.0":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-5.1.2.tgz#6faf926b9b41b6d54d873f3dcc4f31ad35fd0c38"
   dependencies:
     tslib "^1.7.1"
 
@@ -3240,6 +3258,31 @@ meepo-core@^2.9.4:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
+meepo-picker@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.0.8.tgz#84fd538055b11d8f5eff03f642d5d46f4ec5885e"
+  dependencies:
+    "@angular/common" "^5.1.0"
+    "@angular/core" "^5.1.0"
+    "@angular/platform-browser" "^5.1.0"
+    meepo-uuid ">=1.0.8"
+    mobile-select "^1.0.10"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    zone.js "0.8.4"
+
+meepo-uuid@>=1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.0.8.tgz#834e13cf8e12745ab19d3a303844b50988dabf0c"
+  dependencies:
+    "@angular/common" "5.2.0-beta.1"
+    "@angular/core" "5.2.0-beta.1"
+    "@angular/platform-browser" "5.2.0-beta.1"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    uuid "^3.1.0"
+    zone.js "0.8.4"
+
 meepo-xscroll@>=1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.2.9.tgz#1598ddb265e921dcfd1a27fbef07e7b3621e9273"
@@ -3388,6 +3431,10 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+mobile-select@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/mobile-select/-/mobile-select-1.0.10.tgz#c7a918a21a00bec6de6614f7b9ae39634a50c673"
 
 moment-timezone@^0.5.x:
   version "0.5.14"

@@ -42,8 +42,8 @@
             <div class="time_select_item_divider"></div>
             <div [class.active]="isCoach" (click)="doCoach()" class="time_select_item">预约</div>
         </div>
-        <div class="time_select_detail" (click)="selectTime()"" *ngIf="isCoach">
-            <i class="time_icon"></i>&nbsp;{{coach.title}}
+        <div class="time_select_detail" dateTime *ngIf="isCoach">
+            {{coach.title}}
         </div>
         <div class="address_item" (click)="_onStartAddressSelect()">
             <span class="home_unlock_to_success_17"></span>
