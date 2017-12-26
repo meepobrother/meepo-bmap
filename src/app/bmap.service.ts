@@ -71,6 +71,10 @@ export class BmapService {
         console.log('bmap service is ', this.time);
     }
 
+    clearOverlays(){
+        this.bmap.clearOverlays();
+    }
+
     getRoutePlan(start: any, end: any) {
         const plan$: Subject<any> = new Subject();
         const url = `http://api.map.baidu.com/direction/v1` +

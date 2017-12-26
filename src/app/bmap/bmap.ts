@@ -45,19 +45,19 @@ export class BmapComponent implements OnInit {
 
     start: any = {
         point: {},
-        address: ''
+        address: null
     };
     end: any = {
         point: {},
-        address: ''
+        address: null
     };
     cacheEnd: any = {
         point: {},
-        address: ''
+        address: null
     };
     cacheStart: any = {
         point: {},
-        address: ''
+        address: null
     };
     ruleContent: string;
     juliItems: any[] = [];
@@ -172,6 +172,8 @@ export class BmapComponent implements OnInit {
             this.timePrice = timePrice;
             this.cd.detectChanges();
         });
+
+        this.setOneAddress();
     }
 
     doNow() {
@@ -196,41 +198,46 @@ export class BmapComponent implements OnInit {
     }
     // 初始化
     startInstance() {
+        // 起点改变
         this.startObserver = this.start$.subscribe(start => {
-            if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.start.show) {
-                this.start = start;
-            } else {
-                this.end = start;
-            }
+            this.start = start;
+            this.cacheStart = start;
         });
+        // 终点改变
         this.endObserver = this.end$.subscribe(end => {
             this.end = end;
+            this.cacheEnd = end;
         });
         // 合并开始 和结束位置流
-        this.startEndCombineObserver = this.start$.asObservable().combineLatest(this.end$.asObservable()).subscribe(res => {
+        this.startEndCombineObserver = this.start$.asObservable().combineLatest(this.end$.asObservable()).debounceTime(200).subscribe(res => {
             // 计算距离 路径规划
             if (res[0].address && res[1].address) {
-                this.bmapService.getRoutePlan(res[0], res[1]).subscribe(routes => {
-                    this.distance = Math.floor(routes.distance / 10) / 100;
-                    this.duration = Math.floor(routes.duration / 60);
-                    this.btnTitle = `总路程:${this.distance}公里`;
-                    this.getDistancePrice();
-                    let arrPois = [];
-                    if (routes && routes.steps) {
-                        routes.steps.map(step => {
-                            const stepOriginLocation = step.stepOriginLocation;
-                            const stepDestinationLocation = step.stepDestinationLocation;
-                            arrPois = [
-                                ...arrPois,
-                                new this.BMap.Point(stepOriginLocation.lng, stepOriginLocation.lat),
-                                new this.BMap.Point(stepDestinationLocation.lng, stepDestinationLocation.lat)
-                            ];
-                        });
-                    }
-
-                    this.bmapService.addLine(arrPois);
-                    this.cd.detectChanges();
-                });
+                if (res[0].point === res[1].point) {
+                    console.log('起点与终点一直');
+                    this.bmapService.clearOverlays();
+                    this.core.closeLoading();
+                } else {
+                    this.bmapService.getRoutePlan(res[0], res[1]).subscribe(routes => {
+                        this.distance = Math.floor(routes.distance / 10) / 100;
+                        this.duration = Math.floor(routes.duration / 60);
+                        this.btnTitle = `总路程:${this.distance}公里`;
+                        this.getDistancePrice();
+                        let arrPois = [];
+                        if (routes && routes.steps) {
+                            routes.steps.map(step => {
+                                const stepOriginLocation = step.stepOriginLocation;
+                                const stepDestinationLocation = step.stepDestinationLocation;
+                                arrPois = [
+                                    ...arrPois,
+                                    new this.BMap.Point(stepOriginLocation.lng, stepOriginLocation.lat),
+                                    new this.BMap.Point(stepDestinationLocation.lng, stepDestinationLocation.lat)
+                                ];
+                            });
+                        }
+                        this.bmapService.addLine(arrPois);
+                        this.cd.detectChanges();
+                    });
+                }
             }
         });
     }
@@ -290,29 +297,51 @@ export class BmapComponent implements OnInit {
         this.activeNav = item;
         this.getDistancePrice();
         this.getTimePrice();
-        if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.start.show) {
-            if (this.start.address) {
-                this.cacheStart = this.start;
-            }
-            this.start$.next({
-                point: {},
-                address: ''
-            });
-        } else {
-            this.start$.next(this.cacheStart);
-        }
-        if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.end.show) {
-            if (this.end.address) {
-                this.cacheEnd = this.end;
-            }
-            this.end$.next({
-                point: {},
-                address: ''
-            });
-        } else {
-            this.end$.next(this.cacheEnd);
+        if (this.bmapService.bmap) {
+            this.bmapService.centerChange();
         }
         this.cd.detectChanges();
+    }
+
+    setOneAddress() {
+        this.bmapService.getAddress$.subscribe(com => {
+            let add = {
+                address: com.address,
+                point: com.point,
+                city: com.addressComponents.city
+            }
+            if (this.activeNav) {
+                if (this.activeNav.setting) {
+                    let startShow = this.activeNav.setting.start.show;
+                    let endShow = this.activeNav.setting.end.show;
+                    if (startShow && endShow) {
+                        // 如果都有
+                    } else if (startShow || endShow) {
+                        // 只有一个显示
+                        if (startShow) {
+                            this.start$.next(add);
+                            this.start = add;
+                            this.end = {
+                                address: null,
+                                point: {}
+                            };
+                            this.end$.next(this.end);
+                            this.cd.markForCheck();
+                        }
+                        if (endShow) {
+                            this.end$.next(add);
+                            this.end = add;
+                            this.start = {
+                                address: null,
+                                point: {}
+                            };
+                            this.start$.next(this.start);
+                            this.cd.markForCheck();
+                        }
+                    }
+                }
+            }
+        });
     }
 
     showRuleContent() {
@@ -376,7 +405,7 @@ export class BmapComponent implements OnInit {
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
-            if (!this.end.address) {
+            if (!this.end.address || !this.start.address) {
                 this.core.closeLoading();
             }
             this.loading = false;
