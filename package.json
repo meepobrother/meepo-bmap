@@ -1,6 +1,6 @@
 {
     "name": "meepo-bmap",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "description": "百度地图组件",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",

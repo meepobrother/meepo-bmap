@@ -219,6 +219,10 @@ export class BmapComponent implements OnInit {
                     this.bmapService.getRoutePlan(res[0], res[1]).subscribe(routes => {
                         this.distance = Math.floor(routes.distance / 10) / 100;
                         this.duration = Math.floor(routes.duration / 60);
+                        if (isNaN(this.distance)) {
+                            this.distance = 0;
+                            this.duration = 0;
+                        }
                         this.btnTitle = `总路程:${this.distance}公里`;
                         this.getDistancePrice();
                         let arrPois = [];
