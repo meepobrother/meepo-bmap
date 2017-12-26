@@ -188,6 +188,8 @@ export class BmapComponent implements OnInit {
 
     timePicker(e: any) {
         this.coach = e;
+        let coach_time = new Date(e.year, e.month, e.day, e.hour, e.minute);
+        this.getTimePrice(coach_time);
         this.cd.detectChanges();
     }
     // 注销
@@ -260,10 +262,11 @@ export class BmapComponent implements OnInit {
         }
     }
 
-    getTimePrice() {
+    getTimePrice(date: Date = new Date()) {
+        console.log(this.activeNav);
         if (this.activeNav && this.activeNav.setting && this.activeNav.setting.setting && this.activeNav.setting.setting.juliItems) {
             this.runner.timePrice({
-                date: new Date(),
+                date: date,
                 timeItems: this.activeNav.setting.setting.timeItems
             });
         }
