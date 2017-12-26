@@ -68,7 +68,6 @@ export class BmapService {
         this.moveend$.asObservable().debounceTime(100).subscribe(res => {
             this.centerChange();
         });
-        console.log('bmap service is ', this.time);
     }
 
     clearOverlays(){
@@ -130,7 +129,6 @@ export class BmapService {
     }
 
     centerChange() {
-        console.log('centerChange');
         const point = this.bmap.getCenter();
         const bound = this.getBounds();
         this.centerChange$.next({ point: point, bound: bound });

@@ -213,7 +213,6 @@ export class BmapComponent implements OnInit {
             // 计算距离 路径规划
             if (res[0].address && res[1].address) {
                 if (res[0].point === res[1].point) {
-                    console.log('起点与终点一直');
                     this.bmapService.clearOverlays();
                     this.core.closeLoading();
                 } else {
