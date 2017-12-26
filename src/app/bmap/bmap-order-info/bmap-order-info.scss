@@ -1,14 +1,31 @@
-
 .meepo__bmap_order_info {
     position: absolute;
     right: 0px;
     top: 0;
-    left:0px;
+    left: 0px;
     background: rgba(0, 0, 0, .8);
     z-index: 8;
-    min-height: 120px;
     padding: 10px 5px;
-    p{
+    max-height: 200px;
+    overflow: auto;
+    .over_info_container {
+        position: relative;
+        &:before {
+            content: " \5173\95ED ";
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            color: #fff;
+            font-size: .6em;
+            width: 2em;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            padding: 5px;
+            height: 2em;
+            line-height: 2em;
+        }
+    }
+    p {
         color: #fff;
         padding: 10px 15px;
     }
@@ -27,7 +44,6 @@
     }
 }
 
-
 .meepo__bmap_order_info_tip {
     position: absolute;
     right: 0px;
@@ -38,7 +54,7 @@
     padding: 15px 8px;
     color: #fff;
     font-size: .7em;
-    p{
+    p {
         color: #fff;
         padding: 10px 15px;
     }

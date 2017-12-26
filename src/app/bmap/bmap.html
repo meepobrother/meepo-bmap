@@ -29,9 +29,11 @@
     </div>
 </div>
 
-<div class="meepo__bmap_order_info" style="bottom: 0px;top:0px;" *ngIf="showNotice" (click)="switchNotice()">
-    <h2 class="title">免责声明</h2>
-    <p [innerHTML]="ruleContent"></p>
+<div class="meepo__bmap_order_info" style="bottom: 0px;top:0px;max-height: 100%;" *ngIf="showNotice" (click)="switchNotice()">
+    <div class="over_info_container">
+        <h2 class="title">免责声明</h2>
+        <p [innerHTML]="ruleContent"></p>
+    </div>
 </div>
 
 <div class="meep__bmap_center_icon"></div>
