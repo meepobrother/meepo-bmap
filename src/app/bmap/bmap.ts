@@ -197,7 +197,11 @@ export class BmapComponent implements OnInit {
     // 初始化
     startInstance() {
         this.startObserver = this.start$.subscribe(start => {
-            this.start = start;
+            if (this.activeNav && this.activeNav.setting && !this.activeNav.setting.start.show) {
+                this.start = start;
+            } else {
+                this.end = start;
+            }
         });
         this.endObserver = this.end$.subscribe(end => {
             this.end = end;
