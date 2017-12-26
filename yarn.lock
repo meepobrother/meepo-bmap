@@ -3217,8 +3217,8 @@ meepo-base64@^1.1.1:
     zone.js "0.8.4"
 
 meepo-core@>=2.9.5:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.0.2.tgz#28972cdb372e8306ad9c6bf5ec2079feaa209750"
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.0.4.tgz#e46ebcee28830da5d81b6dd2141ea46df4ac74e7"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
