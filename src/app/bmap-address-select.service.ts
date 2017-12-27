@@ -6,17 +6,19 @@ export class BmapAddressSelectService {
 
     time: any = new Date().getTime();
     sn: string;
+    isStart: boolean = false;
     constructor() {
         console.log('BmapAddressSelectService is', this.time);
     }
 
-    show(sn?: string) {
+    show(sn?: string, isStart: boolean = false) {
         this.sn = sn;
+        this.isStart = isStart;
         this.show$.next({ show: true });
     }
 
     close(data: any) {
-        this.show$.next({ show: false, data: data, sn: this.sn });
+        this.show$.next({ show: false, data: data, sn: this.sn, isStart: this.isStart });
     }
 }
 
