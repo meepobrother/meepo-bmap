@@ -43,6 +43,7 @@ export class BmapService {
     geolocation: any;
     locationHeight: number = 100;
     LocalSearch: any;
+    riding: any;
 
     time: any = new Date().getTime();
     constructor(
@@ -70,11 +71,13 @@ export class BmapService {
         });
     }
 
-    clearOverlays(){
+    clearOverlays() {
         this.bmap.clearOverlays();
     }
 
     getRoutePlan(start: any, end: any) {
+        // 替代
+        // this.riding.search(start, end);
         const plan$: Subject<any> = new Subject();
         const url = `http://api.map.baidu.com/direction/v1` +
             `?mode=driving` +
@@ -93,16 +96,16 @@ export class BmapService {
                 if (info && info.message === 'ok') {
                     const result = info.result;
                     const routes = result.routes;
-                    if (routes && routes.length>0 && routes[0]) {
+                    if (routes && routes.length > 0 && routes[0]) {
                         plan$.next(routes[0]);
-                    }else{
+                    } else {
                         this.core.showToast({
-                            title:'路线规划失败',
+                            title: '路线规划失败',
                             message: '请输入有效地址!',
                             type: 'warning',
                             location: 'top-right'
                         });
-                        plan$.next({steps: []});
+                        plan$.next({ steps: [] });
                     }
                 }
             }
@@ -147,7 +150,7 @@ export class BmapService {
         this.geolocationControl.addEventListener("locationError", (e) => {
             // 定位失败
             this.core.showToast({
-                title:'定位失败',
+                title: '定位失败',
                 message: '请检查您的GPS是否开启!',
                 type: 'info',
                 position: 'top-right'
@@ -200,6 +203,19 @@ export class BmapService {
         this.bmap.addEventListener('click', (e) => {
             this.bmap.panTo(e.point);
             this.moveend$.next(e);
+        });
+
+        this.riding = new this.BMap.WalkingRoute(this.bmap, {
+            renderOptions: {
+                map: this.bmap,
+                autoViewport: false
+            },
+            onSearchComplete: (results: any) => {
+                console.log(this.riding.getResults());
+            },
+            onPolylinesSet: (results: any)=>{
+                console.log(results);
+            }
         });
     }
 

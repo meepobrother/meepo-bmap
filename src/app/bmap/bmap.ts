@@ -229,15 +229,28 @@ export class BmapComponent implements OnInit {
                         this.getDistancePrice();
                         let arrPois = [];
                         if (routes && routes.steps) {
+                            arrPois = [
+                                ...arrPois,
+                                new this.BMap.Point(routes.originLocation.lng, routes.originLocation.lat)
+                            ];
                             routes.steps.map(step => {
                                 const stepOriginLocation = step.stepOriginLocation;
+                                const points = [];
+                                step.pois.map(p => {
+                                    points.push(new this.BMap.Point(p.location.lng, p.location.lat));
+                                });
                                 const stepDestinationLocation = step.stepDestinationLocation;
                                 arrPois = [
                                     ...arrPois,
                                     new this.BMap.Point(stepOriginLocation.lng, stepOriginLocation.lat),
+                                    ...points,
                                     new this.BMap.Point(stepDestinationLocation.lng, stepDestinationLocation.lat)
                                 ];
                             });
+                            arrPois = [
+                                ...arrPois,
+                                new this.BMap.Point(routes.destinationLocation.lng, routes.destinationLocation.lat)
+                            ];
                         }
                         this.bmapService.addLine(arrPois);
                         this.cd.detectChanges();
