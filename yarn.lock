@@ -118,6 +118,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/forms@5.2.0-beta.1":
+  version "5.2.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-5.2.0-beta.1.tgz#f32dabf92a22b9cdc46e2a50bbbf48f154f0c558"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@5.2.0-beta.1":
   version "5.2.0-beta.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.0-beta.1.tgz#c0228aeaac78901a2d5c1770a3737113f89fb53c"
@@ -3217,12 +3223,13 @@ meepo-base64@^1.1.1:
     zone.js "0.8.4"
 
 meepo-core@>=2.9.5:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.0.4.tgz#e46ebcee28830da5d81b6dd2141ea46df4ac74e7"
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.0.7.tgz#426088a4bea9b4986e2b4ea857dc110c699f5097"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
+    meepo-popover ">=1.0.0"
     meepo-xscroll ">=1.2.9"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
@@ -3253,6 +3260,20 @@ meepo-picker@>=1.0.8:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
+meepo-popover@>=1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/meepo-popover/-/meepo-popover-1.0.2.tgz#976e1cf632403fd2767edac04096dbe299bb78dd"
+  dependencies:
+    "@angular/common" "5.2.0-beta.1"
+    "@angular/core" "5.2.0-beta.1"
+    "@angular/forms" "5.2.0-beta.1"
+    "@angular/platform-browser" "5.2.0-beta.1"
+    meepo-uuid ">=1.0.8"
+    meepo-xscroll ">=1.2.9"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    zone.js "0.8.4"
+
 meepo-uuid@>=1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.0.8.tgz#834e13cf8e12745ab19d3a303844b50988dabf0c"
@@ -3266,8 +3287,8 @@ meepo-uuid@>=1.0.8:
     zone.js "0.8.4"
 
 meepo-xscroll@>=1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.2.9.tgz#1598ddb265e921dcfd1a27fbef07e7b3621e9273"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.3.0.tgz#439f7fd1dcf9356e033696f02e012df55b6520e6"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"

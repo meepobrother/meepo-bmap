@@ -50,13 +50,13 @@
         <div class="address_item" *ngIf="activeNav?.setting.start.show" (click)="_onStartAddressSelect()">
             <span class="home_unlock_to_success_17"></span>
             <input class="weui-input" *ngIf="loading" type="text" readonly disabled placeholder="正在获取位置...">
-            <input class="weui-input" *ngIf="!loading" type="text" readonly disabled [attr.value]="start.address">
+            <input class="weui-input" *ngIf="!loading" type="text" readonly disabled [attr.value]="start.title || start.address">
             <span class="activity_sticker_arrow_right"></span>
         </div>
         <div class="address_item_divider"></div>
         <div class="address_item" *ngIf="activeNav?.setting.end.show" (click)="_onEndAddressSelect()">
             <span class="bg_redpacket_marker"></span>
-            <input class="weui-input" type="text" readonly disabled [attr.value]="end.address" placeholder="请选择任务终点">
+            <input class="weui-input" type="text" readonly disabled [attr.value]="end.title || end.address" placeholder="请选择任务终点">
             <span class="activity_sticker_arrow_right"></span>
         </div>
     </div>

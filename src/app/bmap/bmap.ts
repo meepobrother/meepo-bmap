@@ -109,10 +109,20 @@ export class BmapComponent implements OnInit {
             let item = res.data;
             if (item) {
                 if (this.isStart) {
-                    this.start$.next({ address: item.title, point: item.point, city: item.city });
+                    this.start$.next({
+                        address: item.address,
+                        point: item.point,
+                        city: item.city,
+                        title: item.title
+                    });
                     this.bmapService.panTo(item.point);
                 } else {
-                    this.end$.next({ address: item.title, point: item.point, city: item.city });
+                    this.end$.next({
+                        address: item.address, 
+                        point: item.point, 
+                        city: item.city,
+                        title: item.title
+                    });
                 }
             }
         });
@@ -323,10 +333,12 @@ export class BmapComponent implements OnInit {
 
     setOneAddress() {
         this.bmapService.getAddress$.subscribe(com => {
+            console.log(com);
             let add = {
                 address: com.address,
                 point: com.point,
-                city: com.addressComponents.city
+                city: com.addressComponents.city,
+                title: com.surroundingPois.length > 0 ? com.surroundingPois[0].title : ''
             }
             if (this.activeNav) {
                 if (this.activeNav.setting) {
@@ -411,7 +423,12 @@ export class BmapComponent implements OnInit {
         this.bmapService.getAddress$.asObservable().debounceTime(300).subscribe((res: any) => {
             this.component = res.addressComponents;
             this.surroundingPois = res.surroundingPois;
-            this.start$.next({ address: res.address, point: res.point, city: res.addressComponents.city });
+            this.start$.next({
+                address: res.address,
+                point: res.point,
+                city: res.addressComponents.city,
+                title: res.surroundingPois.length > 0 ? res.surroundingPois[0].title : ''
+            });
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
