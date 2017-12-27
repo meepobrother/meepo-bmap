@@ -4,7 +4,7 @@
     top: 0;
     left: 0px;
     background: rgba(0, 0, 0, .8);
-    z-index: 20;
+    z-index: 999;
     padding: 10px 5px;
     max-height: 200px;
     overflow: auto;
@@ -48,7 +48,7 @@
     position: absolute;
     right: 0px;
     width: 1em;
-    z-index: 20;
+    z-index: 999;
     background: rgb(8, 8, 8);
     top: 100px;
     padding: 15px 8px;
