@@ -7,6 +7,8 @@ var postcss = require('postcss');
 
 let genDistPath = pathUtil.join(__dirname, 'src', '.tmp', 'release');
 let genPath = pathUtil.join(__dirname, 'src', '.tmp');
+let cssPath = __dirname + '/src/.tmp/app.css';
+console.log(cssPath);
 let lessFilePool = [];
 let handledLessFileCount = 0;
 
@@ -122,6 +124,12 @@ function writeBackCss(path) {
     }
 }
 
+function saveToCss(res) {
+    let a = fs.readFileSync(cssPath);
+    a = a + res;
+    fs.writeFileSync(cssPath, a);
+}
+// 处理样式问题
 function processLess() {
     let index = 0;
     while (index < lessFilePool.length) {
@@ -138,7 +146,8 @@ function processLess() {
                             } else {
                                 // 检查图片并转换base64
                                 cssImage(output.css, lessFilePool[index]).then(res => {
-                                    lessFilePool[index] = res;
+                                    saveToCss(res);
+                                    lessFilePool[index] = '';
                                     doneOne();
                                 });
                             }
@@ -156,7 +165,8 @@ function processLess() {
                     } else {
                         // 检查图片并转换base64
                         cssImage(output.css, lessFilePool[index]).then(res => {
-                            lessFilePool[index] = res;
+                            saveToCss(res);
+                            lessFilePool[index] = '';
                             doneOne();
                         });
                     }
@@ -170,7 +180,8 @@ function processLess() {
                     } else {
                         // 检查图片并转换base64
                         cssImage(data.toString(), lessFilePool[index]).then(res => {
-                            lessFilePool[index] = res;
+                            saveToCss(res);
+                            lessFilePool[index] = '';
                             doneOne();
                         });
                     }
@@ -183,12 +194,9 @@ function processLess() {
 }
 
 function process() {
-    // 把所有ts文件，引入的less文件的完整路径放到全局list里面, 并且对源文件进行占坑
     getTsFile(genPath, transformStyleUrls);
     getTsFile(genPath, transformHtmlUrls);
-    // 重置文件处理进度的计数器
     handledLessFileCount = 0;
-    // 对list里面的每一个less文件进行翻译并触发css回写
     console.log("start to translate from less 2 css");
     processLess();
 }
