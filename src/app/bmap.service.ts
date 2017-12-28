@@ -89,8 +89,8 @@ export class BmapService {
             `&output=json` +
             `&ak=${this.serviceKey}`;
         const meepoUrl = `https://meepo.com.cn/app/index.php?c=entry&i=2&do=open&__do=cloud.getCloudUrl2&m=imeepos_runner`;
-        this.axios.post(meepoUrl, { url: url }).then((result: any) => {
-            let res = result.data;
+        this.axios.post(meepoUrl, { url: url }).subscribe((result: any) => {
+            let res = result;
             if (res && res.info) {
                 const info = res.info;
                 if (info && info.message === 'ok') {
