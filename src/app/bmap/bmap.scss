@@ -38,11 +38,12 @@ $iconHeight: 58.5px;
         }
         .title_item {
             width: auto;
-            padding: 0 10px;
+            padding: 0;
             position: relative;
             border-radius: 6px;
             font-size: .8em;
             margin-bottom: 5px;
+            min-width: 4em;
             &.active {
                 background-color: orangered;
                 color: #fff;

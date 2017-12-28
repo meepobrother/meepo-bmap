@@ -29,7 +29,7 @@ export class ApiService {
     mget<T>(__do: string = 'index', __module: string = 'imeepos_runner'): Observable<T> {
         let get$: Subject<T> = new Subject();
         const url = this.core.murl('entry//open', { m: __module, __do: __do }, false);
-        this.axios.get<T>(url).then((res: any) => {
+        this.axios.get<T>(url).subscribe((res: any) => {
             get$.next(res.data);
         });
         return get$.asObservable();
@@ -56,7 +56,7 @@ export class ApiService {
         let mpost$: Subject<T> = new Subject();
         __body['__meepo_openid'] = store.get('__meepo_openid', 'fromUser');
         __body['__meepo_rcode'] = store.get('__meepo_rcode', '');
-        this.axios.bpost<T>(url, __body).then((res: any) => {
+        this.axios.bpost<T>(url, __body).subscribe((res: any) => {
             mpost$.next(res.data);
         });
         return mpost$.asObservable();
@@ -69,7 +69,7 @@ export class ApiService {
     wget<T>(__do: string = 'index', __module: string = 'imeepos_runner'): Observable<T> {
         let get$: Subject<T> = new Subject();
         const url = this.core.wurl('entry//open', { m: __module, __do: __do });
-        this.axios.get<T>(url).then((res: any) => {
+        this.axios.get<T>(url).subscribe((res: any) => {
             get$.next(res.data);
         });
         return get$.asObservable();
@@ -78,7 +78,7 @@ export class ApiService {
     wpost<T>(__do: string = 'index', __body: any = {}, __module: string = 'imeepos_runner'): Observable<T> {
         let post$: Subject<T> = new Subject();
         const url = this.core.wurl('entry//open', { m: __module, __do: __do });
-        this.axios.bpost<T>(url,__body).then((res: any) => {
+        this.axios.bpost<T>(url,__body).subscribe((res: any) => {
             post$.next(res.data);
         });
         return post$.asObservable();

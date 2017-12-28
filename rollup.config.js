@@ -238,6 +238,8 @@ let globals = {
     'store': 'storeF',
     'meepo-picker': 'meepo-picker',
     'meepo-uuid': 'meepo-uuid',
+    'meepo-popover': 'meepo-popover',
+    'meepo-base64': 'meepo-base64'
 };
 
 let plugins = [
