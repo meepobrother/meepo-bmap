@@ -3224,8 +3224,8 @@ meepo-core@>=2.9.4, meepo-core@>=2.9.5:
     zone.js "0.8.4"
 
 meepo-picker@>=1.0.8:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.1.0.tgz#c1ee0c385e14a9127feb557548f75e23d3091677"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.1.1.tgz#a069ec4c1e9eff85937709f0a9f2e5fad5dc2ac3"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
@@ -3250,7 +3250,7 @@ meepo-popover@>=1.0.0:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-store@^1.0.0:
+meepo-store@>=1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/meepo-store/-/meepo-store-1.0.0.tgz#1b70b090510c42b82433efbaa4ea8263901d84d3"
   dependencies:
@@ -3262,15 +3262,14 @@ meepo-store@^1.0.0:
     zone.js "0.8.4"
 
 meepo-uuid@>=1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.0.8.tgz#834e13cf8e12745ab19d3a303844b50988dabf0c"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.1.1.tgz#acc49a6dac78f5ca0d13119dd8b6c3607914e473"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
-    uuid "^3.1.0"
     zone.js "0.8.4"
 
 meepo-xscroll@>=1.2.9:
