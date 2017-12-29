@@ -10,12 +10,13 @@ import { CoreService } from 'meepo-core';
 export class ApiService {
     that: any;
     onInit: Subject<any> = new Subject();
-    openid: string = store.get('__meepo_openid', 'fromUser');
+    openid: string = this.store.get('__meepo_openid', 'fromUser');
     constructor(
         @Inject(DOCUMENT) public document: any,
         public sysinfo: SysinfoService,
         public axios: AxiosService,
-        public core: CoreService
+        public core: CoreService,
+        public store: StoreService
     ) {
 
     }
@@ -48,8 +49,8 @@ export class ApiService {
 
     mpost<T>(__do: string = 'index', __body: any = {}, __module: string = 'imeepos_runner', isCloud: boolean = false): Observable<T> {
         const url = this.murl('entry//open', { m: 'imeepos_runner', __do: __do }, isCloud);
-        __body['__meepo_openid'] = store.get('__meepo_openid', 'fromUser');
-        __body['__meepo_rcode'] = store.get('__meepo_rcode', '');
+        __body['__meepo_openid'] = this.store.get('__meepo_openid', 'fromUser');
+        __body['__meepo_rcode'] = this.store.get('__meepo_rcode', '');
         return this.axios.bpost<T>(url, __body)
     }
 
@@ -64,7 +65,7 @@ export class ApiService {
 
     wpost<T>(__do: string = 'index', __body: any = {}, __module: string = 'imeepos_runner'): Observable<T> {
         const url = this.core.wurl('entry//open', { m: __module, __do: __do });
-        return this.axios.bpost<T>(url,__body)
+        return this.axios.bpost<T>(url, __body)
     }
 
     isSqlError(val: string) {
