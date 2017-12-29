@@ -432,9 +432,7 @@ export class BmapComponent implements OnInit {
             if (this.component && this.component.street === "") {
                 this.component.street = '定位失败，请重新拖动地图选择位置！';
             }
-            if (!this.end.address || !this.start.address) {
-                this.core.closeLoading();
-            }
+            this.core.closeLoading();
             this.loading = false;
             this.cd.detectChanges();
         });
