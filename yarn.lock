@@ -3211,40 +3211,40 @@ meepo-base64@>=1.1.2:
     zone.js "0.8.4"
 
 meepo-core@>=2.9.4, meepo-core@>=2.9.5:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.1.1.tgz#55250008cc261afcedb73e57a2dc69a694dd6048"
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.1.2.tgz#aaaa66403e2116186c06ada1761188e12b127404"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
-    meepo-popover ">=1.0.0"
-    meepo-xscroll ">=1.2.9"
+    meepo-popover ">=1.0.3"
+    meepo-xscroll ">=1.3.0"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
 meepo-picker@>=1.0.8:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.1.1.tgz#a069ec4c1e9eff85937709f0a9f2e5fad5dc2ac3"
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.1.2.tgz#55a6da0ada61ac3e1478fe51c0bab50e5e2e1aef"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
-    meepo-uuid ">=1.0.8"
-    mobile-select "^1.0.10"
+    meepo-uuid ">=1.1.1"
+    mobile-select ">=1.0.10"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-popover@>=1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/meepo-popover/-/meepo-popover-1.0.2.tgz#976e1cf632403fd2767edac04096dbe299bb78dd"
+meepo-popover@>=1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/meepo-popover/-/meepo-popover-1.0.3.tgz#ceed4b02c32cb18838c86891003f82311de430fb"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/forms" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
-    meepo-uuid ">=1.0.8"
+    meepo-uuid ">=1.1.1"
     meepo-xscroll ">=1.2.9"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
@@ -3261,7 +3261,7 @@ meepo-store@>=1.0.0:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-uuid@>=1.0.8:
+meepo-uuid@>=1.0.8, meepo-uuid@>=1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.1.1.tgz#acc49a6dac78f5ca0d13119dd8b6c3607914e473"
   dependencies:
@@ -3272,7 +3272,7 @@ meepo-uuid@>=1.0.8:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-xscroll@>=1.2.9:
+meepo-xscroll@>=1.2.9, meepo-xscroll@>=1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.3.0.tgz#439f7fd1dcf9356e033696f02e012df55b6520e6"
   dependencies:
@@ -3421,7 +3421,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-mobile-select@^1.0.10:
+mobile-select@>=1.0.10:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/mobile-select/-/mobile-select-1.0.11.tgz#189b0127003bd3621a880980d41186fd7e707ad1"
 
