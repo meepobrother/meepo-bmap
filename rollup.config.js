@@ -235,7 +235,6 @@ let globals = {
     'meepo-xscroll': 'meepo-xscroll',
     'axios': 'axios',
     'meepo-axios': 'meepo-axios',
-    'store': 'storeF',
     'meepo-picker': 'meepo-picker',
     'meepo-uuid': 'meepo-uuid',
     'meepo-popover': 'meepo-popover',
