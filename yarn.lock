@@ -197,8 +197,8 @@ acorn@^4.0.3:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
 
 acorn@^5.0.0:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.2.1.tgz#317ac7821826c22c702d66189ab8359675f135d7"
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.3.0.tgz#7446d39459c54fb49a80e6ee6478149b940ec822"
 
 ajv-keywords@^2.0.0:
   version "2.1.1"
@@ -3225,8 +3225,8 @@ meepo-base64@^1.1.1:
     zone.js "0.8.4"
 
 meepo-core@>=2.9.5:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.0.9.tgz#5849022c857d0a0adc94c6dfbcbcde472469b636"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.1.1.tgz#55250008cc261afcedb73e57a2dc69a694dd6048"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
@@ -3272,6 +3272,17 @@ meepo-popover@>=1.0.0:
     "@angular/platform-browser" "5.2.0-beta.1"
     meepo-uuid ">=1.0.8"
     meepo-xscroll ">=1.2.9"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    zone.js "0.8.4"
+
+meepo-store@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/meepo-store/-/meepo-store-1.0.0.tgz#1b70b090510c42b82433efbaa4ea8263901d84d3"
+  dependencies:
+    "@angular/common" "5.2.0-beta.1"
+    "@angular/core" "5.2.0-beta.1"
+    "@angular/platform-browser" "5.2.0-beta.1"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     zone.js "0.8.4"
@@ -5255,10 +5266,6 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-store@^2.0.12:
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/store/-/store-2.0.12.tgz#8c534e2a0b831f72b75fc5f1119857c44ef5d593"
-
 stream-browserify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.1.tgz#66266ee5f9bdb9940a4e4514cafb43bb71e5c9db"
@@ -5607,8 +5614,8 @@ uglify-es@3.2.2:
     source-map "~0.6.1"
 
 uglify-js@3.3.x, uglify-js@^3.0.9:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.2.tgz#517af20aad7abe15e1e4c9aa33c0cc72aa0107ab"
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.3.tgz#66f9b57f7dda913ad9f48a21b12e4e7377fdaf40"
   dependencies:
     commander "~2.12.1"
     source-map "~0.6.1"

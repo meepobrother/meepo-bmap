@@ -19,12 +19,15 @@ const BmapComponents: any[] = [
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
 import { AxiosModule } from 'meepo-axios';
+import { StoreModule } from 'meepo-store';
+
 @NgModule({
     imports: [
         CommonModule,
         AxiosModule,
         MeepoCoreServiceModule,
-        PickerModule
+        PickerModule,
+        StoreModule
     ],
     exports: [
         BmapComponents

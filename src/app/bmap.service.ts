@@ -2,9 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CoreService } from 'meepo-core';
 import { Subject } from 'rxjs/Subject';
-declare const require: any;
-const store = require('store');
 import { AxiosService } from 'meepo-axios';
+import { StoreService } from 'meepo-store';
+
 export const loadMaps: any = {};
 export interface BMapComponent {
     street?: string;
@@ -49,9 +49,10 @@ export class BmapService {
     constructor(
         @Inject(DOCUMENT) public document: any,
         public core: CoreService,
-        public axios: AxiosService
+        public axios: AxiosService,
+        public store: StoreService
     ) {
-        this.myLocation = store.get('__my_location', {
+        this.myLocation = this.store.get('__my_location', {
             lng: 116.404,
             lat: 39.915
         });
@@ -168,7 +169,7 @@ export class BmapService {
         });
 
         this.geolocation.getCurrentPosition((r) => {
-            store.set('__my_location', r.point);
+            this.store.set('__my_location', r.point);
             this.bmap.panTo(r.point);
         });
         this.bmap.centerAndZoom(new this.BMap.Point(this.myLocation.lng, this.myLocation.lat), this.zoom);
