@@ -47,7 +47,8 @@ export class BmapComponent implements OnInit {
         });
         this.bmapService.getAddress$.subscribe(res => {
             this.loading = false;
-            this.btnTitle = res.surroundingPois.length > 0 ? res.surroundingPois[0].title : res.address;
+            console.log(res);
+            this.btnTitle = res.surroundingPois.length > 0 ? res.surroundingPois[0].address + '(' + res.surroundingPois[0].title + ')' : res.address;
             this.updateUi();
             this.core.closeLoading();
             this.cd.detectChanges();
