@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
     ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy,
-    Output, EventEmitter, TemplateRef, Input, Renderer2
+    Output, EventEmitter, TemplateRef, Input, Renderer2, OnDestroy
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,7 @@ import { CoreService, CorePopoverWidget } from 'meepo-core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BmapComponent implements OnInit {
+export class BmapComponent implements OnInit, OnDestroy {
     @ViewChild('bmap') bmap: ElementRef;
     @ViewChild('content') content: ElementRef;
     @ViewChild('tip') tip: ElementRef;
@@ -27,6 +27,7 @@ export class BmapComponent implements OnInit {
     map: any;
     btnTitle: string = this.title;
     loadObserver: any;
+    bmapServiceObserver: any;
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
@@ -56,7 +57,7 @@ export class BmapComponent implements OnInit {
             this.core.showLoading({ type: 'skCircle', full: false });
             this.cd.detectChanges();
         }, 0);
-        this.bmapService.movestart$.subscribe(res => {
+        this.bmapServiceObserver = this.bmapService.movestart$.subscribe(res => {
             setTimeout(() => {
                 this.btnTitle = this.title;
                 this.updateUi(true);
@@ -64,6 +65,11 @@ export class BmapComponent implements OnInit {
             }, 0);
         });
         this.bmapService.locationHeight = this.height;
+    }
+
+    ngOnDestroy(){
+        this.loadObserver.unsubscribe();
+        this.bmapServiceObserver.unsubscribe();
     }
 
     updateUi(isLoading: boolean = false) {
