@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmapComponent } from './bmap/bmap';
 import { BmapService } from './bmap.service';
-import { SysinfoService } from './sysinfo.service';
 import { BmapAddressSelectService, getBmapAddressSelectService } from './bmap-address-select.service';
 
 import 'rxjs/add/operator/debounceTime';
@@ -36,7 +35,6 @@ import { StoreModule } from 'meepo-store';
     ],
     providers: [
         BmapService,
-        SysinfoService,
         {
             provide: BmapAddressSelectService,
             useFactory: getBmapAddressSelectService
