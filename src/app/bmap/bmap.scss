@@ -112,13 +112,12 @@ $iconHeight: 58.5px;
     .tip_container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
         align-items: center;
         font-size: .8em;
         height: $tipHeight;
         line-height: $tipHeight;
+        justify-content: center;
         position: relative;
-        width: auto;
         .tip_title {
             margin-right: 3px;
         }
