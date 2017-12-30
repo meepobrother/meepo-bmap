@@ -419,24 +419,6 @@ export class BmapComponent implements OnInit {
             this.loading = true;
             this.cd.detectChanges();
         }, 0);
-        // 获取当前位置成功
-        this.bmapService.getAddress$.asObservable().debounceTime(300).subscribe((res: any) => {
-            this.component = res.addressComponents;
-            this.surroundingPois = res.surroundingPois;
-            this.start$.next({
-                address: res.address,
-                point: res.point,
-                city: res.addressComponents.city,
-                title: res.surroundingPois.length > 0 ? res.surroundingPois[0].title : ''
-            });
-            if (this.component && this.component.street === "") {
-                this.component.street = '定位失败，请重新拖动地图选择位置！';
-            }
-            this.core.closeLoading();
-            this.loading = false;
-            this.cd.detectChanges();
-        });
-        // 开始移动
         this.bmapService.movestart$.subscribe(res => {
             setTimeout(() => {
                 this.loading = true;
