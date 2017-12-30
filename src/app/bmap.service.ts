@@ -138,6 +138,13 @@ export class BmapService {
         this.centerChange$.next({ point: point, bound: bound });
         this.getLocation(point);
     }
+
+    getCurrentPosition(){
+        this.geolocation.getCurrentPosition((r) => {
+            this.store.set('__my_location', r.point);
+            this.bmap.panTo(r.point);
+        });
+    }
     initMapSetting() {
         this.geolocationControl = new this.BMap.GeolocationControl({
             anchor: window['BMAP_ANCHOR_TOP_LEFT'],
@@ -168,10 +175,7 @@ export class BmapService {
             }
         });
 
-        this.geolocation.getCurrentPosition((r) => {
-            this.store.set('__my_location', r.point);
-            this.bmap.panTo(r.point);
-        });
+        this.getCurrentPosition();
         this.bmap.centerAndZoom(new this.BMap.Point(this.myLocation.lng, this.myLocation.lat), this.zoom);
         // 定位空间
         this.bmap.addControl(this.geolocationControl);
