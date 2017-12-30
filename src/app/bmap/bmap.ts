@@ -25,7 +25,6 @@ export class BmapComponent implements OnInit {
     @Input() height = 0;
     BMap: any;
     map: any;
-    loading: boolean = true;
     btnTitle: string = this.title;
     loadObserver: any;
     constructor(
@@ -46,8 +45,6 @@ export class BmapComponent implements OnInit {
             this.loadObserver.unsubscribe();
         });
         this.bmapService.getAddress$.subscribe(res => {
-            this.loading = false;
-            console.log(res);
             this.btnTitle = res.surroundingPois.length > 0 ? res.surroundingPois[0].address + '(' + res.surroundingPois[0].title + ')' : res.address;
             this.updateUi();
             this.core.closeLoading();
@@ -58,26 +55,27 @@ export class BmapComponent implements OnInit {
         this.bmapService.loadBmapSrc();
         setTimeout(() => {
             this.core.showLoading({ type: 'skCircle', full: false });
-            this.loading = true;
             this.cd.detectChanges();
         }, 0);
         this.bmapService.movestart$.subscribe(res => {
             setTimeout(() => {
-                this.loading = true;
                 this.btnTitle = this.title;
-                this.updateUi();
+                this.updateUi(true);
                 this.core.showLoading({ show: true, full: false });
-                this.cd.detectChanges();
             }, 0);
         });
-        // 设置导航按钮高度
         this.bmapService.locationHeight = this.height;
     }
 
-    updateUi() {
+    updateUi(isLoading: boolean = false) {
+        this.render.setStyle(this.tip.nativeElement, 'visibility', 'hidden');
+    }
+
+    getWidth(e: any) {
+        let width = 30 + e;
+        this.render.setStyle(this.tip.nativeElement, 'margin-left', '-' + width / 2 + 'px');
         setTimeout(() => {
-            let width = 30 + this.content.nativeElement.clientWidth;
-            this.render.setStyle(this.tip.nativeElement, 'margin-left', '-' + width / 2 + 'px');
+            this.render.setStyle(this.tip.nativeElement, 'visibility', 'visible');
         }, 300);
     }
 }

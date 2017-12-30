@@ -8,10 +8,13 @@ import { BmapAddressSelectService, getBmapAddressSelectService } from './bmap-ad
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
+import { GetWidthDirective } from './bmap/getWidth';
+
 import { PickerModule } from 'meepo-picker';
 const BmapComponents: any[] = [
     BmapComponent,
     BmapAddressSelectComponent,
+    GetWidthDirective
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
 import { AxiosModule } from 'meepo-axios';

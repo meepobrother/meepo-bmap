@@ -134,7 +134,7 @@ $iconHeight: 58.5px;
         }
         .tip_content {
             padding-right: 20px;
-            padding-left: 0px;
+            padding-left: 10px;
             &:after {
                 content: " ";
                 display: inline-block;
@@ -235,4 +235,9 @@ $iconHeight: 58.5px;
 .activity_sticker_arrow_right {
     background-image: url('./activity_sticker_arrow_right.png');
     background-size: 60% 100%;
+}
+
+.hidden{
+    display: none !important;
+    visibility: hidden;
 }
