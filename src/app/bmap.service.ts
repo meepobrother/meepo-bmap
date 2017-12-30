@@ -193,14 +193,6 @@ export class BmapService {
             this.movestart$.next(e);
         });
 
-        this.bmap.addEventListener('dragstart', (e) => {
-            this.movestart$.next(e);
-        });
-
-        this.bmap.addEventListener('dragend', (e) => {
-            this.moveend$.next(e);
-        });
-
         this.bmap.addEventListener('resize', (e) => {
             this.moveend$.next(e);
         });
