@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
     ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy,
-    Output, EventEmitter, TemplateRef
+    Output, EventEmitter, TemplateRef, Input
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { headerTitles } from './bmap.config';
@@ -21,9 +21,9 @@ import { CoreService, CorePopoverWidget } from 'meepo-core';
 })
 export class BmapComponent implements OnInit {
     @ViewChild('bmap') bmap: ElementRef;
-    @ViewChild('footer') footer: ElementRef;
+    // @ViewChild('footer') footer: ElementRef;
     @ViewChild('search') search: ElementRef;
-
+    @Input() height = 0;
     @Output() onHome: EventEmitter<any> = new EventEmitter();
     @Output() onFinish: EventEmitter<any> = new EventEmitter();
 
@@ -118,8 +118,8 @@ export class BmapComponent implements OnInit {
                     this.bmapService.panTo(item.point);
                 } else {
                     this.end$.next({
-                        address: item.address, 
-                        point: item.point, 
+                        address: item.address,
+                        point: item.point,
                         city: item.city,
                         title: item.title
                     });
@@ -447,10 +447,6 @@ export class BmapComponent implements OnInit {
             }, 0);
         });
         // 设置导航按钮高度
-        let height = this.footer.nativeElement.clientHeight + 20;
-        if (height < 200) {
-            height = 200;
-        }
-        this.bmapService.locationHeight = height;
+        this.bmapService.locationHeight = this.height;
     }
 }
