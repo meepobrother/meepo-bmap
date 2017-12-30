@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
     ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy,
-    Output, EventEmitter, TemplateRef, Input
+    Output, EventEmitter, TemplateRef, Input, Renderer2
 } from '@angular/core';
 import { BmapService } from '../bmap.service';
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,8 @@ import { CoreService, CorePopoverWidget } from 'meepo-core';
 export class BmapComponent implements OnInit {
     @ViewChild('bmap') bmap: ElementRef;
     @ViewChild('content') content: ElementRef;
-    
+    @ViewChild('tip') tip: ElementRef;
+
     @Input() title: string = '在这里下单';
     @Input() height = 0;
     BMap: any;
@@ -31,7 +32,8 @@ export class BmapComponent implements OnInit {
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
         public core: CoreService,
-        public address: BmapAddressSelectService
+        public address: BmapAddressSelectService,
+        public render: Renderer2
     ) {
         this.cd.detach();
         // 地图初始化
@@ -45,8 +47,8 @@ export class BmapComponent implements OnInit {
         });
         this.bmapService.getAddress$.subscribe(res => {
             this.loading = false;
-            console.log(res);
             this.btnTitle = res.address;
+            this.updateUi();
             this.core.closeLoading();
             this.cd.detectChanges();
         });
@@ -62,6 +64,7 @@ export class BmapComponent implements OnInit {
             setTimeout(() => {
                 this.loading = true;
                 this.btnTitle = this.title;
+                this.updateUi();
                 this.core.showLoading({ show: true, full: false });
                 this.cd.detectChanges();
             }, 0);
@@ -70,7 +73,10 @@ export class BmapComponent implements OnInit {
         this.bmapService.locationHeight = this.height;
     }
 
-    updateUi(){
-
+    updateUi() {
+        setTimeout(() => {
+            let width = 30 + this.content.nativeElement.clientWidth;
+            this.render.setStyle(this.tip.nativeElement, 'margin-left', '-' + width / 2 + 'px');
+        }, 300);
     }
 }

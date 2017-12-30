@@ -1,5 +1,5 @@
 <div #bmap class="meepo__bmap"></div>
-<div class="meepo__bmap_tip" [style.bottom.px]="this.bmapService.locationHeight">
+<div class="meepo__bmap_tip" #tip [style.bottom.px]="this.bmapService.locationHeight">
     <div class="tip_container">
         <div class="tip_info" style="margin-left:10px;">
             <i class="weui-loading" *ngIf="loading"></i>
