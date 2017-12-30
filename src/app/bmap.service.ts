@@ -67,7 +67,7 @@ export class BmapService {
             // this.bmap.clearOverlays();
         });
         // 地图移动获取移动后的地图中心位置
-        this.moveend$.asObservable().debounceTime(100).subscribe(res => {
+        this.moveend$.asObservable().subscribe(res => {
             this.centerChange();
         });
     }
@@ -210,8 +210,7 @@ export class BmapService {
         });
 
         this.bmap.addEventListener('click', (e) => {
-            this.bmap.panTo(e.point);
-            this.moveend$.next(e);
+            this.panTo(e.point);
         });
 
         this.riding = new this.BMap.WalkingRoute(this.bmap, {
