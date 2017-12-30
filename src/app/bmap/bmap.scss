@@ -98,7 +98,7 @@ $iconHeight: 58.5px;
 
 .meepo__bmap_tip {
     display: block;
-    width: $tipWidth;
+    width: auto;
     height: $tipHeight;
     position: absolute;
     left: 50%;
@@ -118,6 +118,7 @@ $iconHeight: 58.5px;
         height: $tipHeight;
         line-height: $tipHeight;
         position: relative;
+        width: auto;
         .tip_title {
             margin-right: 3px;
         }
@@ -132,7 +133,8 @@ $iconHeight: 58.5px;
             margin: 0 2px;
         }
         .tip_content {
-            padding-right: 10px;
+            padding-right: 20px;
+            padding-left: 0px;
             &:after {
                 content: " ";
                 display: inline-block;

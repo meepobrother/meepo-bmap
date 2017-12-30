@@ -18,6 +18,8 @@ import { CoreService, CorePopoverWidget } from 'meepo-core';
 })
 export class BmapComponent implements OnInit {
     @ViewChild('bmap') bmap: ElementRef;
+    @ViewChild('content') content: ElementRef;
+    
     @Input() title: string = '在这里下单';
     @Input() height = 0;
     BMap: any;
@@ -43,12 +45,13 @@ export class BmapComponent implements OnInit {
         });
         this.bmapService.getAddress$.subscribe(res => {
             this.loading = false;
+            console.log(res);
+            this.btnTitle = res.address;
             this.core.closeLoading();
             this.cd.detectChanges();
         });
     }
     ngOnInit() {
-        // 加载地图资源
         this.bmapService.loadBmapSrc();
         setTimeout(() => {
             this.core.showLoading({ type: 'skCircle', full: false });
@@ -65,5 +68,9 @@ export class BmapComponent implements OnInit {
         });
         // 设置导航按钮高度
         this.bmapService.locationHeight = this.height;
+    }
+
+    updateUi(){
+
     }
 }
