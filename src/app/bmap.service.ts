@@ -139,10 +139,14 @@ export class BmapService {
         this.getLocation(point);
     }
 
-    getCurrentPosition(){
+    getCurrentPosition(hasPan: boolean = true) {
         this.geolocation.getCurrentPosition((r) => {
             this.store.set('__my_location', r.point);
-            this.bmap.panTo(r.point);
+            if (hasPan) {
+                this.bmap.panTo(r.point);
+            } else {
+                this.getLocation(r.point);
+            }
         });
     }
     initMapSetting() {
@@ -218,7 +222,7 @@ export class BmapService {
             onSearchComplete: (results: any) => {
                 console.log(this.riding.getResults());
             },
-            onPolylinesSet: (results: any)=>{
+            onPolylinesSet: (results: any) => {
                 console.log(results);
             }
         });
