@@ -1,4 +1,4 @@
-<div class="meepo__bmap_header">
+<!-- <div class="meepo__bmap_header">
     <div class="home" (click)="locationToHome()">
         <i class="home_ab_user_profile_red_dot"></i>
     </div>
@@ -13,7 +13,7 @@
 </div>
 <div class="meepo__bmap_topnav" *ngIf="activeTitle.items.length>0">
     <div class="item" (click)="_onNavItem(item)" [class.active]="item.active" *ngFor="let item of activeTitle.items; index as i;">{{item.title}}</div>
-</div>
+</div> -->
 
 <div #bmap class="meepo__bmap"></div>
 
@@ -37,7 +37,7 @@
 </div>
 
 <div class="meep__bmap_center_icon"></div>
-<div class="meepo__map_footer" #footer>
+<!-- <div class="meepo__map_footer" #footer>
     <div class="footer_container">
         <div class="time_select">
             <div [class.active]="!isCoach" (click)="doNow()" class="time_select_item">现在</div>
@@ -63,7 +63,7 @@
     <div class="footer-btn">
         <a href="javascript:;" (click)="finish()" class="weui-btn weui-btn_primary">{{activeNav?.setting.btnTitle || '立即下单'}}</a>
     </div>
-</div>
+</div> -->
 <ng-content></ng-content>
 <!-- 地址选择插件 -->
 <bmap-address-select></bmap-address-select>
