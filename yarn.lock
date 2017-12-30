@@ -2848,7 +2848,7 @@ istanbul-lib-instrument@^1.1.3:
     istanbul-lib-coverage "^1.1.1"
     semver "^5.3.0"
 
-js-base64@^2.1.8, js-base64@^2.1.9, js-base64@^2.4.0:
+js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.0.tgz#9e566fee624751a1d720c966cd6226d29d4025aa"
 
@@ -3185,34 +3185,33 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
 meepo-axios@>=1.2.0:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/meepo-axios/-/meepo-axios-1.2.3.tgz#c0b216f80ec4adfb10c808b9a4c186470a6a28fc"
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/meepo-axios/-/meepo-axios-1.2.9.tgz#cb305f99c0c64566f34e08b006f0c7c5255befe2"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
     meepo-base64 ">=1.1.2"
-    meepo-core ">=2.9.4"
-    meepo-uuid ">=1.0.8"
+    meepo-core ">=3.1.3"
+    meepo-uuid ">=1.1.1"
     reflect-metadata "~0.1.10"
     rxjs "^5.5.0"
     zone.js "0.8.4"
 
 meepo-base64@>=1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/meepo-base64/-/meepo-base64-1.1.2.tgz#ce3f227e0984b288da43f261d648f1e10c8b8994"
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/meepo-base64/-/meepo-base64-1.1.4.tgz#5a8b4b8f6fc996b1965b3530294270626a4516f4"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
     "@angular/platform-browser" "5.2.0-beta.1"
-    js-base64 "^2.4.0"
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-core@>=2.9.4, meepo-core@>=2.9.5:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.1.2.tgz#aaaa66403e2116186c06ada1761188e12b127404"
+meepo-core@>=2.9.5, meepo-core@>=3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.1.3.tgz#f2d87cbeac065e4ad7ac90a35d41be6dd4d9028d"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
@@ -3261,7 +3260,7 @@ meepo-store@>=1.0.0:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-uuid@>=1.0.8, meepo-uuid@>=1.1.1:
+meepo-uuid@>=1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/meepo-uuid/-/meepo-uuid-1.1.1.tgz#acc49a6dac78f5ca0d13119dd8b6c3607914e473"
   dependencies:
@@ -3587,8 +3586,8 @@ node-sass@^4.3.0, node-sass@^4.7.2:
     "true-case-path" "^1.0.2"
 
 nodemon@^1.13.3:
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.14.3.tgz#f08d66726fb9876d76956b57cc91624793de4dbb"
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.14.6.tgz#d1b2fa204137b8d2c9242d797cd0b394d05fe77d"
   dependencies:
     chokidar "^1.7.0"
     debug "^2.6.8"
