@@ -70,6 +70,7 @@ export class BmapAddressSelectComponent implements OnInit {
 
         this.address.show$.subscribe(res => {
             this.widget = { ...this.widget, ...res };
+            console.log(this.widget);
             if (this.widget.show) {
                 let cfg: CorePopoverWidget = {
                     tpl: this.bodyTpl,

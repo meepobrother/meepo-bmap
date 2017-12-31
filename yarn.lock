@@ -3273,8 +3273,8 @@ meepo-uuid@>=1.1.1:
     zone.js "0.8.4"
 
 meepo-xscroll@>=1.2.9, meepo-xscroll@>=1.3.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.3.1.tgz#6c38bcd5f63207ed391e6b188443814710c2adc0"
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/meepo-xscroll/-/meepo-xscroll-1.3.3.tgz#82b21d98e621a3d3d0149cd098ac01e4af14818b"
   dependencies:
     "@angular/common" "5.2.0-beta.1"
     "@angular/core" "5.2.0-beta.1"
