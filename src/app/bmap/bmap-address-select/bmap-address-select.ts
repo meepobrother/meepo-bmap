@@ -38,7 +38,7 @@ export class BmapAddressSelectComponent implements OnInit {
         public core: CoreService,
         public address: BmapAddressSelectService
     ) {
-        this.key$.subscribe(key => {
+        this.key$.debounceTime(300).subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
             if (this.timer) {
                 clearTimeout(this.timer);
