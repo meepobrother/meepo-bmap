@@ -11,6 +11,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeLast';
 
 import { Subject } from 'rxjs/Subject';
+import { XscrollComponent } from 'meepo-xscroll';
 @Component({
     selector: 'bmap-address-select',
     templateUrl: './bmap-address-select.html',
@@ -22,8 +23,7 @@ import { Subject } from 'rxjs/Subject';
 })
 export class BmapAddressSelectComponent implements OnInit {
     @Input() items: any[] = [];
-    @ViewChild('headerTpl') headerTpl: TemplateRef<any>;
-    @ViewChild('bodyTpl') bodyTpl: TemplateRef<any>;
+    @ViewChild(XscrollComponent) xscroll: XscrollComponent;
     @Output() onSelect: EventEmitter<any> = new EventEmitter();
     @Output() showChange: EventEmitter<any> = new EventEmitter();
     widget: any = {
@@ -40,7 +40,7 @@ export class BmapAddressSelectComponent implements OnInit {
         public core: CoreService,
         public address: BmapAddressSelectService
     ) {
-        this.key$.asObservable().takeLast(1).subscribe(key => {
+        this.key$.asObservable().subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
             if (this.timer) {
                 clearTimeout(this.timer);
@@ -57,33 +57,19 @@ export class BmapAddressSelectComponent implements OnInit {
             for (let i = 0; i < res.getCurrentNumPois(); i++) {
                 this.items.push(res.getPoi(i));
             }
-            let cfg: CorePopoverWidget = {
-                tpl: this.bodyTpl,
-                headerTpl: this.headerTpl,
-                list: this.items,
-                show: this.widget.show
-            };
-            this.core.showPopover(cfg);
+            setTimeout(() => {
+                this.xscroll.onEnd();
+            }, 300);
             this.core.closeLoading();
             if (this.timer) {
                 clearTimeout(this.timer);
             }
-            this.cd.markForCheck();
+            this.cd.detectChanges();
         });
 
-        this.address.show$.asObservable().debounceTime(300).subscribe(res => {
+        this.address.show$.asObservable().subscribe(res => {
             this.widget = { ...this.widget, ...res };
-            if (this.widget.show) {
-                let cfg: CorePopoverWidget = {
-                    tpl: this.bodyTpl,
-                    headerTpl: this.headerTpl,
-                    list: this.items
-                };
-                this.core.showPopover(cfg);
-            } else {
-                this.core.closePopover();
-            }
-            this.cd.markForCheck();
+            this.cd.detectChanges();
         });
     }
 
@@ -95,7 +81,7 @@ export class BmapAddressSelectComponent implements OnInit {
     }
 
     _clear() {
-        
+
     }
 
     _onCitySelect(item: any) {

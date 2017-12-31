@@ -8,8 +8,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
 import { GetWidthDirective } from './bmap/getWidth';
-
-import { PickerModule } from 'meepo-picker';
+import { XscrollModule } from 'meepo-xscroll';
 const BmapComponents: any[] = [
     BmapComponent,
     BmapAddressSelectComponent,
@@ -24,8 +23,8 @@ import { StoreModule } from 'meepo-store';
         CommonModule,
         AxiosModule,
         MeepoCoreServiceModule,
-        PickerModule,
-        StoreModule
+        StoreModule,
+        XscrollModule
     ],
     exports: [
         BmapComponents

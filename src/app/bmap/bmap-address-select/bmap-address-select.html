@@ -1,10 +1,11 @@
-<div class="meepo__bmap_search" [class.shown]="widget.show">
-    <ng-template #headerTpl>
+<div class="core-popover" [class.shown]="widget.show">
+    <div class="core-popover_header">
         <div class="weui-search-bar weui-search-bar_focusing">
-            <div class="weui-search-bar__form" >
+            <div class="weui-search-bar__form">
                 <div class="weui-search-bar__box">
                     <i class="weui-icon-search"></i>
-                    <input type="search" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input" placeholder="请输入关键字搜索">
+                    <input type="search" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input"
+                        placeholder="请输入关键字搜索">
                     <a href="javascript:" class="weui-icon-clear" (click)="_clear()"></a>
                 </div>
                 <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
@@ -14,14 +15,16 @@
             </div>
             <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
         </div>
-    </ng-template>
-    <ng-template #bodyTpl let-item>
-        <div class="bmap-address-select-item" (click)="_onCitySelect(item)">
-            <i class="bt_ic_postal_code"></i>
-            <div class="surrounding_content">
-                <h4>{{item.title}}</h4>
-                <p>{{item.address}}</p>
+    </div>
+    <div class="core-popover_container">
+        <xscroll #xscroll style="bottom: 0px;" [hasMore]="false" [hasRefresh]="false">
+            <div class="bmap-address-select-item" *ngFor="let item of items" (click)="_onCitySelect(item)">
+                <i class="bt_ic_postal_code"></i>
+                <div class="surrounding_content">
+                    <h4>{{item.title}}</h4>
+                    <p>{{item.address}}</p>
+                </div>
             </div>
-        </div>
-    </ng-template>
+        </xscroll>
+    </div>
 </div>
