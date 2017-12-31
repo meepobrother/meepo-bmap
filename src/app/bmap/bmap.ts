@@ -77,6 +77,7 @@ export class BmapComponent implements OnInit, OnDestroy {
     getWidth(e: any) {
         let width = 30 + e;
         this.render.setStyle(this.tip.nativeElement, 'margin-left', '-' + width / 2 + 'px');
+        this.core.closeLoading();
         setTimeout(() => {
             this.render.setStyle(this.tip.nativeElement, 'visibility', 'visible');
         }, 300);
