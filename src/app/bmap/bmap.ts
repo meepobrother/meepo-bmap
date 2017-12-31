@@ -6,7 +6,6 @@ import {
 import { BmapService } from '../bmap.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { BmapAddressSelectService } from '../bmap-address-select.service';
 import { CoreService, CorePopoverWidget } from 'meepo-core';
 
 @Component({
@@ -32,7 +31,6 @@ export class BmapComponent implements OnInit, OnDestroy {
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
         public core: CoreService,
-        public address: BmapAddressSelectService,
         public render: Renderer2
     ) {
         this.cd.detach();
@@ -54,7 +52,7 @@ export class BmapComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.bmapService.loadBmapSrc();
         setTimeout(() => {
-            this.core.showLoading({ type: 'skCircle', full: false });
+            this.core.showLoading({ show: true, type: 'skCircle', full: false });
             this.cd.detectChanges();
         }, 0);
         this.bmapServiceObserver = this.bmapService.movestart$.subscribe(res => {
@@ -67,7 +65,7 @@ export class BmapComponent implements OnInit, OnDestroy {
         this.bmapService.locationHeight = this.height;
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.loadObserver.unsubscribe();
         this.bmapServiceObserver.unsubscribe();
     }
