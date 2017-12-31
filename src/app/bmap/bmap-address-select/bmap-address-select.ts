@@ -8,6 +8,8 @@ import { BmapService } from '../../bmap.service';
 import { BmapAddressSelectService } from '../../bmap-address-select.service';
 import { CoreService, CorePopoverWidget } from 'meepo-core';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/takeLast';
+
 import { Subject } from 'rxjs/Subject';
 @Component({
     selector: 'bmap-address-select',
@@ -38,7 +40,7 @@ export class BmapAddressSelectComponent implements OnInit {
         public core: CoreService,
         public address: BmapAddressSelectService
     ) {
-        this.key$.debounceTime(300).subscribe(key => {
+        this.key$.asObservable().takeLast(1).subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
             if (this.timer) {
                 clearTimeout(this.timer);
@@ -58,7 +60,8 @@ export class BmapAddressSelectComponent implements OnInit {
             let cfg: CorePopoverWidget = {
                 tpl: this.bodyTpl,
                 headerTpl: this.headerTpl,
-                list: this.items
+                list: this.items,
+                show: this.widget.show
             };
             this.core.showPopover(cfg);
             this.core.closeLoading();
