@@ -68,9 +68,8 @@ export class BmapAddressSelectComponent implements OnInit {
             this.cd.markForCheck();
         });
 
-        this.address.show$.subscribe(res => {
+        this.address.show$.asObservable().debounceTime(300).subscribe(res => {
             this.widget = { ...this.widget, ...res };
-            console.log(this.widget);
             if (this.widget.show) {
                 let cfg: CorePopoverWidget = {
                     tpl: this.bodyTpl,
