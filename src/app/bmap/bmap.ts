@@ -44,8 +44,8 @@ export class BmapComponent implements OnInit, OnDestroy {
             this.loadObserver.unsubscribe();
         });
         this.bmapService.getAddress$.subscribe(res => {
+            this.btnTitle = res.address;
             this.updateUi();
-            this.core.closeLoading();
             this.cd.detectChanges();
         });
     }
@@ -59,7 +59,6 @@ export class BmapComponent implements OnInit, OnDestroy {
             setTimeout(() => {
                 this.btnTitle = this.title;
                 this.updateUi(true);
-                this.core.showLoading({ show: true, full: false });
             }, 0);
         });
         this.bmapService.locationHeight = this.height;
@@ -71,6 +70,7 @@ export class BmapComponent implements OnInit, OnDestroy {
     }
 
     updateUi(isLoading: boolean = false) {
+        this.core.showLoading({ show: true, full: false });
         this.render.setStyle(this.tip.nativeElement, 'visibility', 'hidden');
     }
 
