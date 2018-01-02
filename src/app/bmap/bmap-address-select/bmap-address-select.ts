@@ -71,7 +71,7 @@ export class BmapAddressSelectComponent extends MeepoHistory {
         });
     }
 
-    meepoOnInit() {
+    meepoInit() {
         this.cd.markForCheck();
     }
 
