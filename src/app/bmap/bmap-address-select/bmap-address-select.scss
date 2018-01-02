@@ -6,7 +6,7 @@
     flex: 1;
 }
 
-.meepo__bmap_search{
+.meepo__bmap_search {
     display: none;
     visibility: hidden;
     &.shown {
@@ -15,8 +15,7 @@
     }
 }
 
-
-.bmap-address-select-item{
+.bmap-address-select-item {
     padding: 0 10px;
     height: 44px;
     display: flex;
@@ -34,8 +33,8 @@
     h4 {
         font-size: .8em;
     }
-    
 }
+
 .bt_ic_postal_code {
     display: block;
     width: 20px;
@@ -43,4 +42,27 @@
     background-image: url("./bt_ic_postal_code.png");
     background-size: cover;
     margin-right: 10px;
+}
+
+.meepo_address_title {
+    text-align: center;
+    margin-top: 5px;
+    color: gray;
+}
+
+.bmap-address-select-item {
+    background-color: #fff;
+}
+
+bmap-address-select {
+    xscroll {
+        position: relative;
+    }
+    .meepo_address_history_container {
+        max-height: 200px;
+    }
+}
+
+.core-popover_container {
+    overflow: hidden;
 }

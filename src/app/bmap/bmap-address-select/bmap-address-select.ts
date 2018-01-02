@@ -12,6 +12,9 @@ import 'rxjs/add/operator/takeLast';
 
 import { Subject } from 'rxjs/Subject';
 import { XscrollComponent } from 'meepo-xscroll';
+import { MeepoHistory } from 'meepo-base';
+import { StoreService } from 'meepo-store';
+
 @Component({
     selector: 'bmap-address-select',
     templateUrl: './bmap-address-select.html',
@@ -21,50 +24,44 @@ import { XscrollComponent } from 'meepo-xscroll';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class BmapAddressSelectComponent implements OnInit {
-    @Input() items: any[] = [];
+export class BmapAddressSelectComponent extends MeepoHistory {
+    key: string = 'bmap.address.select';
     @ViewChild(XscrollComponent) xscroll: XscrollComponent;
     @Output() onSelect: EventEmitter<any> = new EventEmitter();
     @Output() showChange: EventEmitter<any> = new EventEmitter();
+
     widget: any = {
         show: false,
         data: null
     };
-    timer: any;
-
     key$: Subject<any> = new Subject();
+
+    items: any[] = [];
+    psize: number = 5;
 
     constructor(
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
         public core: CoreService,
-        public address: BmapAddressSelectService
+        public address: BmapAddressSelectService,
+        public store: StoreService
     ) {
+        super(store, cd);
         this.key$.asObservable().subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
-            if (this.timer) {
-                clearTimeout(this.timer);
-            }
-            this.timer = setTimeout(() => {
-                this.core.closeLoading();
-                this.core.showToast({ title: '没有结果', message: '没有找到相关地址', type: 'warning' });
-            }, 3000);
             this.searchByKey(key);
         });
         // 搜索结果
         this.bmapService.localSearch$.subscribe((res: any) => {
-            this.items = [];
-            for (let i = 0; i < res.getCurrentNumPois(); i++) {
-                this.items.push(res.getPoi(i));
-            }
-            setTimeout(() => {
+            if (res.getCurrentNumPois() > 0) {
+                this.items = [];
+                for (let i = 0; i < res.getCurrentNumPois(); i++) {
+                    this.items.push(res.getPoi(i));
+                }
                 this.xscroll.onEnd();
-            }, 300);
-            this.core.closeLoading();
-            if (this.timer) {
-                clearTimeout(this.timer);
+                this.core.closeLoading();
+                this.cd.detectChanges();
             }
-            this.cd.detectChanges();
         });
 
         this.address.show$.asObservable().subscribe(res => {
@@ -73,19 +70,17 @@ export class BmapAddressSelectComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-
+    meepoOnInit() {
+        this.cd.markForCheck();
     }
+
     onKey(e: any) {
         this.key$.next(e.target.value);
     }
 
-    _clear() {
-
-    }
-
     _onCitySelect(item: any) {
         this.address.close(item);
+        this.addItem(item);
     }
 
     _cancelSelect() {

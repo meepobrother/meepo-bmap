@@ -4,9 +4,8 @@
             <div class="weui-search-bar__form">
                 <div class="weui-search-bar__box">
                     <i class="weui-icon-search"></i>
-                    <input type="search" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input"
+                    <input type="text" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input"
                         placeholder="请输入关键字搜索">
-                    <a href="javascript:" class="weui-icon-clear" (click)="_clear()"></a>
                 </div>
                 <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
                     <i class="weui-icon-search"></i>
@@ -17,14 +16,27 @@
         </div>
     </div>
     <div class="core-popover_container">
-        <xscroll #xscroll style="bottom: 0px;" [hasMore]="false" [hasRefresh]="false">
-            <div class="bmap-address-select-item" *ngFor="let item of items" (click)="_onCitySelect(item)">
+        <xscroll class="meepo_address_history_container" [hasMore]="false" [hasRefresh]="false">
+            <h6 class="meepo_address_title">最近使用</h6>
+            <div class="bmap-address-select-item" *ngFor="let item of data" (click)="_onCitySelect(item)">
                 <i class="bt_ic_postal_code"></i>
                 <div class="surrounding_content">
                     <h4>{{item.title}}</h4>
                     <p>{{item.address}}</p>
                 </div>
             </div>
+        </xscroll>
+        <h6 class="meepo_address_title">搜索结果</h6>
+        <xscroll #xscroll [items]="items" [full]="true" [hasMore]="false" [hasRefresh]="false">
+            <ng-template xscrollRef let-item>
+                <div class="bmap-address-select-item" (click)="_onCitySelect(item)">
+                    <i class="bt_ic_postal_code"></i>
+                    <div class="surrounding_content">
+                        <h4>{{item.title}}</h4>
+                        <p>{{item.address}}</p>
+                    </div>
+                </div>
+            </ng-template>
         </xscroll>
     </div>
 </div>
