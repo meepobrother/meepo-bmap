@@ -3216,7 +3216,7 @@ meepo-base64@>=1.1.2:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-base@^1.0.4:
+meepo-base@>=1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/meepo-base/-/meepo-base-1.0.4.tgz#734ae1ee300c8c8e6b4e8a133d86d290b8c0cf4c"
   dependencies:
