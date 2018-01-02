@@ -66,3 +66,11 @@ bmap-address-select {
 .core-popover_container {
     overflow: hidden;
 }
+
+.meepo_address_empty {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

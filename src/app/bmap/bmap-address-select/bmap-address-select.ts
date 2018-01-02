@@ -38,6 +38,7 @@ export class BmapAddressSelectComponent extends MeepoHistory {
 
     items: any[] = [];
     psize: number = 5;
+    max: number = 10;
 
     constructor(
         public bmapService: BmapService,
