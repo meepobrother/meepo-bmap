@@ -37,8 +37,8 @@ export class BmapComponent implements OnInit, OnDestroy {
         // 地图初始化
         this.loadObserver = this.bmapService.load$.subscribe((res: any) => {
             const BMap = res.libs;
-            this.BMap = BMap;
-            this.bmapService.bmap = new BMap.Map(this.bmap.nativeElement);
+            this.BMap = this.BMap || BMap;
+            this.bmapService.bmap = new this.BMap.Map(this.bmap.nativeElement);
             this.map = this.bmapService.bmap;
             this.bmapService.initMap$.next(true);
             this.loadObserver.unsubscribe();
