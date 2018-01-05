@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.core.time);
-    this.address.show();
+    // this.address.show();
   }
 
   onFinish(e: any) {

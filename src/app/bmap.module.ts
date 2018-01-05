@@ -7,16 +7,25 @@ import { BmapAddressSelectService, getBmapAddressSelectService } from './bmap-ad
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
+import { BmapContainerComponent } from './bmap-container/bmap-container';
+import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-search';
+
 import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
 const BmapComponents: any[] = [
     BmapComponent,
     BmapAddressSelectComponent,
-    GetWidthDirective
+    GetWidthDirective,
+    BmapContainerComponent,
+    BmapAddressSearchComponent
 ];
 import { MeepoCoreServiceModule } from 'meepo-core';
 import { AxiosModule } from 'meepo-axios';
 import { StoreModule } from 'meepo-store';
+import { LoaderModule } from 'meepo-loader';
+import { EventModule } from 'meepo-event';
+import { MinirefreshModule } from 'meepo-minirefresh';
+
 
 @NgModule({
     imports: [
@@ -24,13 +33,18 @@ import { StoreModule } from 'meepo-store';
         AxiosModule,
         MeepoCoreServiceModule,
         StoreModule,
-        XscrollModule
+        XscrollModule,
+        LoaderModule.forRoot({
+            root: ''
+        }),
+        EventModule.forRoot(),
+        MinirefreshModule
     ],
     exports: [
-        BmapComponents
+        ...BmapComponents
     ],
     declarations: [
-        BmapComponents
+        ...BmapComponents
     ],
     providers: [
         BmapService,

@@ -1,4 +1,6 @@
-<div #bmap class="meepo__bmap"></div>
+<!-- <div #bmap class="meepo__bmap"></div> -->
+<bmap-container></bmap-container>
+
 <div class="meepo__bmap_tip" #tip style="visibility: hidden;" (getWidth)="getWidth($event)" [style.bottom.px]="this.bmapService.locationHeight">
     <div class="tip_container">
         <div class="tip_divider"></div>
@@ -8,5 +10,5 @@
     </div>
 </div>
 <div class="meep__bmap_center_icon"></div>
-<ng-content></ng-content>
 <bmap-address-select></bmap-address-select>
+<ng-content></ng-content>

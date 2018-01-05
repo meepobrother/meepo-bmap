@@ -7,6 +7,8 @@ import { BmapService } from '../bmap.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { CoreService, CorePopoverWidget } from 'meepo-core';
+import { LoaderService } from 'meepo-loader';
+declare const BMap: any;
 
 @Component({
     selector: 'bmap',
@@ -31,30 +33,19 @@ export class BmapComponent implements OnInit, OnDestroy {
         public bmapService: BmapService,
         public cd: ChangeDetectorRef,
         public core: CoreService,
-        public render: Renderer2
+        public render: Renderer2,
+        public loader: LoaderService
     ) {
-        this.cd.detach();
-        // 地图初始化
-        this.loadObserver = this.bmapService.load$.subscribe((res: any) => {
-            const BMap = res.libs;
-            this.BMap = this.BMap || BMap;
-            this.bmapService.bmap = new this.BMap.Map(this.bmap.nativeElement);
-            this.map = this.bmapService.bmap;
-            this.bmapService.initMap$.next(true);
-            this.loadObserver.unsubscribe();
-        });
         this.bmapService.getAddress$.subscribe(res => {
             this.btnTitle = res.address;
             this.updateUi();
             this.cd.detectChanges();
         });
     }
+
     ngOnInit() {
-        this.bmapService.loadBmapSrc();
-        setTimeout(() => {
-            this.core.showLoading({ show: true, type: 'skCircle', full: false });
-            this.cd.detectChanges();
-        }, 0);
+        this.initBmap();
+        this.core.showLoading({ show: true, type: 'skCircle', full: false });
         this.bmapServiceObserver = this.bmapService.movestart$.subscribe(res => {
             setTimeout(() => {
                 this.btnTitle = this.title;
@@ -62,6 +53,25 @@ export class BmapComponent implements OnInit, OnDestroy {
             }, 0);
         });
         this.bmapService.locationHeight = this.height;
+    }
+    /**
+     * 初始化地图
+     */
+    initBmap() {
+        if (window['BMap']) {
+            this.createBmap(BMap);
+        } else {
+            window['initMap'] = () => {
+                this.createBmap(BMap);
+            }
+            this.loader.import(['https://api.map.baidu.com/api?v=2.0&ak=Xo6mSiXtItekVGBfNLsedOR1ncASB4pV&callback=initMap']).subscribe(res => { });
+        }
+    }
+    createBmap(BMap: any) {
+        this.BMap = this.BMap || BMap;
+        this.bmapService.bmap = new this.BMap.Map(this.bmap.nativeElement);
+        this.map = this.bmapService.bmap;
+        this.bmapService.initMap$.next(true);
     }
 
     ngOnDestroy() {
