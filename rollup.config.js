@@ -231,15 +231,17 @@ let globals = {
     'rxjs/operators/throttleTime': 'Rx.Observable.prototype',
     'rxjs/operators/tap': 'Rx.Observable.prototype',
 
-    'meepo-core': 'meepo-core',
-    'meepo-xscroll': 'meepo-xscroll',
-    'axios': 'axios',
-    'meepo-axios': 'meepo-axios',
-    'meepo-picker': 'meepo-picker',
-    'meepo-uuid': 'meepo-uuid',
-    'meepo-popover': 'meepo-popover',
-    'meepo-base64': 'meepo-base64',
-    'meepo-store': 'meepo-store'
+    "meepo-axios": "meepo-axios",
+    "meepo-base": "meepo-base",
+    "meepo-core": "meepo-core",
+    "meepo-event": "meepo-event",
+    "meepo-icons": "meepo-icons",
+    "meepo-loader": "meepo-loader",
+    "meepo-minirefresh": "meepo-minirefresh",
+    "meepo-picker": "meepo-picker",
+    "meepo-store": "meepo-store",
+    "meepo-xscroll": "meepo-xscroll",
+    
 };
 
 let plugins = [
