@@ -9,8 +9,12 @@ bmap-address-search {
     z-index: 9;
     background: #efefef;
 }
-
+.bmap-address-select-main{
+    position: relative;
+    height: 100%;
+}
 .address_list {
     background: #fff;
-    min-height: 300px;
+    position: relative;
+    min-height: 200px;
 }

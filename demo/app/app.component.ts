@@ -10,6 +10,7 @@ import { BmapAddressSelectService } from '../../src/app/app';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  height: string;
   constructor(
     public core: CoreService,
     public address: BmapAddressSelectService
@@ -22,5 +23,11 @@ export class AppComponent implements OnInit {
 
   onFinish(e: any) {
     console.log(e);
+  }
+
+  onMyLocation() { }
+
+  setHeight(e: number) {
+    this.height = 'calc( 100% - ' + e + 'px)';
   }
 }

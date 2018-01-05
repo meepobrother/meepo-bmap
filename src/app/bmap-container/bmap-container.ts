@@ -8,7 +8,11 @@ import { MeepoCache } from 'meepo-base';
 import { StoreService } from 'meepo-store';
 import { Title } from '@angular/platform-browser';
 import { EventService } from 'meepo-event';
-import { BMAP_INITED, BMAP_GEOC_INITED, BMAP_LOCATION_SUCCESS } from '../event';
+import {
+    BMAP_INITED, BMAP_GEOC_INITED,
+    BMAP_LOCATION_SUCCESS, BMAP_LOADED,
+    BMAP_MY_LOCATION
+} from '../event';
 declare const BMap: any;
 
 @Component({
@@ -35,6 +39,10 @@ export class BmapContainerComponent extends MeepoCache {
         public event: EventService
     ) {
         super(store, cd, title);
+        this.event.subscribe(BMAP_MY_LOCATION,()=>{
+            // 回到我的位置
+            this.getCurrentPosition();
+        });
     }
 
     meepoInit() {
@@ -58,9 +66,11 @@ export class BmapContainerComponent extends MeepoCache {
     initBmap() {
         if (window['BMap']) {
             this.createBmap();
+            this.event.publish(BMAP_LOADED, BMap);
         } else {
             window['initMap'] = () => {
                 this.createBmap();
+                this.event.publish(BMAP_LOADED, BMap);
             }
             this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => { });
         }
@@ -75,7 +85,7 @@ export class BmapContainerComponent extends MeepoCache {
         this.getCurrentPosition();
     }
 
-    getCurrentPosition(hasPan: boolean = true) {
+    getCurrentPosition() {
         this.geolocation.getCurrentPosition((r) => {
             this.data.point = r.point;
             this.updateCache(this.data);

@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { MeepoCoreModule, MeepoCoreServiceModule } from 'meepo-core';
 
 import { MeepoBmapModule } from '../../src/app/app';
-
+import { IconsModule } from 'meepo-icons';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { MeepoBmapModule } from '../../src/app/app';
   imports: [
     BrowserModule,
     MeepoCoreModule.forRoot(),
-    MeepoBmapModule
+    MeepoBmapModule,
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

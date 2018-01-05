@@ -3198,6 +3198,18 @@ meepo-event@>=1.1.4:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
+meepo-icons@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/meepo-icons/-/meepo-icons-1.0.7.tgz#ddb977b05d2ddf35754e38c3c0e369b2971978aa"
+  dependencies:
+    "@angular/common" ">=5.1.2"
+    "@angular/core" ">=5.1.2"
+    "@angular/platform-browser" ">=5.1.2"
+    ng-inline-svg "^5.1.3"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.5"
+    zone.js "0.8.4"
+
 meepo-loader@>=1.0.9, meepo-loader@>=1.1.7, meepo-loader@>=1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/meepo-loader/-/meepo-loader-1.1.8.tgz#edfcaf1d29e328eea73ca197ba22f50ad86df0fd"
@@ -3466,6 +3478,10 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+ng-inline-svg@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/ng-inline-svg/-/ng-inline-svg-5.1.3.tgz#5dd74de215fef18b79cfc365746733268470bd27"
 
 no-case@^2.2.0:
   version "2.3.2"

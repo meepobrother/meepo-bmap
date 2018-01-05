@@ -1,2 +1,6 @@
-<bmap-container></bmap-container>
-<bmap-address-search></bmap-address-search>
+<!-- <bmap-container></bmap-container> -->
+<!-- <bmap-address-search></bmap-address-search> -->
+<div style="position: relative;" [style.height]="height">
+    <bmap-container></bmap-container>
+</div>
+<bmap-footer (onInit)="setHeight($event)"></bmap-footer>

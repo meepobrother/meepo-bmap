@@ -1,3 +1,35 @@
-<minirefresh-default (down)="down($event)" (up)="up($event)">
-    <div class="address_list">测试数据</div>
-</minirefresh-default>
+<div class="weui-search-bar weui-search-bar_focusing">
+    <div class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input type="text" id="keyword" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input"
+                placeholder="请输入关键字搜索">
+            <datalist id="keyword">
+                <option value="Afghanistan 阿富汗">
+                    <option value="Albania 阿尔巴尼亚">
+                        <option value="Algeria 阿尔及利亚">
+                            <option value="Andorra 安道尔共和国">
+                                <option value="Angola 安哥拉">
+            </datalist>
+        </div>
+
+        <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+            <i class="weui-icon-search"></i>
+            <span>请输入关键字</span>
+        </label>
+    </div>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
+</div>
+<div class="bmap-address-select-main">
+    <minirefresh-default (down)="down($event)" (up)="up($event)">
+        <div class="address_list">
+            <div class="bmap-address-select-item" (click)="_onCitySelect(item)" *ngFor="let item of data">
+                <i class="bt_ic_postal_code"></i>
+                <div class="surrounding_content">
+                    <h4>{{item.title}}</h4>
+                    <p>{{item.address}}</p>
+                </div>
+            </div>
+        </div>
+    </minirefresh-default>
+</div>

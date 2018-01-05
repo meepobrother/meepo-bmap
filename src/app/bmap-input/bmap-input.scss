@@ -1,0 +1,16 @@
+bmap-input {
+    position: relative;
+    display: block;
+    .bmap_input_containner {
+        background: #ffff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .bmap_input {
+            height: 30px;
+            line-height: 30px;
+            width: 100%;
+            padding: 0 10px;
+        }
+    }
+}

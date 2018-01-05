@@ -1,19 +1,6 @@
 <div class="core-popover" [class.shown]="widget.show">
     <div class="core-popover_header">
-        <div class="weui-search-bar weui-search-bar_focusing">
-            <div class="weui-search-bar__form">
-                <div class="weui-search-bar__box">
-                    <i class="weui-icon-search"></i>
-                    <input type="text" (input)="onKey($event)" (propertychange)="onKey($event)" (change)="onKey($event)" class="weui-search-bar__input"
-                        placeholder="请输入关键字搜索">
-                </div>
-                <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
-                    <i class="weui-icon-search"></i>
-                    <span>请输入关键字</span>
-                </label>
-            </div>
-            <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
-        </div>
+        
     </div>
     <div class="core-popover_container">
         <xscroll class="meepo_address_history_container" [hasMore]="false" [hasRefresh]="false">
