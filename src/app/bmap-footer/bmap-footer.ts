@@ -1,6 +1,6 @@
 import {
     Component, OnInit, ViewEncapsulation,
-    ElementRef, EventEmitter, Output
+    ElementRef, EventEmitter, Output, OnDestroy
 } from '@angular/core';
 import { EventService } from 'meepo-event';
 import { BMAP_MY_LOCATION, BMAP_INITED } from '../event';
@@ -10,19 +10,22 @@ import { BMAP_MY_LOCATION, BMAP_INITED } from '../event';
     styleUrls: ['./bmap-footer.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class BmapFooterComponent implements OnInit {
+export class BmapFooterComponent implements OnInit, OnDestroy {
     @Output() onInit: EventEmitter<number> = new EventEmitter();
     @Output() onSave: EventEmitter<any> = new EventEmitter();
     detail: string;
     address: string;
     bmap: any;
+
+    subs: any[] = [];
     constructor(
         public event: EventService,
         public ele: ElementRef
-    ) { 
-        this.event.subscribe(BMAP_INITED, (bmap)=>{
+    ) {
+        let sub1 = this.event.subscribe(BMAP_INITED, (bmap) => {
             this.bmap = bmap;
         });
+        this.subs.push(sub1);
     }
 
     ngOnInit() {
@@ -34,18 +37,22 @@ export class BmapFooterComponent implements OnInit {
         this.event.publish(BMAP_MY_LOCATION, '');
     }
 
-    save() { 
+    save() {
         this.onSave.emit({
             detail: this.detail,
             address: this.address
         });
     }
 
-    change(e: any){
+    ngOnDestroy() {
+        this.event.clearAll();
+    }
+
+    change(e: any) {
         this.address = e;
     }
 
-    _detailChange(){
+    _detailChange() {
         this.save();
     }
 }
