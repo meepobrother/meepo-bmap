@@ -45,7 +45,9 @@ export class BmapFooterComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.event.clearAll();
+        this.subs.map(sub => {
+            this.event.unsubscribe(sub);
+        });
     }
 
     change(e: any) {

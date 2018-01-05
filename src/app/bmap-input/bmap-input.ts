@@ -82,7 +82,9 @@ export class BmapInputComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(){
-        this.event.clearAll();
+        this.subscribes.map(sub=>{
+            this.event.unsubscribe(sub);
+        });
     }
 
     ngOnInit() { }

@@ -1,7 +1,7 @@
 import {
     Component, OnInit,
     ViewEncapsulation, ViewChild, ElementRef,
-    ChangeDetectorRef, EventEmitter, Output
+    ChangeDetectorRef, EventEmitter, Output, OnDestroy
 } from '@angular/core';
 import { LoaderService } from 'meepo-loader';
 import { MeepoCache } from 'meepo-base';
@@ -29,7 +29,7 @@ export class BmapContainerComponent extends MeepoCache {
     geolocation: any;
     LocalSearch: any;
     geoc: any;
-
+    subs: any[] = [];
     @Output() onChange: EventEmitter<any> = new EventEmitter();
 
     constructor(
@@ -41,9 +41,17 @@ export class BmapContainerComponent extends MeepoCache {
         public event: EventService
     ) {
         super(store, cd, title);
-        this.event.subscribe(BMAP_MY_LOCATION, () => {
+        let sub1 = this.event.subscribe(BMAP_MY_LOCATION, () => {
             // 回到我的位置
             this.getCurrentPosition();
+        });
+
+        this.subs.push(sub1);
+    }
+
+    meepoOnDestroy() {
+        this.subs.map(sub => {
+            this.event.unsubscribe(sub);
         });
     }
 
@@ -88,7 +96,7 @@ export class BmapContainerComponent extends MeepoCache {
         this.bmap.addEventListener('dragend', (e) => {
             this.getLocation(this.bmap.getCenter());
         });
-        this.bmap.addEventListener('moveend',(e)=>{
+        this.bmap.addEventListener('moveend', (e) => {
             this.onChange.emit(this.bmap.getCenter());
         });
         this.geoc = new BMap.Geocoder();
