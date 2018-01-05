@@ -22,14 +22,9 @@ export class BmapInputComponent implements OnInit {
     ac: any;
     bmap: any;
     localSearch: any;
-
-    title: string;
     geoc: any;
-
     @Output() onChange: EventEmitter<any> = new EventEmitter();
-
     @ViewChild('keyword') keyword: ElementRef;
-
     constructor(
         public event: EventService,
         public cd: ChangeDetectorRef
@@ -67,8 +62,7 @@ export class BmapInputComponent implements OnInit {
         });
 
         this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
-            this.title = re.address;
-            this.cd.markForCheck();
+            this.keyword.nativeElement.value = re.address;
         });
     }
 
