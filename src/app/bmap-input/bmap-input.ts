@@ -1,6 +1,6 @@
 import {
     Component, OnInit, ViewEncapsulation,
-    ChangeDetectorRef, ViewChild, ElementRef, 
+    ChangeDetectorRef, ViewChild, ElementRef,
     Output, EventEmitter
 } from '@angular/core';
 import { EventService } from 'meepo-event';
@@ -38,27 +38,7 @@ export class BmapInputComponent implements OnInit {
         });
 
         this.event.subscribe(BMAP_LOCATION_SUCCESS, () => {
-            this.ac = new BMap.Autocomplete({
-                "input": "keyword"
-                , "location": this.bmap
-            });
-            this.localSearch = new BMap.LocalSearch(this.bmap, { //智能搜索
-                onSearchComplete: (e) => {
-                    let point = this.localSearch.getResults().getPoi(0).point;
-                    this.bmap.panTo(point);
-                    this.bmap.addOverlay(new BMap.Marker(point));
-                }
-            });
-            this.ac.addEventListener('onconfirm', (e: any) => {
-                let _value = e.item.value;
-                let myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-                this.ac.setInputValue(myValue);
-                this.keyword.nativeElement.blur();
-                this.change();
-                this.geoc.getPoint(myValue, (point) => {
-                    this.bmap.panTo(point);
-                });
-            });
+            this.initAc();
         });
 
         this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
@@ -66,9 +46,34 @@ export class BmapInputComponent implements OnInit {
         });
     }
 
+    initAc() {
+        this.ac = new BMap.Autocomplete({
+            "input": "keyword"
+            , "location": this.bmap
+        });
+        this.localSearch = new BMap.LocalSearch(this.bmap, { //智能搜索
+            onSearchComplete: (e) => {
+                let point = this.localSearch.getResults().getPoi(0).point;
+                this.bmap.panTo(point);
+                this.bmap.addOverlay(new BMap.Marker(point));
+            }
+        });
+        this.ac.addEventListener('onconfirm', (e: any) => {
+            let _value = e.item.value;
+            let myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+            this.ac.setInputValue(myValue);
+            this.keyword.nativeElement.blur();
+            this.ac.hide();
+            this.change();
+            this.geoc.getPoint(myValue, (point) => {
+                this.bmap.panTo(point);
+            });
+        });
+    }
+
     ngOnInit() { }
 
-    change(){
+    change() {
         this.onChange.emit(this.keyword.nativeElement.value);
     }
 }
