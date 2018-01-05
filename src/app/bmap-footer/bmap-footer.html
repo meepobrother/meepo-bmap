@@ -5,5 +5,5 @@
     <bmap-input (onChange)="change($event)"></bmap-input>
 </div>
 <div class="bmap_footer_detail">
-    <input type="text" (ngModelChange)="_detailChange()" [(ngModel)]="detail" class="weui-input address_detail_input " placeholder="详细地址：门牌号等！">
+    <input type="text" (change)="_detailChange()" (ngModelChange)="_detailChange()" [(ngModel)]="detail" class="weui-input address_detail_input " placeholder="详细地址：门牌号等！">
 </div>

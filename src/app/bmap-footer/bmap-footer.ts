@@ -55,6 +55,8 @@ export class BmapFooterComponent implements OnInit, OnDestroy {
     }
 
     _detailChange() {
-        this.save();
+        setTimeout(() => {
+            this.save();
+        }, 300);
     }
 }
