@@ -68,6 +68,7 @@ export class BmapInputComponent implements OnInit {
 
         this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
             this.title = re.address;
+            this.cd.markForCheck();
         });
     }
 
