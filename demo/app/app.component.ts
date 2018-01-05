@@ -1,6 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild } from '@angular/core';
 import { CoreService } from 'meepo-core';
-import { BmapAddressSelectService } from '../../src/app/app';
+import {
+  BmapAddressSelectService,
+  BmapInputComponent,
+  BmapFooterComponent
+} from '../../src/app/app';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +17,10 @@ export class AppComponent implements OnInit {
   height: string;
 
   @ViewChild('save') _saveRef: ElementRef;
+
+  @ViewChild(BmapFooterComponent) _footer: BmapFooterComponent;
+  @ViewChild(BmapInputComponent) _input: BmapInputComponent;
+  
 
   address: any = {
     address: '',
@@ -43,11 +51,13 @@ export class AppComponent implements OnInit {
     this.address.detail = e.detail;
   }
 
-  centerChange(e: any){
+  centerChange(e: any) {
     this.address.point = e;
   }
 
-  doSave(){
+  doSave() {
+    this.address.address = this._input.getKey();
+    this.address.detail = this._footer.getDetail();
     console.log(this.address);
   }
 }

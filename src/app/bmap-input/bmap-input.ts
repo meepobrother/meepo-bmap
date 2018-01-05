@@ -51,7 +51,7 @@ export class BmapInputComponent implements OnInit, OnDestroy {
         this.subscribes.push(sub2);
         this.subscribes.push(sub3);
         this.subscribes.push(sub4);
-        
+
     }
 
     initAc() {
@@ -81,8 +81,8 @@ export class BmapInputComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy(){
-        this.subscribes.map(sub=>{
+    ngOnDestroy() {
+        this.subscribes.map(sub => {
             this.event.unsubscribe(sub);
         });
     }
@@ -91,5 +91,9 @@ export class BmapInputComponent implements OnInit, OnDestroy {
 
     change() {
         this.onChange.emit(this.keyword.nativeElement.value);
+    }
+
+    getKey() {
+        return this.keyword.nativeElement.value;
     }
 }

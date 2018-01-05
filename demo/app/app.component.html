@@ -1,6 +1,8 @@
 <!-- <bmap-container></bmap-container> -->
 <!-- <bmap-address-search></bmap-address-search> -->
-<bmap-footer (onSave)="onSave($event)" (onInit)="setHeight($event)"></bmap-footer>
+<bmap-footer (onSave)="onSave($event)" (onInit)="setHeight($event)">
+    <bmap-input></bmap-input>
+</bmap-footer>
 <div style="position: relative;" [style.height]="height">
     <bmap-container (onChange)="centerChange($event)"></bmap-container>
     <bmap-center-icon></bmap-center-icon>

@@ -123,6 +123,10 @@ export class BmapContainerComponent extends MeepoCache {
             this.event.publish(BMAP_LOCATION_SUCCESS, r.point)
         });
     }
+
+    getCenter() {
+        return this.bmap.getCenter();
+    }
 }
 
 export interface PointInter {
