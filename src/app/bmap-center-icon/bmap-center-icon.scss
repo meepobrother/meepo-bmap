@@ -1,0 +1,19 @@
+.meep__bmap_center_icon {
+    $tipHeight: 30px;
+    $tipWidth: 150px;
+    $iconWidth: 30px;
+    $iconHeight: 58.5px;
+    
+    display: block;
+    width: $iconWidth;
+    height: $iconHeight;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -$iconHeight;
+    margin-left: -$iconWidth/2;
+    z-index: 2;
+    background-image: url("./search_center_ic.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

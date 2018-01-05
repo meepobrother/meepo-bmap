@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild } from '@angular/core';
 import { CoreService } from 'meepo-core';
 import { BmapAddressSelectService } from '../../src/app/app';
 
@@ -11,9 +11,16 @@ import { BmapAddressSelectService } from '../../src/app/app';
 export class AppComponent implements OnInit {
   title = 'app';
   height: string;
+
+  @ViewChild('save') _saveRef: ElementRef;
+
+  address: any = {
+    address: '',
+    detail: '',
+    point: {}
+  };
   constructor(
     public core: CoreService,
-    public address: BmapAddressSelectService
   ) { }
 
   ngOnInit() {
@@ -28,6 +35,19 @@ export class AppComponent implements OnInit {
   onMyLocation() { }
 
   setHeight(e: number) {
-    this.height = 'calc( 100% - ' + e + 'px)';
+    this.height = 'calc( 100% - ' + (e + this._saveRef.nativeElement.clientHeight) + 'px)';
+  }
+
+  onSave(e: any) {
+    this.address.address = e.address;
+    this.address.detail = e.detail;
+  }
+
+  centerChange(e: any){
+    this.address.point = e;
+  }
+
+  doSave(){
+    console.log(this.address);
   }
 }

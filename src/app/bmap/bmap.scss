@@ -71,22 +71,6 @@ $iconHeight: 58.5px;
 }
 
 
-
-.meep__bmap_center_icon {
-    display: block;
-    width: $iconWidth;
-    height: $iconHeight;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-top: -$iconHeight;
-    margin-left: -$iconWidth/2;
-    z-index: 2;
-    background-image: url("./search_center_ic.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .meepo__bmap_tip {
     display: block;
     width: auto;

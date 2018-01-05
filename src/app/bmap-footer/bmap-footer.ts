@@ -3,7 +3,7 @@ import {
     ElementRef, EventEmitter, Output
 } from '@angular/core';
 import { EventService } from 'meepo-event';
-import { BMAP_MY_LOCATION, BMAP_FOOTER_MORE } from '../event';
+import { BMAP_MY_LOCATION, BMAP_INITED } from '../event';
 @Component({
     selector: 'bmap-footer',
     templateUrl: './bmap-footer.html',
@@ -12,14 +12,21 @@ import { BMAP_MY_LOCATION, BMAP_FOOTER_MORE } from '../event';
 })
 export class BmapFooterComponent implements OnInit {
     @Output() onInit: EventEmitter<number> = new EventEmitter();
+    @Output() onSave: EventEmitter<any> = new EventEmitter();
+    detail: string;
+    address: string;
+    bmap: any;
     constructor(
         public event: EventService,
         public ele: ElementRef
-    ) { }
+    ) { 
+        this.event.subscribe(BMAP_INITED, (bmap)=>{
+            this.bmap = bmap;
+        });
+    }
 
     ngOnInit() {
         let height = this.ele.nativeElement.clientHeight
-        console.log(height);
         this.onInit.emit(height);
     }
 
@@ -27,7 +34,18 @@ export class BmapFooterComponent implements OnInit {
         this.event.publish(BMAP_MY_LOCATION, '');
     }
 
-    onFooterMore() {
-        this.event.publish(BMAP_FOOTER_MORE, '');
+    save() { 
+        this.onSave.emit({
+            detail: this.detail,
+            address: this.address
+        });
+    }
+
+    change(e: any){
+        this.address = e;
+    }
+
+    _detailChange(){
+        this.save();
     }
 }

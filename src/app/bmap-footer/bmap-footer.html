@@ -1,12 +1,9 @@
-<div class="bmap_footer_detail">
-    <input type="text" class="address_detail_input" placeholder="详细地址：门牌号等！">
-</div>
 <div class="bmap_footer">
     <div class="bmap_footer_left" (click)="onMyLocation()">
         <ion name="location"></ion>
     </div>
-    <bmap-input></bmap-input>
-    <div class="bmap_footer_right">
-        <ion name="more"></ion>
-    </div>
+    <bmap-input (onChange)="change($event)"></bmap-input>
+</div>
+<div class="bmap_footer_detail">
+    <input type="text" (ngModelChange)="_detailChange()" [(ngModel)]="detail" class="weui-input address_detail_input " placeholder="详细地址：门牌号等！">
 </div>

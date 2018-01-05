@@ -1,5 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { BmapComponent } from './bmap/bmap';
 import { BmapService } from './bmap.service';
 import { BmapAddressSelectService, getBmapAddressSelectService } from './bmap-address-select.service';
@@ -11,6 +13,7 @@ import { BmapContainerComponent } from './bmap-container/bmap-container';
 import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-search';
 import { BmapInputComponent } from './bmap-input/bmap-input';
 import { BmapFooterComponent } from './bmap-footer/bmap-footer';
+import { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
 
 import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
@@ -23,7 +26,8 @@ const BmapComponents: any[] = [
     BmapContainerComponent,
     BmapAddressSearchComponent,
     BmapInputComponent,
-    BmapFooterComponent
+    BmapFooterComponent,
+    BmapCenterIconComponent
 ];
 
 import { MeepoCoreServiceModule } from 'meepo-core';
@@ -45,7 +49,8 @@ import { MinirefreshModule } from 'meepo-minirefresh';
         }),
         EventModule.forRoot(),
         MinirefreshModule,
-        IconsModule
+        IconsModule,
+        FormsModule
     ],
     exports: [
         ...BmapComponents
