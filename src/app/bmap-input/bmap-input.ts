@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewEncapsulation,
     ChangeDetectorRef, ViewChild, ElementRef,
-    Output, EventEmitter, OnDestroy
+    Output, EventEmitter, OnDestroy, Input
 } from '@angular/core';
 import { EventService } from 'meepo-event';
 import {
@@ -26,6 +26,13 @@ export class BmapInputComponent implements OnInit, OnDestroy {
     @Output() onChange: EventEmitter<any> = new EventEmitter();
     @ViewChild('keyword') keyword: ElementRef;
 
+    _isEdit: boolean = false;
+    @Input()
+    set model(val: string) {
+        this.keyword.nativeElement.value = val;
+        this._isEdit = val ? true : false;
+    }
+
     subscribes: any[] = [];
     constructor(
         public event: EventService,
@@ -44,7 +51,9 @@ export class BmapInputComponent implements OnInit, OnDestroy {
         });
 
         let sub4 = this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
-            this.keyword.nativeElement.value = re.address;
+            if (!this._isEdit) {
+                this.keyword.nativeElement.value = re.address;
+            }
         });
 
         this.subscribes.push(sub1);

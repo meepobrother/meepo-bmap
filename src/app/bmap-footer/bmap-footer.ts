@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewEncapsulation,
     ElementRef, EventEmitter, Output, OnDestroy,
-    ViewChild
+    ViewChild, Input
 } from '@angular/core';
 import { EventService } from 'meepo-event';
 import { BMAP_MY_LOCATION, BMAP_INITED } from '../event';
@@ -19,6 +19,16 @@ export class BmapFooterComponent implements OnInit, OnDestroy {
     bmap: any;
     @ViewChild('detail') _detail: ElementRef;
     subs: any[] = [];
+
+    @Input()
+    set model(val: string) {
+        this._detail.nativeElement.value = val;
+    }
+    get model() {
+        return this._detail.nativeElement.value;
+    }
+
+
     constructor(
         public event: EventService,
         public ele: ElementRef
