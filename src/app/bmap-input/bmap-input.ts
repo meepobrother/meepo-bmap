@@ -8,7 +8,7 @@ import {
     BMAP_LOADED, BMAP_INITED,
     BMAP_LOCATION_SUCCESS,
     BMAP_GET_ADDRESS,
-    BMAP_GEOC_INITED
+    BMAP_GEOC_INITED, BMAP_MOVEEND
 } from '../event';
 declare const BMap: any;
 import { LocationInter } from '../bmap-container/bmap-container';
@@ -58,6 +58,10 @@ export class BmapInputComponent implements OnInit, OnDestroy {
             if (!this._isEdit) {
                 this.keyword.nativeElement.value = re.address;
             }
+        });
+
+        let sub5 = this.event.subscribe(BMAP_MOVEEND, () => {
+            this._isEdit = false;
         });
 
         this.subscribes.push(sub1);

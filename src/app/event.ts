@@ -10,5 +10,8 @@ export const BMAP_SET_CITY = 'bmap set city';
 // 获取当前位置
 export const BMAP_GET_ADDRESS = 'bmap set city';
 
+export const BMAP_MOVEEND = 'bmap move end';
+
+
 
 

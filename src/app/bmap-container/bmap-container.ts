@@ -11,7 +11,8 @@ import { EventService } from 'meepo-event';
 import {
     BMAP_INITED, BMAP_GEOC_INITED,
     BMAP_LOCATION_SUCCESS, BMAP_LOADED,
-    BMAP_MY_LOCATION, BMAP_SET_CITY, BMAP_GET_ADDRESS
+    BMAP_MY_LOCATION, BMAP_SET_CITY, BMAP_GET_ADDRESS,
+    BMAP_MOVEEND
 } from '../event';
 declare const BMap: any;
 
@@ -98,6 +99,7 @@ export class BmapContainerComponent extends MeepoCache {
         });
         this.bmap.addEventListener('moveend', (e) => {
             this.onChange.emit(this.bmap.getCenter());
+            this.event.publish(BMAP_MOVEEND, '')
         });
         this.geoc = new BMap.Geocoder();
         this.event.publish(BMAP_GEOC_INITED, this.geoc);
