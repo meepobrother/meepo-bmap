@@ -31,7 +31,7 @@ export class BmapInputComponent implements OnInit, OnDestroy {
     set model(val: string) {
         if (val) {
             this.keyword.nativeElement.value = val;
-            this._isEdit = val ? true : false;
+            this._isEdit = true;
         }
     }
 
