@@ -53,6 +53,7 @@ export class BmapInputComponent implements OnInit, OnDestroy {
         });
 
         let sub4 = this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
+            console.log(this._isEdit);
             if (!this._isEdit) {
                 this.keyword.nativeElement.value = re.address;
             }
