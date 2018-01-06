@@ -27,9 +27,11 @@ export class BmapInputComponent implements OnInit, OnDestroy {
     @ViewChild('keyword') keyword: ElementRef;
 
     _isEdit: boolean = false;
+    _key: string;
     @Input()
     set model(val: string) {
         if (val) {
+            this._key = val;
             this.keyword.nativeElement.value = val;
             this._isEdit = true;
         }
@@ -53,7 +55,6 @@ export class BmapInputComponent implements OnInit, OnDestroy {
         });
 
         let sub4 = this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
-            console.log(this._isEdit);
             if (!this._isEdit) {
                 this.keyword.nativeElement.value = re.address;
             }
@@ -72,6 +73,9 @@ export class BmapInputComponent implements OnInit, OnDestroy {
                 "input": "keyword"
                 , "location": this.bmap
             });
+            if (this._isEdit) {
+                this.ac.setInputValue(this._key);
+            }
             this.localSearch = new BMap.LocalSearch(this.bmap, { //智能搜索
                 onSearchComplete: (e) => {
                     let point = this.localSearch.getResults().getPoi(0).point;
