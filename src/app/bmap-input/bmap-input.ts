@@ -29,8 +29,10 @@ export class BmapInputComponent implements OnInit, OnDestroy {
     _isEdit: boolean = false;
     @Input()
     set model(val: string) {
-        this.keyword.nativeElement.value = val;
-        this._isEdit = val ? true : false;
+        if (val) {
+            this.keyword.nativeElement.value = val;
+            this._isEdit = val ? true : false;
+        }
     }
 
     subscribes: any[] = [];
