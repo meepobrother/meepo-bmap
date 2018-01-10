@@ -17,7 +17,7 @@ import {
 declare const BMap: any;
 
 @Component({
-    selector: 'bmap-container',
+    selector: 'bmap-container,[bMap]',
     templateUrl: './bmap-container.html',
     styleUrls: ['./bmap-container.scss'],
     encapsulation: ViewEncapsulation.None
