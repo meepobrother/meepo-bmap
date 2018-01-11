@@ -21,7 +21,7 @@
     <a href="javascript:" class="weui-search-bar__cancel-btn" (click)="_cancelSelect()">取消</a>
 </div>
 <div class="bmap-address-select-main">
-    <minirefresh-default (down)="down($event)" (up)="up($event)">
+    <meepo-refresh-default [empty]="data.length==00" (down)="down($event)" (up)="up($event)">
         <div class="address_list">
             <div class="bmap-address-select-item" (click)="_onCitySelect(item)" *ngFor="let item of data">
                 <i class="bt_ic_postal_code"></i>
@@ -31,5 +31,5 @@
                 </div>
             </div>
         </div>
-    </minirefresh-default>
+    </meepo-refresh-default>
 </div>
