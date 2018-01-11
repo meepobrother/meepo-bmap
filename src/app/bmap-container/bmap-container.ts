@@ -77,14 +77,12 @@ export class BmapContainerComponent extends MeepoCache {
     initBmap() {
         if (window['BMap']) {
             this.createBmap();
-            this.event.publish(BMAP_LOADED, BMap);
         } else {
             window['initMap'] = () => {
                 this.createBmap();
-                this.event.publish(BMAP_LOADED, BMap);
             }
             this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => {
-                this.event.publish('BMAP_INIT', '');
+                
             });
         }
     }
@@ -105,6 +103,7 @@ export class BmapContainerComponent extends MeepoCache {
         });
         this.geoc = new BMap.Geocoder();
         this.event.publish(BMAP_GEOC_INITED, this.geoc);
+        this.event.publish(BMAP_LOADED, this.bmap);
     }
 
     getLocation(pt: any) {
