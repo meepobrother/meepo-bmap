@@ -6,7 +6,7 @@ import { AxiosService } from 'meepo-axios';
 import { StoreService } from 'meepo-store';
 import { EventService } from 'meepo-event';
 
-
+import { BMAP_LOADED } from './event';
 export const loadMaps: any = {};
 export interface BMapComponent {
     street?: string;
@@ -66,7 +66,8 @@ export class BmapService {
             this.BMap = window['BMap'];
             this.initMapSetting();
         });
-        this.event.subscribe('BMAP_INIT', () => {
+        this.event.subscribe(BMAP_LOADED, () => {
+            this.BMap = window['BMap'];
             this.initMapSetting();
         })
         // 成功获取位置时

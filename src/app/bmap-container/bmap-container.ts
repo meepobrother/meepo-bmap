@@ -83,8 +83,8 @@ export class BmapContainerComponent extends MeepoCache {
                 this.createBmap();
                 this.event.publish(BMAP_LOADED, BMap);
             }
-            this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => { 
-                
+            this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => {
+                this.event.publish('BMAP_INIT', '');
             });
         }
     }
