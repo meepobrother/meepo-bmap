@@ -63,10 +63,10 @@ export class BmapService {
             // 初始化地图后， 调整地图中心， 初始化数据
             // 调整地图参数
             this.BMap = window['BMap'];
-            this.bmap = res;
             this.initMapSetting();
         });
-        this.event.subscribe(BMAP_LOADED, () => {
+        this.event.subscribe(BMAP_LOADED, (res) => {
+            this.bmap = res;
             this.BMap = window['BMap'];
             this.initMapSetting();
         })
