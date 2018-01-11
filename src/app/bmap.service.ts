@@ -140,14 +140,16 @@ export class BmapService {
     }
 
     getCurrentPosition(hasPan: boolean = true) {
-        this.geolocation.getCurrentPosition((r) => {
-            this.store.set('__my_location', r.point);
-            if (hasPan) {
-                this.bmap.panTo(r.point);
-            } else {
-                this.getLocation(r.point);
-            }
-        });
+        if (this.geolocation) {
+            this.geolocation.getCurrentPosition((r) => {
+                this.store.set('__my_location', r.point);
+                if (hasPan) {
+                    this.bmap.panTo(r.point);
+                } else {
+                    this.getLocation(r.point);
+                }
+            });
+        }
     }
     initMapSetting() {
         this.geolocationControl = new this.BMap.GeolocationControl({
