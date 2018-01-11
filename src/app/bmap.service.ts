@@ -59,6 +59,7 @@ export class BmapService {
         this.initMap$.subscribe(res => {
             // 初始化地图后， 调整地图中心， 初始化数据
             // 调整地图参数
+            console.log('init Map');
             this.BMap = window['BMap'];
             this.initMapSetting();
         });
