@@ -3187,7 +3187,7 @@ meepo-loader@>=1.0.9, meepo-loader@>=1.1.7, meepo-loader@>=1.1.8:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-minirefresh@>=1.3.2:
+meepo-minirefresh@>=1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/meepo-minirefresh/-/meepo-minirefresh-1.3.8.tgz#d7cce1d88600a2781e3ce3a51964ff226ff1aef9"
   dependencies:

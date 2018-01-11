@@ -1,6 +1,6 @@
 {
     "name": "meepo-bmap",
-    "version": "3.8.9",
+    "version": "3.9.0",
     "description": "百度地图组件",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",
@@ -54,7 +54,7 @@
         "meepo-event": ">=1.1.4",
         "meepo-icons": ">=1.0.7",
         "meepo-loader": ">=1.1.8",
-        "meepo-minirefresh": ">=1.3.2",
+        "meepo-minirefresh": ">=1.3.8",
         "meepo-picker": ">=1.3.2",
         "meepo-store": ">=1.0.4",
         "meepo-xscroll": ">=1.4.4",

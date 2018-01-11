@@ -241,6 +241,7 @@ let globals = {
     "meepo-picker": "meepo-picker",
     "meepo-store": "meepo-store",
     "meepo-xscroll": "meepo-xscroll",
+    "meepo-empty": "meepo-empty"
     
 };
 
