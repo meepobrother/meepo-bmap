@@ -4,6 +4,8 @@ import { CoreService } from 'meepo-core';
 import { Subject } from 'rxjs/Subject';
 import { AxiosService } from 'meepo-axios';
 import { StoreService } from 'meepo-store';
+import { EventService } from 'meepo-event';
+
 
 export const loadMaps: any = {};
 export interface BMapComponent {
@@ -50,7 +52,8 @@ export class BmapService {
         @Inject(DOCUMENT) public document: any,
         public core: CoreService,
         public axios: AxiosService,
-        public store: StoreService
+        public store: StoreService,
+        public event: EventService
     ) {
         this.myLocation = this.store.get('__my_location', {
             lng: 116.404,
@@ -63,6 +66,9 @@ export class BmapService {
             this.BMap = window['BMap'];
             this.initMapSetting();
         });
+        this.event.subscribe('BMAP_INIT', () => {
+            this.initMapSetting();
+        })
         // 成功获取位置时
         this.locationSuccess$.subscribe((location: any) => {
             // this.bmap.clearOverlays();
