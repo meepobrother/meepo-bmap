@@ -78,11 +78,11 @@ export class BmapContainerComponent implements AfterContentInit {
     }
 
     ngAfterContentInit() {
+        console.log('bmap container ngAfterContentInit');
         if (!this.data.key) {
             this.initCfg();
         }
         this.initBmap();
-        console.log('bmap container ngAfterContentInit');
     }
 
     initBmap() {
