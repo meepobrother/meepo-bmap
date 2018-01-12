@@ -78,6 +78,7 @@ export class BmapContainerComponent extends MeepoCache implements AfterContentIn
             this.initCfg();
         }
         this.initBmap();
+        console.log('bmap container ngAfterContentInit');
     }
 
     initBmap() {
