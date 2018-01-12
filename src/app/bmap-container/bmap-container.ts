@@ -25,7 +25,7 @@ declare const BMap: any;
     styleUrls: ['./bmap-container.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class BmapContainerComponent extends MeepoCache implements AfterContentInit {
+export class BmapContainerComponent implements AfterContentInit {
     bmap: any;
     @ViewChild('container') ele: ElementRef;
     key: string = 'bmap.container';
@@ -39,17 +39,17 @@ export class BmapContainerComponent extends MeepoCache implements AfterContentIn
 
     constructor(
         public loader: LoaderService,
-        store: StoreService,
-        cd: ChangeDetectorRef,
-        title: Title,
+        public store: StoreService,
+        public cd: ChangeDetectorRef,
+        public title: Title,
         public event: EventService
     ) {
-        super(store, cd, title);
         let sub1 = this.event.subscribe(BMAP_MY_LOCATION, () => {
             // 回到我的位置
             this.getCurrentPosition();
         });
         this.subs.push(sub1);
+        this.data = this.store.get(this.key, null);
     }
 
     meepoOnDestroy() {
@@ -71,6 +71,10 @@ export class BmapContainerComponent extends MeepoCache implements AfterContentIn
             }
         };
         this.updateCache(data);
+    }
+
+    updateCache(data) {
+        this.store.set(this.key, data);
     }
 
     ngAfterContentInit() {
