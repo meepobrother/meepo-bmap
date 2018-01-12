@@ -2,7 +2,7 @@ import {
     Component, OnInit,
     ViewEncapsulation, ViewChild, ElementRef,
     ChangeDetectorRef, EventEmitter, Output, OnDestroy,
-    Input, Injectable, OnChanges, SimpleChanges
+    Input, Injectable, OnChanges, SimpleChanges, AfterContentInit
 } from '@angular/core';
 import { LoaderService } from 'meepo-loader';
 import { MeepoCache } from 'meepo-base';
@@ -25,7 +25,7 @@ declare const BMap: any;
     styleUrls: ['./bmap-container.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class BmapContainerComponent extends MeepoCache {
+export class BmapContainerComponent extends MeepoCache implements AfterContentInit {
     bmap: any;
     @ViewChild('container') ele: ElementRef;
     key: string = 'bmap.container';
@@ -59,10 +59,7 @@ export class BmapContainerComponent extends MeepoCache {
     }
 
     meepoInit() {
-        if (!this.data.key) {
-            this.initCfg();
-        }
-        this.initBmap();
+
     }
 
     initCfg() {
@@ -74,6 +71,13 @@ export class BmapContainerComponent extends MeepoCache {
             }
         };
         this.updateCache(data);
+    }
+
+    ngAfterContentInit() {
+        if (!this.data.key) {
+            this.initCfg();
+        }
+        this.initBmap();
     }
 
     initBmap() {
