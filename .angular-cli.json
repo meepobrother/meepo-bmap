@@ -22,7 +22,9 @@
                 "styles.css",
                 "../node_modules/meepo-core/app.css",
                 "../node_modules/meepo-minirefresh/app.css",
-                "../node_modules/meepo-icons/app.css"
+                "../node_modules/meepo-icons/app.css",
+                "../node_modules/meepo-picker/app.css",
+                "../node_modules/meepo-forms/app.css"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",

@@ -7,3 +7,5 @@ export { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-s
 export { BmapInputComponent } from './bmap-input/bmap-input';
 export { BmapFooterComponent } from './bmap-footer/bmap-footer';
 export { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
+export * from './event';
+export * from './marker.service';

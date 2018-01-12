@@ -1,0 +1,21 @@
+.bmap-info {
+    width: 50px;
+    height: 50px;
+    background-image: url('./stable_cluster_marker_select.png');
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        transform: scale(1.3);
+    }
+    img {
+        width: 30px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+}

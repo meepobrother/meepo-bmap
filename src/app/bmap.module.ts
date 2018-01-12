@@ -14,10 +14,17 @@ import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-s
 import { BmapInputComponent } from './bmap-input/bmap-input';
 import { BmapFooterComponent } from './bmap-footer/bmap-footer';
 import { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
+import { BmapRichMarkerDirective } from './bmap-rich-marker/bmap-rich-marker';
+import { BmapAvatarDirective } from './bmap-rich-marker/bmap-avatar';
+import { BmapInfoComponent } from './bmap-info/bmap-info';
+
 
 import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
 import { IconsModule } from 'meepo-icons';
+import { MeepoFormsModule } from 'meepo-forms';
+
+import { MarkerService } from './marker.service';
 
 const BmapComponents: any[] = [
     BmapComponent,
@@ -27,7 +34,10 @@ const BmapComponents: any[] = [
     BmapAddressSearchComponent,
     BmapInputComponent,
     BmapFooterComponent,
-    BmapCenterIconComponent
+    BmapCenterIconComponent,
+    BmapRichMarkerDirective,
+    BmapAvatarDirective,
+    BmapInfoComponent,
 ];
 
 import { MeepoCoreServiceModule } from 'meepo-core';
@@ -35,8 +45,12 @@ import { AxiosModule } from 'meepo-axios';
 import { StoreModule } from 'meepo-store';
 import { LoaderModule } from 'meepo-loader';
 import { EventModule } from 'meepo-event';
-import { MinirefreshModule } from 'meepo-minirefresh';
+import { SwiperModule } from 'meepo-swiper';
+import { PickerModule } from 'meepo-picker';
 
+
+import { MinirefreshModule } from 'meepo-minirefresh';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
@@ -50,7 +64,11 @@ import { MinirefreshModule } from 'meepo-minirefresh';
         EventModule.forRoot(),
         MinirefreshModule,
         IconsModule,
-        FormsModule
+        FormsModule,
+        MeepoFormsModule,
+        SwiperModule.forRoot(),
+        ReactiveFormsModule,
+        PickerModule
     ],
     exports: [
         ...BmapComponents
@@ -63,7 +81,8 @@ import { MinirefreshModule } from 'meepo-minirefresh';
         {
             provide: BmapAddressSelectService,
             useFactory: getBmapAddressSelectService
-        }
+        },
+        MarkerService
     ]
 })
-export class MeepoBmapModule {}
+export class MeepoBmapModule { }

@@ -9,4 +9,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
+  .then(r => {
+    console.log('应用启动成功');
+  })
   .catch(err => console.log(err));

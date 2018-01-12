@@ -1,0 +1,187 @@
+.weui-mask {
+    transition-duration: 3s;
+    background: rgba(255, 255, 255, 0);
+}
+
+.bmap-info-detail {
+    position: absolute;
+    top: 10%;
+    height: auto;
+    left: 20px;
+    right: 20px;
+    z-index: 1001;
+    $width: 33.333%;
+    background: #fff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 1px 1px 11px #ccc;
+    overflow: hidden;
+    max-height: 80%;
+    ul.menu {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        justify-content: center;
+        padding: 0 30px;
+        margin-top: 20px;
+        li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: 44px;
+            font-size: 1.1em;
+            font-weight: 500;
+            ion {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+        }
+    }
+    ul.list {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        bottom: 10px;
+        left: 0px;
+        right: 0px;
+        li {
+            width: $width;
+            min-width: $width;
+            height: 0px;
+            padding-bottom: $width;
+            position: relative;
+            font-size: .9em;
+            img {
+                width: 80%;
+            }
+            .container {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                ion {
+                    color: gray;
+                    font-size: 20px;
+                    border-radius: 50%;
+                    background-color: #fcfcfc;
+                    width: 32px;
+                    height: 32px;
+                    text-align: center;
+                    border: 1px solid #efefef;
+                }
+                p {
+                    font-size: .9em;
+                    color: gray;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+    .core-menu-header {
+        height: 120px;
+        padding: 20px 0px 10px;
+        position: relative;
+        &:after {
+            content: " ";
+            position: absolute;
+            bottom: 0px;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            color: #ccc;
+            background-color: #ccc;
+            transform: scaleY(0.5);
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            background-size: cover;
+            background: #ccc;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
+        }
+        .nickname {
+            font-size: 1em;
+            text-align: center;
+            margin: 5px 3px;
+        }
+        .tag {
+            font-size: .7em;
+            color: gray;
+            text-align: center;
+        }
+    }
+}
+
+.shown {
+    display: block !important;
+}
+
+@keyframes zoomInUp {
+    0% {
+        opacity: 0;
+        transform: scale3d(.1, .1, .1) translate3d(0, 1000px, 0);
+        animation-timing-function: cubic-bezier(.55, .055, .675, .19)
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+        animation-timing-function: cubic-bezier(.175, .885, .32, 1)
+    }
+}
+
+.zoomInUp {
+    animation-name: zoomInUp
+}
+
+@keyframes zoomOutDown {
+    40% {
+        opacity: 1;
+        transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+        animation-timing-function: cubic-bezier(.55, .055, .675, .19)
+    }
+    to {
+        opacity: 0;
+        transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
+        transform-origin: center bottom;
+        animation-timing-function: cubic-bezier(.175, .885, .32, 1)
+    }
+}
+
+.zoomOutDown {
+    animation-name: zoomOutDown
+}
+
+.hidden {
+    display: none;
+}
+
+.selectSkill{
+    background: #efefef;
+}
+
+.time_select_detail {
+    text-align: center;
+    font-size: .8em;
+    line-height: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    padding-bottom: 10px;
+}
