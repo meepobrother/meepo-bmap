@@ -47,9 +47,7 @@ import { LoaderModule } from 'meepo-loader';
 import { EventModule } from 'meepo-event';
 import { SwiperModule } from 'meepo-swiper';
 import { PickerModule } from 'meepo-picker';
-import { UuidService } from 'meepo-uuid';
-
-
+import { UuidModule } from 'meepo-uuid';
 
 import { MinirefreshModule } from 'meepo-minirefresh';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -71,7 +69,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         SwiperModule.forRoot(),
         ReactiveFormsModule,
         PickerModule,
-        UuidService
+        UuidModule
     ],
     exports: [
         ...BmapComponents
