@@ -94,9 +94,7 @@ export class BmapContainerComponent implements AfterContentInit {
             window['initMap'] = () => {
                 this.createBmap();
             }
-            this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => {
-
-            });
+            this.loader.import([`https://api.map.baidu.com/api?v=2.0&ak=${this.data.key}&callback=initMap`]).subscribe(res => { });
         }
     }
     /**
@@ -126,6 +124,7 @@ export class BmapContainerComponent implements AfterContentInit {
             this.event.publish(BMAP_DRAGEND, this.bmap.getCenter());
         });
         this.bmap.addEventListener('moveend', (e) => {
+            console.log('moveend');
             this.event.publish(BMAP_MOVEEND, this.bmap.getCenter())
         });
         this.bmap.addEventListener('click', (e) => {
