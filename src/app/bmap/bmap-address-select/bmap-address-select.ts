@@ -21,7 +21,6 @@ import { StoreService } from 'meepo-store';
     styleUrls: [
         './bmap-address-select.scss'
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class BmapAddressSelectComponent extends MeepoHistory {
@@ -61,13 +60,13 @@ export class BmapAddressSelectComponent extends MeepoHistory {
                 }
                 this.xscroll.onEnd();
                 this.core.closeLoading();
-                this.cd.detectChanges();
+                // this.cd.detectChanges();
             }
         });
 
         this.address.show$.asObservable().subscribe(res => {
             this.widget = { ...this.widget, ...res };
-            this.cd.detectChanges();
+            // this.cd.detectChanges();
         });
     }
 

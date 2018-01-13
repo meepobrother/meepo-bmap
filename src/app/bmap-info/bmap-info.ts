@@ -10,8 +10,7 @@ import { SwiperWrapComponent } from 'meepo-swiper';
     selector: 'bmap-info',
     templateUrl: './bmap-info.html',
     styleUrls: ['./bmap-info.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    encapsulation: ViewEncapsulation.None
 })
 export class BmapInfoComponent implements OnInit, AfterContentInit {
     @Input() info: any = {};
@@ -32,7 +31,6 @@ export class BmapInfoComponent implements OnInit, AfterContentInit {
             skill: [{}],
             time: [{}]
         });
-
     }
 
     ngOnInit() { }
@@ -78,8 +76,7 @@ export class BmapInfoComponent implements OnInit, AfterContentInit {
                 this.show = true;
                 this.has = true;
                 this.selectSkill = true;
-                console.log(this);
-                this.cd.markForCheck();
+                // this.cd.markForCheck();
             }, 0);
         });
     }
