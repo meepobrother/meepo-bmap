@@ -58,7 +58,7 @@ export class BmapContainerComponent implements AfterContentInit {
         });
     }
 
-    meepoInit() {}
+    meepoInit() { }
 
     initCfg() {
         let data = {
@@ -69,6 +69,7 @@ export class BmapContainerComponent implements AfterContentInit {
             }
         };
         this.updateCache(data);
+        this.initBmap();
     }
 
     updateCache(data) {
@@ -79,10 +80,11 @@ export class BmapContainerComponent implements AfterContentInit {
         console.log('bmap container ngAfterContentInit');
         if (!this.data) {
             this.initCfg();
-        }else if(!this.data.key){
+        } else if (!this.data.key) {
             this.initCfg();
+        } else {
+            this.initBmap();
         }
-        this.initBmap();
     }
 
     initBmap() {
