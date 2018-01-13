@@ -14,29 +14,30 @@ import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-s
 import { BmapInputComponent } from './bmap-input/bmap-input';
 import { BmapFooterComponent } from './bmap-footer/bmap-footer';
 import { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
-import { BmapRichMarkerDirective } from './bmap-rich-marker/bmap-rich-marker';
-import { BmapAvatarDirective } from './bmap-rich-marker/bmap-avatar';
 import { BmapInfoComponent } from './bmap-info/bmap-info';
 
+import { BmapContainerModule } from './bmap-container/bmap-container.module';
+import { BmapMarkerModule } from './bmap-rich-marker/bmap-rich-marker.module';
+
+export const BmapModules = [
+    BmapContainerModule,
+    BmapMarkerModule
+];
 
 import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
 import { IconsModule } from 'meepo-icons';
 import { MeepoFormsModule } from 'meepo-forms';
 
-import { MarkerService } from './marker.service';
 
 const BmapComponents: any[] = [
     BmapComponent,
     BmapAddressSelectComponent,
     GetWidthDirective,
-    BmapContainerComponent,
     BmapAddressSearchComponent,
     BmapInputComponent,
     BmapFooterComponent,
     BmapCenterIconComponent,
-    BmapRichMarkerDirective,
-    BmapAvatarDirective,
     BmapInfoComponent,
 ];
 
@@ -69,10 +70,12 @@ import { ReactiveFormsModule } from '@angular/forms';
         SwiperModule.forRoot(),
         ReactiveFormsModule,
         PickerModule,
-        UuidModule
+        UuidModule,
+        ...BmapModules
     ],
     exports: [
-        ...BmapComponents
+        ...BmapComponents,
+        ...BmapModules
     ],
     declarations: [
         ...BmapComponents
@@ -82,8 +85,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         {
             provide: BmapAddressSelectService,
             useFactory: getBmapAddressSelectService
-        },
-        MarkerService
+        }
     ]
 })
 export class MeepoBmapModule { }

@@ -5,6 +5,8 @@ import { MeepoCoreModule, MeepoCoreServiceModule } from 'meepo-core';
 
 import { MeepoBmapModule } from '../../src/app/app';
 import { IconsModule } from 'meepo-icons';
+import { SocketModule } from 'meepo-event';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { IconsModule } from 'meepo-icons';
     BrowserModule,
     MeepoCoreModule.forRoot(),
     MeepoBmapModule,
-    IconsModule
+    IconsModule,
+    SocketModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

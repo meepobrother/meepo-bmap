@@ -8,7 +8,10 @@ import { LoaderService } from 'meepo-loader';
 import { MeepoCache } from 'meepo-base';
 import { StoreService } from 'meepo-store';
 import { Title } from '@angular/platform-browser';
-import { EventService } from 'meepo-event';
+
+export const bmapContainerRoom = 'bmapContainerRoom';
+import { SocketService } from 'meepo-event';
+
 import {
     BMAP_INITED, BMAP_GEOC_INITED,
     BMAP_LOCATION_SUCCESS, BMAP_LOADED,
@@ -40,51 +43,44 @@ export class BmapContainerComponent implements AfterContentInit {
     constructor(
         public loader: LoaderService,
         public store: StoreService,
-        public cd: ChangeDetectorRef,
-        public title: Title,
-        public event: EventService
+        public event: SocketService
     ) {
-        let sub1 = this.event.subscribe(BMAP_MY_LOCATION, () => {
-            // 回到我的位置
-            this.getCurrentPosition();
-        });
-        this.subs.push(sub1);
-        this.data = this.store.get(this.key, null);
-    }
-
-    meepoOnDestroy() {
-        this.subs.map(sub => {
-            this.event.unsubscribe(sub);
+        this.on((data: any) => {
+            switch (data.type) {
+                case BMAP_MY_LOCATION:
+                    this.getCurrentPosition();
+                    break;
+                default:
+                    break;
+            }
         });
     }
 
-    meepoInit() { }
+    private on(fn: Function) {
+        this.event.on(bmapContainerRoom, fn);
+    }
+
+    private emit(data) {
+        this.event.emit(bmapContainerRoom, data);
+    }
 
     initCfg() {
-        let data = {
+        this.data = this.store.get(this.key, {
             key: 'Xo6mSiXtItekVGBfNLsedOR1ncASB4pV',
             point: {
                 lng: 116.404,
                 lat: 39.915
             }
-        };
-        this.updateCache(data);
-        this.initBmap();
+        });
     }
 
-    updateCache(data) {
+    updateBmapConfig(data) {
         this.store.set(this.key, data);
     }
 
     ngAfterContentInit() {
-        console.log('bmap container ngAfterContentInit');
-        if (!this.data) {
-            this.initCfg();
-        } else if (!this.data.key) {
-            this.initCfg();
-        } else {
-            this.initBmap();
-        }
+        this.initCfg();
+        this.initBmap();
     }
 
     initBmap() {
@@ -119,22 +115,22 @@ export class BmapContainerComponent implements AfterContentInit {
         this.bmap.centerAndZoom(point, this.zoom);
         this.geolocation = new BMap.Geolocation();
         this.getCurrentPosition();
-        this.event.publish(BMAP_INITED, this.bmap);
+        // 发送地图初始化事件
+        this.emit({ type: BMAP_INITED, data: this.bmap });
         this.bmap.addEventListener('dragend', (e) => {
-            this.event.publish(BMAP_DRAGEND, this.bmap.getCenter());
+            this.emit({ type: BMAP_DRAGEND, data: this.bmap.getCenter() });
         });
         this.bmap.addEventListener('moveend', (e) => {
-            console.log('moveend');
-            this.event.publish(BMAP_MOVEEND, this.bmap.getCenter())
+            this.emit({ type: BMAP_MOVEEND, data: this.bmap.getCenter() });
         });
         this.bmap.addEventListener('click', (e) => {
-            this.event.publish(BMAP_CLICK, this.bmap.getCenter())
+            this.emit({ type: BMAP_CLICK, data: this.bmap.getCenter() })
         });
         this.bmap.addEventListener("tilesloaded", () => {
-            this.event.publish(BMAP_TITLES_LOADED, this.bmap);
+            this.emit({ type: BMAP_TITLES_LOADED, data: this.bmap });
         });
         this.geoc = new BMap.Geocoder();
-        this.event.publish(BMAP_LOADED, this.bmap);
+        this.emit({ type: BMAP_LOADED, data: this.bmap });
         this.walking = new BMap.WalkingRoute(this.bmap, {
             onSearchComplete: (results: any) => {
                 if (this.walking.getStatus() == window['BMAP_STATUS_SUCCESS']) {
@@ -144,7 +140,7 @@ export class BmapContainerComponent implements AfterContentInit {
                         distance: plan.getDistance(true),
                         resultes: results
                     };
-                    this.event.publish(BMAP_WALKING_SEARCH_COMPLETE, data);
+                    this.emit({ type: BMAP_WALKING_SEARCH_COMPLETE, data: data });
                 }
             },
             waypoints: this.waypoints,
@@ -163,7 +159,7 @@ export class BmapContainerComponent implements AfterContentInit {
                         distance: plan.getDistance(true),
                         resultes: results
                     };
-                    this.event.publish(BMAP_DRIVING_SEARCH_COMPLETE, data);
+                    this.emit({ type: BMAP_DRIVING_SEARCH_COMPLETE, data: data });
                 }
             },
             waypoints: this.waypoints,
@@ -190,13 +186,13 @@ export class BmapContainerComponent implements AfterContentInit {
     // 点转地址
     getLocation(pt: any) {
         this.geoc.getLocation(pt, (rs: LocationInter) => {
-            this.event.publish(BMAP_GEOC_GET_LOCATION, rs);
+            this.emit({ type: BMAP_GEOC_GET_LOCATION, data: rs });
         });
     }
     // 地址转点
     getPoint(addr: string) {
         this.geoc.getPoint(addr, (point: any) => {
-            this.event.publish(BMAP_GEOC_GET_POINT, point);
+            this.emit({ type: BMAP_GEOC_GET_POINT, data: point });
         });
     }
     // 驾车路线规划
@@ -215,12 +211,12 @@ export class BmapContainerComponent implements AfterContentInit {
             let address = r.address;
             let city = address.city;
             // 设置城市
-            this.event.publish(BMAP_SET_CITY, city);
+            this.emit({ type: BMAP_SET_CITY, data: city });
             this.bmap.setCurrentCity(city);
-            this.updateCache(this.data);
+            this.updateBmapConfig(this.data);
             this.bmap.panTo(r.point);
             // 成功定位
-            this.event.publish(BMAP_LOCATION_SUCCESS, r.point)
+            this.emit({ type: BMAP_LOCATION_SUCCESS, data: r.point });
         });
     }
 

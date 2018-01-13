@@ -1,32 +1,55 @@
 import { Injectable } from '@angular/core';
-import { EventService } from 'meepo-event';
+import { SocketService } from 'meepo-event';
 import { LoaderService } from 'meepo-loader';
-
-import { BMAP_LOADED } from './event';
+import { BMAP_LOADED } from '../event';
 import { Subject } from 'rxjs/Subject';
 import "rxjs/add/operator/switchMap";
-import { from } from 'rxjs/observable/from';
 import 'rxjs/add/operator/map';
-
-
+import { from } from 'rxjs/observable/from';
+import { bmapContainerRoom } from '../bmap-container/bmap-container.module';
+export const bmapRichMarkerRoom = 'bmapRichMarkerRoom';
+export const BMAP_RICH_MARKER_ADD_RUNNERS = 'BMAP_RICH_MARKER_INITED';
 declare const BMapLib: any;
 declare const BMap: any;
+
 @Injectable()
 export class MarkerService {
     markers: any[] = [];
     bmap: any;
     markerClusterer: any;
-
     loadInited: Subject<any> = new Subject();
 
     constructor(
-        public event: EventService,
+        public event: SocketService,
         public loader: LoaderService
     ) {
-        this.event.subscribe(BMAP_LOADED, (res) => {
-            this.bmap = res;
-            this.loadMarker();
+        this.event.on(bmapContainerRoom, (res: any) => {
+            switch (res.type) {
+                case BMAP_LOADED:
+                    this.bmap = res.data;
+                    this.loadMarker();
+                    break;
+                default:
+                    break;
+            }
         });
+        this.on((res) => {
+            switch (res.type) {
+                case BMAP_RICH_MARKER_ADD_RUNNERS:
+                    this.addPointMarkers(res.data);
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
+    private on(fn: Function) {
+        this.event.on(bmapRichMarkerRoom, fn)
+    }
+
+    private emit(data: any) {
+        this.event.emit(bmapRichMarkerRoom, data);
     }
 
     loadMarker() {
@@ -45,19 +68,18 @@ export class MarkerService {
     setMarkers(val: any[]) {
         this.markers = val;
     }
+
     i: number = 0;
     addPointMarkers(runners: any[] = []) {
-
         try {
             this.bmap.clearOverlays();
             this.markers = [];
-        } catch (e) {
-
-        }
+        } catch (e) { }
         runners.map(runner => {
             this.addPointMarker(runner);
         });
     }
+
     maxDistance: number = 300;
     addPointMarker(e: any) {
         try {
@@ -102,11 +124,6 @@ export class MarkerService {
         }
     }
 
-    addMarker(e: any) {
-
-        // console.log(this.markers);
-    }
-
     removeMarker(e) {
         this.markers.splice(this.markers.indexOf(e), 1);
         this.bmap.removeOverlay(e);
@@ -118,6 +135,5 @@ export class MarkerService {
                 markers: this.markers
             }
         );
-        // console.log(this.markerClusterer);
     }
 }
