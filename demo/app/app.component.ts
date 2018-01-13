@@ -12,7 +12,8 @@ import {
   BMAP_MOVEEND, MarkerService,
   bmapRichMarkerRoom,
   bmapContainerRoom,
-  BMAP_RICH_MARKER_ADD_RUNNERS
+  BMAP_RICH_MARKER_ADD_RUNNERS,
+  BMAP_RICH_MARKER_CLICK
 } from '../../src/app/app';
 
 declare const BMap: any;
@@ -60,6 +61,16 @@ export class AppComponent implements OnInit {
           break;
       }
     });
+
+    this.event.on(bmapRichMarkerRoom, (res: any) => {
+      switch (res.type) {
+        case BMAP_RICH_MARKER_CLICK:
+          console.log(res.data);
+          break;
+        default:
+          break;
+      }
+    })
 
     this.move$.debounceTime(1000).subscribe(res => {
       this.createRandomPoint(res);

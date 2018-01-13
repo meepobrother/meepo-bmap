@@ -7,8 +7,14 @@ import "rxjs/add/operator/switchMap";
 import 'rxjs/add/operator/map';
 import { from } from 'rxjs/observable/from';
 import { bmapContainerRoom } from '../bmap-container/bmap-container.module';
+// 常数
 export const bmapRichMarkerRoom = 'bmapRichMarkerRoom';
+
 export const BMAP_RICH_MARKER_ADD_RUNNERS = 'BMAP_RICH_MARKER_INITED';
+export const BMAP_RICH_MARKER_LOADED = 'BMAP_RICH_MARKER_LOADED';
+export const BMAP_RICH_MARKER_RUNNERS_ADDED = 'BMAP_RICH_MARKER_RUNNERS_ADDED';
+export const BMAP_RICH_MARKER_CLICK = 'BMAP_RICH_MARKER_CLICK';
+
 declare const BMapLib: any;
 declare const BMap: any;
 
@@ -18,6 +24,10 @@ export class MarkerService {
     bmap: any;
     markerClusterer: any;
     loadInited: Subject<any> = new Subject();
+
+    maxDistance: number = 300;
+    showInfo: Subject<any> = new Subject();
+    i: number = 0;
 
     constructor(
         public event: SocketService,
@@ -53,23 +63,27 @@ export class MarkerService {
     }
 
     loadMarker() {
-        this.loader.importLocals([
-            './TextIconOverlay.js',
-            './RichMarker.js',
-            './MarkerClusterer.js'
-        ]).subscribe(res => {
-            if (res) {
-                this.createMarkerClusterer();
-            }
-            this.loadInited.next(res);
-        });
+        if (window['BMapLib']) {
+            this.emit({ type: BMAP_RICH_MARKER_LOADED, data: window['BMapLib'] });
+        } else {
+            this.loader.importLocals([
+                './TextIconOverlay.js',
+                './RichMarker.js',
+                './MarkerClusterer.js'
+            ]).subscribe(res => {
+                if (res) {
+                    this.createMarkerClusterer();
+                    this.emit({ type: BMAP_RICH_MARKER_LOADED, data: window['BMapLib'] });
+                }
+            });
+        }
+
     }
 
     setMarkers(val: any[]) {
         this.markers = val;
     }
 
-    i: number = 0;
     addPointMarkers(runners: any[] = []) {
         try {
             this.bmap.clearOverlays();
@@ -78,9 +92,9 @@ export class MarkerService {
         runners.map(runner => {
             this.addPointMarker(runner);
         });
+        this.emit({ type: BMAP_RICH_MARKER_RUNNERS_ADDED, data: this.markers });
     }
 
-    maxDistance: number = 300;
     addPointMarker(e: any) {
         try {
             let distance = this.checkDistance(new BMap.Point(e.lng, e.lat));
@@ -94,17 +108,13 @@ export class MarkerService {
                 );
                 this.markers = [...this.markers, marker];
                 marker.addEventListener("onclick", () => {
-                    this.showInfoDetail(e);
+                    this.emit({ type: BMAP_RICH_MARKER_CLICK, data: e });
                 });
                 this.bmap.addOverlay(marker);
             }
         } catch (e) {
             console.dir(e);
         }
-    }
-    showInfo: Subject<any> = new Subject();
-    showInfoDetail(e) {
-        this.showInfo.next(e);
     }
 
     checkDistance(p2): boolean {

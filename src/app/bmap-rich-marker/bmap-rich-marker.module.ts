@@ -19,4 +19,10 @@ import { BmapRichMarkerDirective } from './bmap-rich-marker';
 })
 export class BmapMarkerModule { }
 export { BmapRichMarkerDirective } from './bmap-rich-marker';
-export { MarkerService, bmapRichMarkerRoom, BMAP_RICH_MARKER_ADD_RUNNERS } from './marker.service';
+export {
+    MarkerService, bmapRichMarkerRoom,
+    BMAP_RICH_MARKER_ADD_RUNNERS,
+    BMAP_RICH_MARKER_CLICK,
+    BMAP_RICH_MARKER_LOADED,
+    BMAP_RICH_MARKER_RUNNERS_ADDED
+} from './marker.service';
