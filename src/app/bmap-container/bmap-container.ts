@@ -125,7 +125,9 @@ export class BmapContainerComponent implements AfterContentInit {
      */
     convertor: any;
     createBmap() {
-        this.bmap = new BMap.Map(this.ele.nativeElement);
+        this.bmap = new BMap.Map(this.ele.nativeElement, {
+            minZoom: 18
+        });
         let point = new BMap.Point(this.data.point.lng, this.data.point.lat);
         this.bmap.centerAndZoom(point, this.zoom);
         this.geolocation = new BMap.Geolocation();
