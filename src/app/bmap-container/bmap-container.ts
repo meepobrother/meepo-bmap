@@ -51,7 +51,7 @@ export class BmapContainerComponent implements AfterContentInit {
     subs: any[] = [];
     @Input() zoom: number = 20;
     @Output() onChange: EventEmitter<any> = new EventEmitter();
-
+    @Input() hashLen: number = 4;
     constructor(
         public loader: LoaderService,
         public store: StoreService,
@@ -150,7 +150,7 @@ export class BmapContainerComponent implements AfterContentInit {
         });
         this.bmap.addEventListener("tilesloaded", () => {
             let point = this.bmap.getCenter();
-            let hash = geohash.encode(point.lat, point.lng, 4);
+            let hash = geohash.encode(point.lat, point.lng, this.hashLen);
             this.emit({ type: BMAP_GEOHASH, data: hash });
             this.emit({ type: BMAP_TITLES_LOADED, data: this.bmap });
         });
@@ -242,7 +242,7 @@ export class BmapContainerComponent implements AfterContentInit {
             // 成功定位
             this.emit({ type: BMAP_LOCATION_SUCCESS, data: r.point });
             // 计算hash
-            let hash = geohash.encode(r.point.lat, r.point.lng, 6);
+            let hash = geohash.encode(r.point.lat, r.point.lng, this.hashLen);
             this.emit({ type: BMAP_GEOHASH, data: hash });
         });
     }
