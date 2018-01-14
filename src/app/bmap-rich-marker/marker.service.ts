@@ -36,10 +36,10 @@ export class MarkerService {
         public log: LoggerService
     ) {
         this.event.on(bmapContainerRoom, (res: any) => {
+            console.log('this.event.on.bmapContainerRoom', res);
             switch (res.type) {
                 case BMAP_INITED:
                     this.bmap = res.data;
-                    this.log.log('MarkerService Loader', res);
                     this.loadMarker();
                     break;
                 default:
@@ -47,9 +47,9 @@ export class MarkerService {
             }
         });
         this.on((res) => {
+            console.log('this.on', res);
             switch (res.type) {
                 case BMAP_RICH_MARKER_ADD_RUNNERS:
-                    this.log.log('MarkerService Loader', res);
                     this.addPointMarkers(res.data);
                     break;
                 default:
