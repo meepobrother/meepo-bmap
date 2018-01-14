@@ -30,7 +30,6 @@ import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
 import { IconsModule } from 'meepo-icons';
 import { MeepoFormsModule } from 'meepo-forms';
-import { LoggerModule, LOGGER_STATE } from 'meepo-logger';
 
 
 
@@ -75,7 +74,6 @@ import { ReactiveFormsModule } from '@angular/forms';
         PickerModule,
         UuidModule,
         ...BmapModules,
-        LoggerModule
     ],
     exports: [
         ...BmapComponents,
@@ -89,10 +87,6 @@ import { ReactiveFormsModule } from '@angular/forms';
         {
             provide: BmapAddressSelectService,
             useFactory: getBmapAddressSelectService
-        },
-        {
-            provide: LOGGER_STATE,
-            useValue: true
         }
     ]
 })
