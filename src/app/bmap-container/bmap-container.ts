@@ -141,12 +141,17 @@ export class BmapContainerComponent implements AfterContentInit {
             this.emit({ type: BMAP_DRAGEND, data: this.bmap.getCenter() });
         });
         this.bmap.addEventListener('moveend', (e) => {
-            this.emit({ type: BMAP_MOVEEND, data: this.bmap.getCenter() });
+            // 计算hash
+            let point = this.bmap.getCenter();
+            this.emit({ type: BMAP_MOVEEND, data: point });
         });
         this.bmap.addEventListener('click', (e) => {
             this.emit({ type: BMAP_CLICK, data: this.bmap.getCenter() })
         });
         this.bmap.addEventListener("tilesloaded", () => {
+            let point = this.bmap.getCenter();
+            let hash = geohash.encode(point.lat, point.lng, 4);
+            this.emit({ type: BMAP_GEOHASH, data: hash });
             this.emit({ type: BMAP_TITLES_LOADED, data: this.bmap });
         });
         this.geoc = new BMap.Geocoder();
