@@ -17,6 +17,7 @@ export const BMAP_RICH_MARKER_CLICK = 'BMAP_RICH_MARKER_CLICK';
 
 declare const BMapLib: any;
 declare const BMap: any;
+import { LoggerService } from 'meepo-logger';
 
 @Injectable()
 export class MarkerService {
@@ -31,12 +32,14 @@ export class MarkerService {
 
     constructor(
         public event: SocketService,
-        public loader: LoaderService
+        public loader: LoaderService,
+        public log: LoggerService
     ) {
         this.event.on(bmapContainerRoom, (res: any) => {
             switch (res.type) {
                 case BMAP_INITED:
                     this.bmap = res.data;
+                    this.log.log('MarkerService Loader', res);
                     this.loadMarker();
                     break;
                 default:
@@ -46,6 +49,7 @@ export class MarkerService {
         this.on((res) => {
             switch (res.type) {
                 case BMAP_RICH_MARKER_ADD_RUNNERS:
+                    this.log.log('MarkerService Loader', res);
                     this.addPointMarkers(res.data);
                     break;
                 default:
