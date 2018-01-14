@@ -17,7 +17,6 @@ export const BMAP_RICH_MARKER_CLICK = 'BMAP_RICH_MARKER_CLICK';
 
 declare const BMapLib: any;
 declare const BMap: any;
-import { LoggerService } from 'meepo-logger';
 
 @Injectable()
 export class MarkerService {
@@ -29,11 +28,10 @@ export class MarkerService {
     maxDistance: number = 300;
     showInfo: Subject<any> = new Subject();
     i: number = 0;
-
+    sn: any = new Date().getTime();
     constructor(
         public event: SocketService,
         public loader: LoaderService,
-        public log: LoggerService
     ) {
         console.log('bmap rich marker');
         this.event.on(bmapContainerRoom, (res: any) => {
@@ -57,6 +55,7 @@ export class MarkerService {
                     break;
             }
         });
+        console.log('MarkerService', this.sn);
     }
 
     private on(fn: Function) {
