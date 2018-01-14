@@ -24,7 +24,8 @@ import {
     BMAP_GEOC_GET_POINT,
     BMAP_SET_CITY,
     BMAP_LOCATION_SUCCESS,
-    BMAP_MY_LOCATION
+    BMAP_MY_LOCATION,
+    BMAP_GEOHASH
 } from '../event';
 export const BMAP_DRIVING = 'BMAP_DRIVING';
 export const BMAP_WALKING = 'BMAP_WALKING';
@@ -237,9 +238,7 @@ export class BmapContainerComponent implements AfterContentInit {
             this.emit({ type: BMAP_LOCATION_SUCCESS, data: r.point });
             // 计算hash
             let hash = geohash.encode(r.point.lat, r.point.lng, 4);
-            console.log(hash);
-            console.log(geohash.decode(hash));
-            console.log(r.point);
+            this.emit({ type: BMAP_GEOHASH, data: hash });
         });
     }
 
