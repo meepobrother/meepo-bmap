@@ -33,9 +33,7 @@ export class MarkerService {
         public event: SocketService,
         public loader: LoaderService,
     ) {
-        console.log('bmap rich marker');
         this.event.on(bmapContainerRoom, (res: any) => {
-            console.log('this.event.on.bmapContainerRoom', res);
             switch (res.type) {
                 case BMAP_INITED:
                     this.bmap = res.data;
@@ -46,7 +44,6 @@ export class MarkerService {
             }
         });
         this.on((res) => {
-            console.log('this.on', res);
             switch (res.type) {
                 case BMAP_RICH_MARKER_ADD_RUNNERS:
                     this.addPointMarkers(res.data);
@@ -55,7 +52,6 @@ export class MarkerService {
                     break;
             }
         });
-        console.log('MarkerService', this.sn);
     }
 
     private on(fn: Function) {
