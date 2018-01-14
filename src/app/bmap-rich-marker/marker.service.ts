@@ -63,7 +63,6 @@ export class MarkerService {
     }
 
     loadMarker() {
-        console.log('loadMarker');
         if (window['BMapLib']) {
             this.emit({ type: BMAP_RICH_MARKER_LOADED, data: window['BMapLib'] });
         } else {
@@ -83,8 +82,9 @@ export class MarkerService {
     setMarkers(val: any[]) {
         this.markers = val;
     }
-
+    minMax: any;
     addPointMarkers(runners: any[] = []) {
+        this.minMax = this.getBounds();
         try {
             this.bmap.clearOverlays();
             this.markers = [];
@@ -119,18 +119,32 @@ export class MarkerService {
 
     checkDistance(p2): boolean {
         let distance = this.getDistance(p2);
-        return distance < this.maxDistance;
+        let lat = p2.lat > this.minMax.lat.min && p2.lat < this.minMax.lat.max;
+        let lng = p2.lng > this.minMax.lng.min && p2.lng < this.minMax.lng.max;
+        if (lat && lng) { 
+            return true;
+        }else{
+            return false;
+        }
+        // return distance < this.maxDistance;
     }
     getDistance(p2): number {
-        let p1 = this.bmap.getCenter();
-        return this.bmap.getDistance(p1, p2);
+        return 0;
     }
 
     getBounds() {
-        let bounds = this.bmap.getBounds();
+        let bound = this.bmap.getBounds();
+        let bounds = {
+            bottom: bound.getSouthWest(),
+            top: bound.getNorthEast()
+        }
+        let minLat = Math.min(bounds.bottom.lat, bounds.top.lat);
+        let maxLat = Math.max(bounds.bottom.lat, bounds.top.lat);
+        let minLng = Math.min(bounds.bottom.lng, bounds.top.lng);
+        let maxLng = Math.max(bounds.bottom.lng, bounds.top.lng);
         return {
-            bottom: bounds.getSouthWest(),
-            top: bounds.getNorthEast()
+            lat: { min: minLat, max: maxLat },
+            lng: { min: minLng, max: maxLng }
         }
     }
 
