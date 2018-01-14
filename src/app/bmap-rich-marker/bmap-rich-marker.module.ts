@@ -2,27 +2,20 @@ import { NgModule, Provider, Optional, SkipSelf } from '@angular/core';
 import { MarkerService, bmapRichMarkerRoom } from './marker.service';
 import { SocketModule, SocketRoom, SocketService } from 'meepo-event';
 import { BmapRichMarkerDirective } from './bmap-rich-marker';
-import { LoggerModule, LOGGER_STATE } from 'meepo-logger';
 import { LoaderService } from 'meepo-loader';
-
-
-
 
 export function markerFactory(socket: SocketService, loader: LoaderService, exist: MarkerService): MarkerService {
     return exist || new MarkerService(socket, loader);
 }
-
 export const MarkerServiceProvider: Provider = {
     provide: MarkerService,
     useFactory: markerFactory,
     deps: [SocketService, LoaderService, [new Optional(), new SkipSelf(), SocketService]]
 };
 
-
 @NgModule({
     imports: [
         SocketModule.forChild({ name: bmapRichMarkerRoom }),
-        LoggerModule
     ],
     exports: [
         BmapRichMarkerDirective
@@ -31,8 +24,7 @@ export const MarkerServiceProvider: Provider = {
         BmapRichMarkerDirective
     ],
     providers: [
-        MarkerServiceProvider,
-        { provide: LOGGER_STATE, useValue: true }
+        MarkerServiceProvider
     ]
 })
 export class BmapMarkerModule { }
