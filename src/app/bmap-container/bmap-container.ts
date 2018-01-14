@@ -242,7 +242,7 @@ export class BmapContainerComponent implements AfterContentInit {
             // 成功定位
             this.emit({ type: BMAP_LOCATION_SUCCESS, data: r.point });
             // 计算hash
-            let hash = geohash.encode(r.point.lat, r.point.lng, 4);
+            let hash = geohash.encode(r.point.lat, r.point.lng, 6);
             this.emit({ type: BMAP_GEOHASH, data: hash });
         });
     }
