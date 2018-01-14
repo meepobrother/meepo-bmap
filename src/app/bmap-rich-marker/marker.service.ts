@@ -35,6 +35,7 @@ export class MarkerService {
         public loader: LoaderService,
         public log: LoggerService
     ) {
+        console.log('bmap rich marker');
         this.event.on(bmapContainerRoom, (res: any) => {
             console.log('this.event.on.bmapContainerRoom', res);
             switch (res.type) {
