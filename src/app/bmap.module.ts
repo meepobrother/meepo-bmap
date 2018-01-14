@@ -30,6 +30,8 @@ import { GetWidthDirective } from './bmap/getWidth';
 import { XscrollModule } from 'meepo-xscroll';
 import { IconsModule } from 'meepo-icons';
 import { MeepoFormsModule } from 'meepo-forms';
+import { LoggerModule } from 'meepo-logger';
+
 
 
 const BmapComponents: any[] = [
@@ -72,7 +74,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         PickerModule,
         UuidModule,
-        ...BmapModules
+        ...BmapModules,
+        LoggerModule
     ],
     exports: [
         ...BmapComponents,

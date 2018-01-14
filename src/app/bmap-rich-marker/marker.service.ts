@@ -63,6 +63,7 @@ export class MarkerService {
     }
 
     loadMarker() {
+        console.log('loadMarker');
         if (window['BMapLib']) {
             this.emit({ type: BMAP_RICH_MARKER_LOADED, data: window['BMapLib'] });
         } else {

@@ -27,7 +27,13 @@
     minimist "^1.2.0"
     rxjs "^5.5.2"
 
-"@angular/cdk@^5.0.4":
+"@angular/animations@^5.0.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.0.tgz#a3ce02c01b074f0de7c2c23c1f08b4a00f0bec5f"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/cdk@^5.0.0", "@angular/cdk@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.0.4.tgz#f76a268e404f41aff0e908b21e7de9a5dfc07150"
   dependencies:
@@ -97,7 +103,7 @@
   optionalDependencies:
     node-sass "^4.3.0"
 
-"@angular/common@>=5.1.2":
+"@angular/common@>=5.1.2", "@angular/common@^5.0.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-5.2.0.tgz#d184fb90763da1d1bab1f6c4f41dd80c79e47506"
   dependencies:
@@ -118,13 +124,13 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@>=5.1.2":
+"@angular/core@>=5.1.2", "@angular/core@^5.0.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.2.0.tgz#f91bf83de3e0defd621adcc007c25d7cd5a85af1"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/forms@>=5.1.2":
+"@angular/forms@>=5.1.2", "@angular/forms@^5.0.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-5.2.0.tgz#b5fb6b9ba97334bca0e3202d7fee6b9162cbc824"
   dependencies:
@@ -3395,6 +3401,17 @@ meepo-loader@>=1.0.9, meepo-loader@>=1.1.7, meepo-loader@>=1.1.8, meepo-loader@^
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
+meepo-logger@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/meepo-logger/-/meepo-logger-1.1.1.tgz#e74234479a37b3ef803cad0fe16d3742401fd379"
+  dependencies:
+    "@angular/animations" "^5.0.0"
+    "@angular/cdk" "^5.0.0"
+    "@angular/common" "^5.0.0"
+    "@angular/core" "^5.0.0"
+    "@angular/forms" "^5.0.0"
+    moment "^2.18.1"
+
 meepo-minirefresh@>=1.2.8, meepo-minirefresh@>=1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/meepo-minirefresh/-/meepo-minirefresh-1.4.0.tgz#05bb85760fcc5023223fd3499eb74e8b08a6a903"
@@ -3678,6 +3695,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
 mobile-select@^1.0.10:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mobile-select/-/mobile-select-1.1.0.tgz#e09016fdce6f7786cd121a816cb231f3a78ae805"
+
+moment@^2.18.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
