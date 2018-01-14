@@ -31,8 +31,6 @@ import { XscrollModule } from 'meepo-xscroll';
 import { IconsModule } from 'meepo-icons';
 import { MeepoFormsModule } from 'meepo-forms';
 
-
-
 const BmapComponents: any[] = [
     BmapComponent,
     BmapAddressSelectComponent,
