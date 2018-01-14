@@ -1,4 +1,4 @@
-# **bmapRichMarkerRoom** 事件
+# **bmapRichMarkerRoom** 房间
 
 ## 监听
 

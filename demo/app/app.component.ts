@@ -1,7 +1,7 @@
 import {
   Component, OnInit, ChangeDetectionStrategy,
   ElementRef, ViewChild, ChangeDetectorRef,
-  ViewEncapsulation, Input
+  ViewEncapsulation, Input, Injector
 } from '@angular/core';
 
 import {
@@ -13,7 +13,9 @@ import {
   bmapRichMarkerRoom,
   bmapContainerRoom,
   BMAP_RICH_MARKER_ADD_RUNNERS,
-  BMAP_RICH_MARKER_CLICK
+  BMAP_RICH_MARKER_CLICK,
+  bmapInfoRoom,
+  BMAP_INFO_SHOW
 } from '../../src/app/app';
 
 declare const BMap: any;
@@ -26,7 +28,7 @@ import { StoreService } from 'meepo-store';
 
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-
+import { CorePage } from 'imeepos-core';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +36,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends CorePage {
   items: Subject<any> = new Subject();
   _items: any[] = [];
   key: string = 'meepo.bmap.runners';
@@ -47,8 +49,10 @@ export class AppComponent implements OnInit {
     public cd: ChangeDetectorRef,
     public marker: MarkerService,
     public axios: AxiosService,
-    public store: StoreService
+    public store: StoreService,
+    public injector: Injector
   ) {
+    super(injector, 'AppComponent');
     this.event.on(bmapContainerRoom, (res: any) => {
       switch (res.type) {
         case BMAP_LOCATION_SUCCESS:
@@ -65,7 +69,7 @@ export class AppComponent implements OnInit {
     this.event.on(bmapRichMarkerRoom, (res: any) => {
       switch (res.type) {
         case BMAP_RICH_MARKER_CLICK:
-          console.log(res.data);
+          this.event.emit(bmapInfoRoom, { type: BMAP_INFO_SHOW, data: res });
           break;
         default:
           break;
@@ -78,7 +82,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loading.hide();
   }
 
   createRandomPoint(res) {

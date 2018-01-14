@@ -2477,6 +2477,15 @@ image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
 
+imeepos-core@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/imeepos-core/-/imeepos-core-3.3.7.tgz#5e890d8be1ece0a3a66373788443fae85021dc07"
+  dependencies:
+    meepo-bmap "^4.0.9"
+    meepo-event "^1.2.4"
+    meepo-loader "^1.1.8"
+    meepo-store "^1.0.5"
+
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
@@ -3223,6 +3232,32 @@ meepo-bmap@>=3.8.6, meepo-bmap@^3.8.8:
     rxjs "^5.5.0"
     zone.js ">=0.8.4"
 
+meepo-bmap@^4.0.9:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/meepo-bmap/-/meepo-bmap-4.0.9.tgz#3e290a9fb58c448efa1d1c8d4f1776f028091133"
+  dependencies:
+    "@angular/cdk" "^5.0.4"
+    "@angular/common" ">=5.1.2"
+    "@angular/core" ">=5.1.2"
+    "@angular/platform-browser" ">=5.1.2"
+    classlist.js "^1.1.20150312"
+    es6-shim "^0.35.3"
+    meepo-axios ">=1.3.7"
+    meepo-base ">=1.3.1"
+    meepo-core ">=3.2.4"
+    meepo-event ">=1.2.2"
+    meepo-forms ">=1.8.2"
+    meepo-icons ">=1.0.7"
+    meepo-loader ">=1.1.8"
+    meepo-minirefresh ">=1.4.0"
+    meepo-picker ">=1.4.1"
+    meepo-store ">=1.0.4"
+    meepo-swiper ">=4.1.2"
+    meepo-xscroll ">=1.4.4"
+    reflect-metadata "^0.1.10"
+    rxjs "^5.5.0"
+    zone.js ">=0.8.4"
+
 meepo-core@>=2.9.4, meepo-core@>=3.0.4, meepo-core@>=3.1.3, meepo-core@>=3.2.4, meepo-core@>=3.2.8:
   version "3.2.9"
   resolved "https://registry.yarnpkg.com/meepo-core/-/meepo-core-3.2.9.tgz#b88e3812b0ab6e2be4159736667fc29dd692a149"
@@ -3286,9 +3321,9 @@ meepo-event@>=1.1.4, meepo-event@>=1.1.8, meepo-event@^1.2.0:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-event@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/meepo-event/-/meepo-event-1.2.8.tgz#d022037e4191b15bf081380cce7df3cb559c1af3"
+meepo-event@>=1.2.2, meepo-event@^1.2.4, meepo-event@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/meepo-event/-/meepo-event-1.2.9.tgz#274d301ad7c0e541d43198eb659aa92b1cb9b2c5"
   dependencies:
     meepo-core ">=3.2.8"
     meepo-store ">=1.0.4"
@@ -3349,7 +3384,7 @@ meepo-layout@^1.6.5:
     rxjs "^5.5.5"
     zone.js ">=0.8.4"
 
-meepo-loader@>=1.0.9, meepo-loader@>=1.1.7, meepo-loader@>=1.1.8:
+meepo-loader@>=1.0.9, meepo-loader@>=1.1.7, meepo-loader@>=1.1.8, meepo-loader@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/meepo-loader/-/meepo-loader-1.1.8.tgz#edfcaf1d29e328eea73ca197ba22f50ad86df0fd"
   dependencies:
@@ -3389,19 +3424,9 @@ meepo-picker@>=1.3.2:
     rxjs "^5.5.5"
     zone.js "0.8.4"
 
-meepo-picker@>=1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.4.1.tgz#267b16275c7edb25afba9802efe86a51057df0c7"
-  dependencies:
-    "@angular/common" ">=5.1.2"
-    "@angular/core" ">=5.1.2"
-    "@angular/forms" ">=5.1.2"
-    "@angular/platform-browser" ">=5.1.2"
-    meepo-uuid ">=1.0.8"
-    mobile-select "^1.0.10"
-    reflect-metadata "^0.1.10"
-    rxjs "^5.5.5"
-    zone.js ">=0.8.4"
+meepo-picker@>=1.4.1, meepo-picker@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/meepo-picker/-/meepo-picker-1.4.4.tgz#db42c140d4883311efa5fd230ad8674be8af434a"
 
 meepo-popover@>=1.0.3:
   version "1.0.4"
@@ -3427,6 +3452,10 @@ meepo-store@>=1.0.4, meepo-store@>=1.0.5:
     reflect-metadata "^0.1.10"
     rxjs "^5.5.5"
     zone.js "0.8.4"
+
+meepo-store@^1.0.5:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/meepo-store/-/meepo-store-1.0.6.tgz#bfe3886e2dfec8558a1a7a78b1c6ca9402ab7c91"
 
 meepo-swiper@>=4.1.2:
   version "4.1.2"

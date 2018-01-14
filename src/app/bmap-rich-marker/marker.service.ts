@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SocketService } from 'meepo-event';
 import { LoaderService } from 'meepo-loader';
-import { BMAP_LOADED } from '../event';
+import { BMAP_INITED } from '../event';
 import { Subject } from 'rxjs/Subject';
 import "rxjs/add/operator/switchMap";
 import 'rxjs/add/operator/map';
@@ -35,7 +35,7 @@ export class MarkerService {
     ) {
         this.event.on(bmapContainerRoom, (res: any) => {
             switch (res.type) {
-                case BMAP_LOADED:
+                case BMAP_INITED:
                     this.bmap = res.data;
                     this.loadMarker();
                     break;
@@ -77,7 +77,6 @@ export class MarkerService {
                 }
             });
         }
-
     }
 
     setMarkers(val: any[]) {

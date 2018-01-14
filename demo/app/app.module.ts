@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { MeepoCoreModule, MeepoCoreServiceModule } from 'meepo-core';
 
 import { MeepoBmapModule } from '../../src/app/app';
 import { IconsModule } from 'meepo-icons';
 import { SocketModule } from 'meepo-event';
+import { ICoreModule, IRootPage } from 'imeepos-core';
+
 
 
 @NgModule({
@@ -17,9 +21,20 @@ import { SocketModule } from 'meepo-event';
     MeepoCoreModule.forRoot(),
     MeepoBmapModule,
     IconsModule,
-    SocketModule.forRoot()
+    SocketModule.forRoot(),
+    ICoreModule.forRoot(),
+    RouterModule.forRoot([{
+      path: '',
+      redirectTo: 'bmap',
+      pathMatch: 'full'
+    },{
+      path: 'bmap',
+      component: AppComponent
+    }], {
+        useHash: true
+      })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [IRootPage]
 })
 export class AppModule { }

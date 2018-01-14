@@ -4,7 +4,7 @@ import { BmapContainerComponent, bmapContainerRoom } from './bmap-container';
 
 @NgModule({
     imports: [
-        SocketModule.forChild(new SocketRoom(bmapContainerRoom))
+        SocketModule.forChild({ name: bmapContainerRoom })
     ],
     exports: [
         BmapContainerComponent

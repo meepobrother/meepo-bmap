@@ -13,12 +13,21 @@ export const bmapContainerRoom = 'bmapContainerRoom';
 import { SocketService } from 'meepo-event';
 
 import {
-    BMAP_INITED, BMAP_GEOC_INITED,
-    BMAP_LOCATION_SUCCESS, BMAP_LOADED,
-    BMAP_MY_LOCATION, BMAP_SET_CITY, BMAP_GET_ADDRESS,
-    BMAP_MOVEEND, BMAP_GEOC_GET_LOCATION, BMAP_GEOC_GET_POINT, BMAP_DRAGEND, BMAP_CLICK,
-    BMAP_TITLES_LOADED, BMAP_DRIVING_SEARCH_COMPLETE, BMAP_WALKING_SEARCH_COMPLETE
+    BMAP_INITED,
+    BMAP_DRAGEND,
+    BMAP_MOVEEND,
+    BMAP_CLICK,
+    BMAP_TITLES_LOADED,
+    BMAP_WALKING_SEARCH_COMPLETE,
+    BMAP_DRIVING_SEARCH_COMPLETE,
+    BMAP_GEOC_GET_LOCATION,
+    BMAP_GEOC_GET_POINT,
+    BMAP_SET_CITY,
+    BMAP_LOCATION_SUCCESS,
+    BMAP_MY_LOCATION
 } from '../event';
+export const BMAP_DRIVING = 'BMAP_DRIVING';
+export const BMAP_WALKING = 'BMAP_WALKING';
 
 declare const BMap: any;
 @Injectable()
@@ -45,10 +54,16 @@ export class BmapContainerComponent implements AfterContentInit {
         public store: StoreService,
         public event: SocketService
     ) {
-        this.on((data: any) => {
-            switch (data.type) {
+        this.on((res: any) => {
+            switch (res.type) {
                 case BMAP_MY_LOCATION:
                     this.getCurrentPosition();
+                    break;
+                case BMAP_DRIVING:
+                    this.driving.search(res.data.start, res.data.end);
+                    break;
+                case BMAP_WALKING:
+                    this.walking.search(res.data.start, res.data.end);
                     break;
                 default:
                     break;
@@ -130,7 +145,6 @@ export class BmapContainerComponent implements AfterContentInit {
             this.emit({ type: BMAP_TITLES_LOADED, data: this.bmap });
         });
         this.geoc = new BMap.Geocoder();
-        this.emit({ type: BMAP_LOADED, data: this.bmap });
         this.walking = new BMap.WalkingRoute(this.bmap, {
             onSearchComplete: (results: any) => {
                 if (this.walking.getStatus() == window['BMAP_STATUS_SUCCESS']) {

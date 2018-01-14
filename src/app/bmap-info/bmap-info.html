@@ -1,9 +1,8 @@
-<div *ngIf="has" class="weui-mask animated" (click)="hidden()" [class.zoomOutDown]="!show" [class.zoomInUp]="show"></div>
-
-<swiper-wrap *ngIf="has" class="bmap-info-detail animated" [class.zoomOutDown]="!show" [class.zoomInUp]="show">
+<swiper-wrap *ngIf="has" class="bmap-info-detail animated">
     <div class="core-menu-header">
         <div class="avatar">
             <img [src]="info.avatar" />
+            <a>关闭</a>
         </div>
         <div class="nickname">
             {{info.nickname || '游客'}}
@@ -12,28 +11,13 @@
             {{info.tag || '跑腿员'}}
         </div>
     </div>
-
-    <div [class.hidden]="!selectSkill" [formGroup]="form">
-        <time-picker formControlName="time"></time-picker>
-        <form-row (onSelect)="onSelect($event)">
-            <form-tags formControlName="skill" [items]="menus"></form-tags>
-        </form-row>
-        <ul class="list">
-            <li *ngFor="let item of others">
-                <div class="container">
-                    <ion [name]="item.icon"></ion>
-                    <p>{{item.title}}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="selectSkill" [class.hidden]="selectSkill">
-        <form-row>
-            <form-input tip="请输入联系电话">电话</form-input>
-            <form-textarea tip="请输入预约留言">留言</form-textarea>
-        </form-row>
-        <a class="weui-btn weui-btn_primary">提交</a>
-    </div>
-
+    <router-outlet name="bmapInfo"></router-outlet>
+    <ul class="list">
+        <li *ngFor="let item of others">
+            <div class="container">
+                <ion [name]="item.icon"></ion>
+                <p>{{item.title}}</p>
+            </div>
+        </li>
+    </ul>
 </swiper-wrap>

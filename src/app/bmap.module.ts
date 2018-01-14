@@ -14,14 +14,16 @@ import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-s
 import { BmapInputComponent } from './bmap-input/bmap-input';
 import { BmapFooterComponent } from './bmap-footer/bmap-footer';
 import { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
-import { BmapInfoComponent } from './bmap-info/bmap-info';
 
 import { BmapContainerModule } from './bmap-container/bmap-container.module';
 import { BmapMarkerModule } from './bmap-rich-marker/bmap-rich-marker.module';
+import { BmapInfoModule } from './bmap-info/bmap-info.module';
+
 
 export const BmapModules = [
     BmapContainerModule,
-    BmapMarkerModule
+    BmapMarkerModule,
+    BmapInfoModule
 ];
 
 import { GetWidthDirective } from './bmap/getWidth';
@@ -38,7 +40,6 @@ const BmapComponents: any[] = [
     BmapInputComponent,
     BmapFooterComponent,
     BmapCenterIconComponent,
-    BmapInfoComponent,
 ];
 
 import { MeepoCoreServiceModule } from 'meepo-core';

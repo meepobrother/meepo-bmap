@@ -24,7 +24,8 @@
                 "../node_modules/meepo-minirefresh/app.css",
                 "../node_modules/meepo-icons/app.css",
                 "../node_modules/meepo-picker/app.css",
-                "../node_modules/meepo-forms/app.css"
+                "../node_modules/meepo-forms/app.css",
+                "../node_modules/imeepos-core/app.css"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",

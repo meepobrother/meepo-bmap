@@ -5,7 +5,7 @@ import { BmapRichMarkerDirective } from './bmap-rich-marker';
 
 @NgModule({
     imports: [
-        SocketModule.forChild(new SocketRoom(bmapRichMarkerRoom))
+        SocketModule.forChild({ name: bmapRichMarkerRoom })
     ],
     exports: [
         BmapRichMarkerDirective
