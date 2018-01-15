@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, Injector } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { MeepoCache } from 'meepo-base';
 import { StoreService } from 'meepo-store';
@@ -21,9 +21,10 @@ export class BmapAddressSearchComponent extends MeepoCache {
     constructor(
         store: StoreService,
         cd: ChangeDetectorRef,
-        title: Title
+        title: Title,
+        public injector: Injector
     ) {
-        super(store, cd, title);
+        super(injector);
         this.key$.debounceTime(300).subscribe(res => {
             this.search(res);
         });

@@ -14,6 +14,7 @@ import { Subject } from 'rxjs/Subject';
 import { XscrollComponent } from 'meepo-xscroll';
 import { MeepoHistory } from 'meepo-base';
 import { StoreService } from 'meepo-store';
+import { Injector } from '@angular/core';
 
 @Component({
     selector: 'bmap-address-select',
@@ -44,9 +45,10 @@ export class BmapAddressSelectComponent extends MeepoHistory {
         public cd: ChangeDetectorRef,
         public core: CoreService,
         public address: BmapAddressSelectService,
-        public store: StoreService
+        public store: StoreService,
+        public injector: Injector
     ) {
-        super(store, cd);
+        super(injector);
         this.key$.asObservable().subscribe(key => {
             this.core.showLoading({ type: 'skCircle' });
             this.searchByKey(key);

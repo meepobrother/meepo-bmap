@@ -55,10 +55,11 @@ export class BmapService {
         public store: StoreService,
         public event: EventService
     ) {
-        this.myLocation = this.store.get('__my_location', {
+        this.myLocation = this.store.get('__my_location');
+        this.myLocation = this.myLocation || {
             lng: 116.404,
             lat: 39.915
-        });
+        }
         this.initMap$.subscribe(res => {
             // 初始化地图后， 调整地图中心， 初始化数据
             // 调整地图参数

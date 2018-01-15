@@ -245,6 +245,8 @@ let globals = {
     "meepo-forms": "meepo-forms",
     "meepo-swiper": "meepo-swiper",
     "meepo-uuid": "meepo-uuid",
+    'mobile-select': 'mobile-select',
+    'angular-web-storage': 'angular-web-storage'
 };
 
 let plugins = [

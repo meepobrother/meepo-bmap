@@ -83,13 +83,15 @@ export class BmapContainerComponent implements AfterContentInit {
     }
 
     initCfg() {
-        this.data = this.store.get(this.key, {
+        this.data = this.store.get(this.key);
+        this.data = this.data || {
             key: 'Xo6mSiXtItekVGBfNLsedOR1ncASB4pV',
             point: {
                 lng: 116.404,
                 lat: 39.915
             }
-        });
+        };
+        this.initBmap();
     }
 
     updateBmapConfig(data) {
@@ -98,7 +100,6 @@ export class BmapContainerComponent implements AfterContentInit {
 
     ngAfterContentInit() {
         this.initCfg();
-        this.initBmap();
     }
 
     initBmap() {
