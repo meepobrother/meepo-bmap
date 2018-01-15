@@ -15,5 +15,4 @@ import { BmapContainerComponent, bmapContainerRoom } from './bmap-container';
     providers: [],
 })
 export class BmapContainerModule { }
-export { BmapContainerComponent, bmapContainerRoom } from './bmap-container';
 

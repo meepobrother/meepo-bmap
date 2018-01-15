@@ -12,6 +12,7 @@ import { BMAP_CLICK } from '../event';
 export const bmapInfoRoom = 'bmapInfoRoom';
 export const BMAP_INFO_SHOW = 'BMAP_INFO_SHOW';
 import { CorePage } from 'imeepos-core';
+
 @Component({
     selector: 'bmap-info',
     templateUrl: './bmap-info.html',
