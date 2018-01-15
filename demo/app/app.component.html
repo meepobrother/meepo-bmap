@@ -1,10 +1,12 @@
-<!-- <bmap-container></bmap-container> -->
-<!-- <bmap-address-search></bmap-address-search> -->
+<bmap-footer [model]="address.detail" (onInit)="setHeight($event)">
+    <bmap-input [model]="address.address"></bmap-input>
+</bmap-footer>
 
-<div style="position: relative;" style="height: 100%;">
-    <bmap-container [zoom]="20"></bmap-container>
+<div style="position: relative;" [style.height]="height">
+    <bmap-container></bmap-container>
     <bmap-center-icon></bmap-center-icon>
-    <div bmapTextIcon></div>
-    <bmap-info></bmap-info>
-    <bmap-rich-marker></bmap-rich-marker>
+</div>
+
+<div #save>
+    <a class="weui-btn weui-btn_primary" href="javascript:;" (click)="doSave()">添加地址</a>
 </div>

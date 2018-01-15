@@ -42,6 +42,8 @@ export class AppComponent extends CorePage {
   key: string = 'meepo.bmap.runners';
   tip: string;
 
+  address: any = {};
+
   move$: Subject<any> = new Subject();
   constructor(
     public core: CoreService,
@@ -84,9 +86,14 @@ export class AppComponent extends CorePage {
   ngOnInit() {
     this.loading.hide();
   }
+  height: any;
+  @ViewChild('save') _saveRef: ElementRef;
+  setHeight(e: any) {
+    this.height = 'calc( 100% - ' + (e + this._saveRef.nativeElement.clientHeight) + 'px)';
+  }
 
   createRandomPoint(res) {
-    let runners: any[] = this.store.get(this.key, []);
+    let runners: any[] = this.store.get(this.key);
     if (runners && runners.length > 0) {
       this.event.emit(bmapRichMarkerRoom, { type: BMAP_RICH_MARKER_ADD_RUNNERS, data: runners });
     } else {

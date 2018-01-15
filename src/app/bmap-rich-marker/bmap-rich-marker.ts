@@ -12,6 +12,7 @@ import { BMAP_LOCATION_SUCCESS, BMAP_LOADED } from '../event';
 import { MarkerService } from './marker.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'bmap-rich-marker',
     template: `
         <ng-content></ng-content>

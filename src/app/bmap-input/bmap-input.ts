@@ -3,7 +3,7 @@ import {
     ChangeDetectorRef, ViewChild, ElementRef,
     Output, EventEmitter, OnDestroy, Input
 } from '@angular/core';
-import { EventService } from 'meepo-event';
+import { SocketService } from 'meepo-event';
 import {
     BMAP_LOADED, BMAP_INITED,
     BMAP_LOCATION_SUCCESS,
@@ -12,13 +12,15 @@ import {
 } from '../event';
 declare const BMap: any;
 import { LocationInter } from '../bmap-container/bmap-container';
+import { bmapContainerRoom } from '../bmap-container/bmap-container';
+export const bmapInputRoom = 'bmapInputRoom';
 @Component({
     selector: 'bmap-input',
     templateUrl: './bmap-input.html',
     styleUrls: ['./bmap-input.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class BmapInputComponent implements OnInit, OnDestroy {
+export class BmapInputComponent implements OnInit {
     ac: any;
     bmap: any;
     localSearch: any;
@@ -39,36 +41,40 @@ export class BmapInputComponent implements OnInit, OnDestroy {
 
     subscribes: any[] = [];
     constructor(
-        public event: EventService,
+        public event: SocketService,
         public cd: ChangeDetectorRef
     ) {
-        let sub1 = this.event.subscribe(BMAP_INITED, (bmap) => {
-            this.bmap = bmap;
-        });
-
-        let sub2 = this.event.subscribe(BMAP_GEOC_INITED, (geoc) => {
-            this.geoc = geoc;
-        });
-
-        let sub3 = this.event.subscribe(BMAP_LOCATION_SUCCESS, () => {
-            this.initAc();
-        });
-
-        let sub4 = this.event.subscribe(BMAP_GET_ADDRESS, (re: LocationInter) => {
-            if (!this._isEdit) {
-                this.keyword.nativeElement.value = re.address;
+        this.event.on(bmapContainerRoom, (res) => {
+            switch (res.type) {
+                case BMAP_INITED:
+                    this.bmap = res.data;
+                    break;
+                case BMAP_GEOC_INITED:
+                    this.geoc = res.data;
+                    break;
+                case BMAP_LOCATION_SUCCESS:
+                    this.initAc();
+                    break;
+                case BMAP_GET_ADDRESS:
+                    if (!this._isEdit) {
+                        this.keyword.nativeElement.value = res.data.address;
+                    }
+                    break;
+                case BMAP_MOVEEND:
+                    this._isEdit = false;
+                    break;
+                default:
+                    break;
             }
         });
+    }
 
-        let sub5 = this.event.subscribe(BMAP_MOVEEND, () => {
-            this._isEdit = false;
-        });
+    private on(fn: Function) {
+        this.event.on(bmapInputRoom, fn)
+    }
 
-        this.subscribes.push(sub1);
-        this.subscribes.push(sub2);
-        this.subscribes.push(sub3);
-        this.subscribes.push(sub4);
-
+    private emit(data: any) {
+        this.event.emit(bmapInputRoom, data);
     }
 
     initAc() {
@@ -99,12 +105,6 @@ export class BmapInputComponent implements OnInit, OnDestroy {
                 });
             });
         }
-    }
-
-    ngOnDestroy() {
-        this.subscribes.map(sub => {
-            this.event.unsubscribe(sub);
-        });
     }
 
     ngOnInit() { }

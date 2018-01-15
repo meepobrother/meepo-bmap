@@ -7,8 +7,6 @@ var postcss = require('postcss');
 
 let genDistPath = pathUtil.join(__dirname, 'src', '.tmp', 'release');
 let genPath = pathUtil.join(__dirname, 'src', '.tmp');
-let cssPath = __dirname + '/src/.tmp/app.css';
-console.log(cssPath);
 let lessFilePool = [];
 let handledLessFileCount = 0;
 
@@ -51,8 +49,11 @@ function cssImage(css, file) {
             // 处理css中`符号
             return "'";
         });
+        css = css || "";
         postcss([autoprefixer]).process(css).then(result => {
             resolve(result.css);
+        }, err => {
+            resolve('');
         });
     });
 }
@@ -124,17 +125,12 @@ function writeBackCss(path) {
     }
 }
 
-function saveToCss(res) {
-    let a = fs.readFileSync(cssPath);
-    a = a + res;
-    fs.writeFileSync(cssPath, a);
-}
-// 处理样式问题
 function processLess() {
     let index = 0;
     while (index < lessFilePool.length) {
         (function (index) {
             // debugger';
+            console.log(lessFilePool[index]);
             if (lessFilePool[index].indexOf('.less') != -1) {
                 fs.readFile(lessFilePool[index], function (e, data) {
                     if (data) {
@@ -146,17 +142,14 @@ function processLess() {
                             } else {
                                 // 检查图片并转换base64
                                 cssImage(output.css, lessFilePool[index]).then(res => {
-                                    saveToCss(res);
-                                    lessFilePool[index] = '';
+                                    lessFilePool[index] = res;
                                     doneOne();
                                 });
                             }
                         })
                     }
                 });
-            }
-            // 处理scss
-            if (lessFilePool[index].indexOf('.scss') != -1) {
+            } else if (lessFilePool[index].indexOf('.scss') != -1) {
                 scss.render({
                     file: lessFilePool[index]
                 }, function (e, output) {
@@ -165,23 +158,19 @@ function processLess() {
                     } else {
                         // 检查图片并转换base64
                         cssImage(output.css, lessFilePool[index]).then(res => {
-                            saveToCss(res);
-                            lessFilePool[index] = '';
+                            lessFilePool[index] = res;
                             doneOne();
                         });
                     }
                 });
-            }
-
-            if (lessFilePool[index].indexOf('.css') != -1) {
+            } else {
                 fs.readFile(lessFilePool[index], function (e, data) {
                     if (e) {
                         console.log(e)
                     } else {
                         // 检查图片并转换base64
                         cssImage(data.toString(), lessFilePool[index]).then(res => {
-                            saveToCss(res);
-                            lessFilePool[index] = '';
+                            lessFilePool[index] = res;
                             doneOne();
                         });
                     }
@@ -194,9 +183,12 @@ function processLess() {
 }
 
 function process() {
+    // 把所有ts文件，引入的less文件的完整路径放到全局list里面, 并且对源文件进行占坑
     getTsFile(genPath, transformStyleUrls);
     getTsFile(genPath, transformHtmlUrls);
+    // 重置文件处理进度的计数器
     handledLessFileCount = 0;
+    // 对list里面的每一个less文件进行翻译并触发css回写
     console.log("start to translate from less 2 css");
     processLess();
 }

@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import "rxjs/add/operator/switchMap";
 import 'rxjs/add/operator/map';
 import { from } from 'rxjs/observable/from';
-import { bmapContainerRoom } from '../bmap-container/bmap-container.module';
+import { bmapContainerRoom } from '../bmap-container/bmap-container';
 // 常数
 export const bmapRichMarkerRoom = 'bmapRichMarkerRoom';
 

@@ -11,19 +11,20 @@ import 'rxjs/add/operator/combineLatest';
 import { BmapAddressSelectComponent } from './bmap/bmap-address-select/bmap-address-select';
 import { BmapContainerComponent } from './bmap-container/bmap-container';
 import { BmapAddressSearchComponent } from './bmap-address-search/bmap-address-search';
-import { BmapInputComponent } from './bmap-input/bmap-input';
 import { BmapFooterComponent } from './bmap-footer/bmap-footer';
 import { BmapCenterIconComponent } from './bmap-center-icon/bmap-center-icon';
 
 import { BmapContainerModule } from './bmap-container/bmap-container.module';
 import { BmapMarkerModule } from './bmap-rich-marker/bmap-rich-marker.module';
 import { BmapInfoModule } from './bmap-info/bmap-info.module';
+import { BmapInputModule } from './bmap-input/bmap-input.module';
 
 
 export const BmapModules = [
     BmapContainerModule,
     BmapMarkerModule,
-    BmapInfoModule
+    BmapInfoModule,
+    BmapInputModule
 ];
 
 import { GetWidthDirective } from './bmap/getWidth';
@@ -36,7 +37,6 @@ const BmapComponents: any[] = [
     BmapAddressSelectComponent,
     GetWidthDirective,
     BmapAddressSearchComponent,
-    BmapInputComponent,
     BmapFooterComponent,
     BmapCenterIconComponent,
 ];

@@ -6,6 +6,7 @@ import {
 import { EventService } from 'meepo-event';
 import { BMAP_MY_LOCATION, BMAP_INITED } from '../event';
 @Component({
+    moduleId: module.id,
     selector: 'bmap-footer',
     templateUrl: './bmap-footer.html',
     styleUrls: ['./bmap-footer.scss'],
