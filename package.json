@@ -14,7 +14,8 @@
         "server": "pm2 start index.js --name meepo",
         "reload": "pm2 restart all && pm2 logs meepo",
         "delete": "pm2 delete all",
-        "logs": "pm2 logs meepo"
+        "logs": "pm2 logs meepo",
+        "ba": "yarn build && cd publish && npm  && yarn git"
     },
     "repository": {
         "type": "git",
