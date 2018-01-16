@@ -3,6 +3,7 @@ import { MarkerService, bmapRichMarkerRoom } from './marker.service';
 import { SocketModule, SocketRoom, SocketService } from 'meepo-event';
 import { BmapRichMarkerDirective } from './bmap-rich-marker';
 import { LoaderService } from 'meepo-loader';
+import { CommonModule } from '@angular/common';
 
 export function markerFactory(socket: SocketService, loader: LoaderService, exist: MarkerService): MarkerService {
     return exist || new MarkerService(socket, loader);
@@ -15,6 +16,7 @@ export const MarkerServiceProvider: Provider = {
 
 @NgModule({
     imports: [
+        CommonModule,
         SocketModule.forChild({ name: bmapRichMarkerRoom }),
     ],
     exports: [

@@ -41,8 +41,8 @@ function transformHtmlUrls(path) {
             let html = minify(content.toString(), {
                 removeComments: true,
                 collapseWhitespace: true,
-                removeEmptyAttributes: true,
-                removeAttributeQuotes: true
+                // removeEmptyAttributes: true,
+                // removeAttributeQuotes: true
             });
             return 'template: ' + "`" + html + "`";
         });

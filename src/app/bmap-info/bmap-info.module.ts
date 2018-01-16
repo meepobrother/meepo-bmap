@@ -15,7 +15,6 @@ import { BmapInfoStep2Component } from './bmap-info-step2/bmap-info-step2';
 import { PickerModule } from 'meepo-picker';
 import { IconsModule } from 'meepo-icons';
 
-
 @NgModule({
     imports: [
         CommonModule,
