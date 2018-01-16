@@ -19,9 +19,7 @@ import { Injector } from '@angular/core';
 @Component({
     selector: 'bmap-address-select',
     templateUrl: './bmap-address-select.html',
-    styleUrls: [
-        './bmap-address-select.scss'
-    ],
+    styleUrls: ['./bmap-address-select.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class BmapAddressSelectComponent extends MeepoHistory {

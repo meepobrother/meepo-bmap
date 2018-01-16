@@ -33,6 +33,7 @@ export const BMAP_WALKING = 'BMAP_WALKING';
 declare const BMap: any;
 declare const require: any;
 const geohash = require('ngeohash');
+
 @Injectable()
 @Component({
     selector: 'bmap-container,[bMap]',

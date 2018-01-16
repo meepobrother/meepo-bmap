@@ -34,7 +34,7 @@ mv publish-es2015/esm2015 publish/esm2015
 rm -rf publish-es2015
 
 echo 'Cleaning up temporary files'
-cp src/.tmp/app.css publish/app.css
+gulp
 rm -rf src/.tmp
 rm -rf publish/src/*.js
 rm -rf publish/src/**/*.js

@@ -24,10 +24,12 @@
     ],
     "angularCompilerOptions": {
         "annotateForClosureCompiler": true,
-        "strictMetadataEmit": true,
+        "strictMetadataEmit": false,
         "flatModuleOutFile": "index.js",
         "flatModuleId": "meepo-bmap",
-        "skipTemplateCodegen": true
+        "skipTemplateCodegen": true,
+        "skipMetadataEmit": false,
+        "preserveWhitespaces": false
     },
     "exclude": [
         "node_modules",

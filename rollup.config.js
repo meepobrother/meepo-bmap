@@ -246,7 +246,12 @@ let globals = {
     "meepo-swiper": "meepo-swiper",
     "meepo-uuid": "meepo-uuid",
     'mobile-select': 'mobile-select',
-    'angular-web-storage': 'angular-web-storage'
+    'angular-web-storage': 'angular-web-storage',
+
+    "imeepos-core": "imeepos-core",
+    "js-base64": "js-base64",
+    "meepo-logger": "meepo-logger",
+    "ngeohash": "ngeohash",
 };
 
 let plugins = [
